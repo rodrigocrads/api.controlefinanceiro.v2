@@ -33,7 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "ApiControleFinanceiro\\": "app/"
         },
         "classmap": [
             "database/seeds",
