@@ -11,4 +11,10 @@ class CustomFormRequest extends FormRequest
     protected function failedValidation(Validator $validator) {
         throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
+
+    public function all($keys = null)
+    {
+       // Add route parameters to validation data
+       return array_merge(parent::all(), $this->route()->parameters());
+    }
 }
