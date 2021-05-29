@@ -3,11 +3,11 @@
 namespace FinancialControl\Http\Controllers;
 
 use Exception;
-use FinancialControl\Action\Category\Delete;
 use FinancialControl\Action\Category\Save;
-use FinancialControl\Action\Category\GetAll;
-use FinancialControl\Action\Category\GetById;
 use FinancialControl\Action\Category\Update;
+use FinancialControl\Action\Category\Delete;
+use FinancialControl\Action\Category\ListAll;
+use FinancialControl\Action\Category\GetById;
 use FinancialControl\Exceptions\NotFoundException;
 use FinancialControl\Http\Requests\Category\IdRequest;
 use FinancialControl\Http\Requests\Category\SaveRequest;
@@ -45,10 +45,10 @@ class CategoryController extends Controller
         }
     }
 
-    public function getAll()
+    public function listAll()
     {
         try {
-            $action = new GetAll();
+            $action = new ListAll();
             $categories = $action->run();
 
             return response()->json([$categories]);
