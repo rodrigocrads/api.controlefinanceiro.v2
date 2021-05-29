@@ -3,12 +3,15 @@
 namespace FinancialControl\Http\Controllers;
 
 use Exception;
+use FinancialControl\Action\Category\Delete;
 use FinancialControl\Action\Category\Save;
 use FinancialControl\Action\Category\GetAll;
 use FinancialControl\Action\Category\GetById;
+use FinancialControl\Action\Category\Update;
 use FinancialControl\Exceptions\NotFoundException;
+use FinancialControl\Http\Requests\Category\IdRequest;
 use FinancialControl\Http\Requests\Category\SaveRequest;
-use FinancialControl\Http\Requests\Category\GetByIdRequest;
+use FinancialControl\Http\Requests\Category\UpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -27,7 +30,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function getById(GetByIdRequest $request)
+    public function getById(IdRequest $request)
     {
         try {
             $action = new GetById(['id' => $request->route('id')]);
@@ -49,6 +52,41 @@ class CategoryController extends Controller
             $categories = $action->run();
 
             return response()->json([$categories]);
+
+        } catch (Exception $e) {
+            return response()->json([], $e->getCode());
+        }
+    }
+
+    public function update(UpdateRequest $request)
+    {
+        try {
+            $action = new Update([
+                'id' => $request->route('id'),
+                'data' => [
+                    'name' => $request->get('name'),
+                    'type' => $request->get('type'),
+                ]
+            ]);
+            $category = $action->run();
+
+            return response()->json($category);
+
+        } catch (Exception $e) {
+            return response()->json([], $e->getCode());
+        }
+    }
+
+    public function delete(IdRequest $request)
+    {
+        try {
+            $action = new Delete([
+                'id' => $request->route('id'),
+            ]);
+
+            $action->run();
+
+            return response()->json("");
 
         } catch (Exception $e) {
             return response()->json([], $e->getCode());
