@@ -73,7 +73,7 @@ class CategoryController extends Controller
             return response()->json($category);
 
         } catch (Exception $e) {
-            return response()->json([], $e->getCode());
+            return response()->json("", $e->getCode());
         }
     }
 
@@ -89,7 +89,7 @@ class CategoryController extends Controller
             return response()->json("");
 
         } catch (Exception $e) {
-            return response()->json([], $e->getCode());
+            return response()->json("", $e->getCode());
         }
     }
 }
