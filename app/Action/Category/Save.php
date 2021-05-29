@@ -10,7 +10,6 @@ class Save extends AbstractAction
     public function run()
     {
         $category = new Category($this->data);
-
         $category->save();
 
         return $category->fresh();
