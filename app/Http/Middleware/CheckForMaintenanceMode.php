@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiControleFinanceiro\Http\Middleware;
+namespace ControleFinanceiro\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode as Middleware;
 

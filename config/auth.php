@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => ApiControleFinanceiro\User::class,
+            'model' => ControleFinanceiro\User::class,
         ],
 
         // 'users' => [

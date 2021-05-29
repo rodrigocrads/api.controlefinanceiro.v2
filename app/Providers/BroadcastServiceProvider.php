@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiControleFinanceiro\Providers;
+namespace ControleFinanceiro\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

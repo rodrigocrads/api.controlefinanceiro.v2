@@ -1,9 +1,9 @@
 <?php
 
-namespace ApiControleFinanceiro\Http\Controllers\Auth;
+namespace ControleFinanceiro\Http\Controllers\Auth;
 
-use ApiControleFinanceiro\User;
-use ApiControleFinanceiro\Http\Controllers\Controller;
+use ControleFinanceiro\User;
+use ControleFinanceiro\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \ApiControleFinanceiro\User
+     * @return \ControleFinanceiro\User
      */
     protected function create(array $data)
     {

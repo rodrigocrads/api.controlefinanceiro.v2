@@ -28,17 +28,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    ApiControleFinanceiro\Http\Kernel::class
+    ControleFinanceiro\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    ApiControleFinanceiro\Console\Kernel::class
+    ControleFinanceiro\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    ApiControleFinanceiro\Exceptions\Handler::class
+    ControleFinanceiro\Exceptions\Handler::class
 );
 
 /*

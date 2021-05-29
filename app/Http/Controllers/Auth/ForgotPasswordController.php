@@ -1,8 +1,8 @@
 <?php
 
-namespace ApiControleFinanceiro\Http\Controllers\Auth;
+namespace ControleFinanceiro\Http\Controllers\Auth;
 
-use ApiControleFinanceiro\Http\Controllers\Controller;
+use ControleFinanceiro\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class ForgotPasswordController extends Controller
