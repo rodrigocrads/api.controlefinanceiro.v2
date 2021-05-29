@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleFinanceiro\Http\Middleware;
+namespace FinancialControl\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Fideloper\Proxy\TrustProxies as Middleware;

@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleFinanceiro\Http\Middleware;
+namespace FinancialControl\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 

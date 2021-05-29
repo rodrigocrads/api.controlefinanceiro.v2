@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => ControleFinanceiro\User::class,
+            'model' => FinancialControl\User::class,
         ],
 
         // 'users' => [

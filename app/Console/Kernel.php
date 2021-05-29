@@ -1,10 +1,10 @@
 <?php
 
-namespace ControleFinanceiro\Console;
+namespace FinancialControl\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use ControleFinanceiro\Console\Commands\ModelMakeCommand;
+use FinancialControl\Console\Commands\ModelMakeCommand;
 
 class Kernel extends ConsoleKernel
 {
