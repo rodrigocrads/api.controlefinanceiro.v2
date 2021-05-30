@@ -15,7 +15,7 @@ class UpdateRequest extends CustomFormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'type' => 'required|in:income,expenses',
+            'type' => 'required|in:revenue,expenses',
             'id'   => 'required|int'
         ];
     }

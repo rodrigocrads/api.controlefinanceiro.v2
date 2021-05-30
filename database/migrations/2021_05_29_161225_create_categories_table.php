@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('name')->nullable(false);
-            $table->enum('type', ['expenses', 'income'])->nullable(false);
+            $table->enum('type', ['expenses', 'revenue'])->nullable(false);
 
             $table->timestamps();
             $table->softDeletes();
