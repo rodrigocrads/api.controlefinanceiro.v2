@@ -1,9 +1,10 @@
 <?php
 
-namespace ControleFinanceiro\Console;
+namespace FinancialControl\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use FinancialControl\Console\Commands\ModelMakeCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+       ModelMakeCommand::class,
     ];
 
     /**

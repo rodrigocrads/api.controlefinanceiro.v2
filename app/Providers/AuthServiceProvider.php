@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleFinanceiro\Providers;
+namespace FinancialControl\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'ControleFinanceiro\Model' => 'ControleFinanceiro\Policies\ModelPolicy',
+        // 'FinancialControl\Model' => 'FinancialControl\Policies\ModelPolicy',
     ];
 
     /**

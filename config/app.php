@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        ControleFinanceiro\Providers\AppServiceProvider::class,
-        ControleFinanceiro\Providers\AuthServiceProvider::class,
-        // ControleFinanceiro\Providers\BroadcastServiceProvider::class,
-        ControleFinanceiro\Providers\EventServiceProvider::class,
-        ControleFinanceiro\Providers\RouteServiceProvider::class,
+        FinancialControl\Providers\AppServiceProvider::class,
+        FinancialControl\Providers\AuthServiceProvider::class,
+        // FinancialControl\Providers\BroadcastServiceProvider::class,
+        FinancialControl\Providers\EventServiceProvider::class,
+        FinancialControl\Providers\RouteServiceProvider::class,
 
     ],
 

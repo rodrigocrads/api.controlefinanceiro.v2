@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Categories
+Route::post('/category', 'CategoryController@save');
+Route::put('/category/{id}', 'CategoryController@update');
+Route::delete('/category/{id}', 'CategoryController@delete');
+Route::get('/category', 'CategoryController@listAll');
+Route::get('/category/{id}', 'CategoryController@getById');

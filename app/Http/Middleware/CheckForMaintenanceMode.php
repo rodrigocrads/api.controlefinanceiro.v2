@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleFinanceiro\Http\Middleware;
+namespace FinancialControl\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode as Middleware;
 

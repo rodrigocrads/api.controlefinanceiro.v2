@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleFinanceiro\Http\Middleware;
+namespace FinancialControl\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

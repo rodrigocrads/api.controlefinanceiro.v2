@@ -1,6 +1,6 @@
 <?php
 
-namespace ControleFinanceiro\Providers;
+namespace FinancialControl\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;
