@@ -51,7 +51,7 @@ class CategoryController extends Controller
             $action = new ListAll();
             $categories = $action->run();
 
-            return response()->json([$categories]);
+            return response()->json($categories ?? []);
 
         } catch (Exception $e) {
             return response()->json([], $e->getCode());
