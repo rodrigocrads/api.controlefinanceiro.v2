@@ -15,7 +15,7 @@ class SaveRequest extends CustomFormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'type' => 'required|in:revenue,expenses'
+            'type' => 'required|in:revenue,expense'
         ];
     }
 }
