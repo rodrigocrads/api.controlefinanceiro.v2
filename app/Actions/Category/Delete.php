@@ -3,7 +3,7 @@
 namespace FinancialControl\Actions\Category;
 
 use FinancialControl\Models\Category;
-use FinancialControl\Action\AbstractAction;
+use FinancialControl\Actions\AbstractAction;
 
 class Delete extends AbstractAction
 {
