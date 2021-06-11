@@ -17,7 +17,7 @@ class CreateFixedRevenuesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('title', 100)->nullable(false);
-            $table->string('description', 255)->nullable(false);
+            $table->string('description', 255)->nullable();
             $table->double('value')->nullable(false);
 
             $table->integer('activation_control_id')->unsigned();

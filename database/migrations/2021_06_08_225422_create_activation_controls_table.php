@@ -17,7 +17,7 @@ class CreateActivationControlsTable extends Migration
             $table->bigIncrements('id');
 
             $table->date('start_date')->nullable(false);
-            $table->date('end_date')->nullable(false);
+            $table->date('end_date')->nullable();
             $table->integer('activation_day')->nullable(false);
             $table->enum('activation_type', [
                 'monthly', 'quarterly', 'semiannual', 'annual'
