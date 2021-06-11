@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Action\Category;
+namespace FinancialControl\Actions\Category;
 
 use FinancialControl\Action\AbstractAction;
 use FinancialControl\Models\Category;

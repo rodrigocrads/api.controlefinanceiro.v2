@@ -1,18 +1,16 @@
 <?php
 
-namespace FinancialControl\Action\Category;
+namespace FinancialControl\Actions\Category;
 
 use FinancialControl\Models\Category;
 use FinancialControl\Action\AbstractAction;
 
-class Update extends AbstractAction
+class Delete extends AbstractAction
 {
     public function run()
     {
         /** @var Category */
         $category = Category::find($this->data['id']);
-        $category->update($this->data['data']);
-
-        return $category->fresh();
+        $category->delete();
     }
 }
