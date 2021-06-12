@@ -4,12 +4,12 @@ namespace FinancialControl\Http\Controllers;
 
 use Exception;
 use FinancialControl\Actions\Category\Save;
+use FinancialControl\Http\Requests\IdRequest;
 use FinancialControl\Actions\Category\Update;
 use FinancialControl\Actions\Category\Delete;
 use FinancialControl\Actions\Category\ListAll;
 use FinancialControl\Actions\Category\GetById;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Http\Requests\Category\IdRequest;
 use FinancialControl\Http\Requests\Category\SaveRequest;
 use FinancialControl\Http\Requests\Category\UpdateRequest;
 

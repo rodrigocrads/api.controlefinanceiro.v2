@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Http\Requests\Category;
+namespace FinancialControl\Http\Requests;
 
 use FinancialControl\Http\Requests\CustomFormRequest;
 
