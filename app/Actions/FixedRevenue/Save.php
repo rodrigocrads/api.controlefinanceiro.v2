@@ -4,22 +4,23 @@ namespace FinancialControl\Actions\FixedRevenue;
 
 use FinancialControl\Models\FixedRevenue;
 use FinancialControl\Actions\AbstractAction;
+use FinancialControl\Custom\DTO\FixedRevenueResponse;
 use FinancialControl\Models\ActivationControl;
 
 class Save extends AbstractAction
 {
     public function run()
     {
-        $activationControl = new ActivationControl($this->get('activation_control'));
-        $activationControl->saveOrFail();
-
-        $data = $this->data;
-        unset($data['activation_control']);
-
-        $fixedRevenueSaveData = array_merge($data, [ 'activation_control_id' => $activationControl->id ]);
-        $fixedRevenue = new FixedRevenue($fixedRevenueSaveData);
+        $fixedRevenue = new FixedRevenue($this->data);
         $fixedRevenue->saveOrFail();
 
-        return $fixedRevenue->fresh();
+        $activationControlSaveData = array_merge(
+            $this->get('activation_control'),
+            ['fixed_revenue_id' => $fixedRevenue->id],
+        );
+        $activationControl = new ActivationControl($activationControlSaveData);
+        $activationControl->saveOrFail();
+
+        return (new FixedRevenueResponse($fixedRevenue))->toArray();
     }
 }
