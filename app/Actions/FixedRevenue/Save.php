@@ -10,12 +10,13 @@ class Save extends AbstractAction
 {
     public function run()
     {
-        $activationControl = new ActivationControl($this->data['activation_control']);
+        $activationControl = new ActivationControl($this->get('activation_control'));
         $activationControl->save();
-        
-        unset($this->data['activation_control']);
 
-        $fixedRevenueSaveData = array_merge($this->data, [ 'activation_control_id' => $activationControl->id ]);
+        $data = $this->data;
+        unset($data['activation_control']);
+
+        $fixedRevenueSaveData = array_merge($data, [ 'activation_control_id' => $activationControl->id ]);
         $fixedRevenue = new FixedRevenue($fixedRevenueSaveData);
         $fixedRevenue->save();
 
