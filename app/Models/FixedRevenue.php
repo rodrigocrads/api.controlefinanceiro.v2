@@ -20,6 +20,10 @@ class FixedRevenue extends Model
         'value',
     ];
 
+    protected $casts = [
+        ['value', 'double']
+    ];
+
     public function activationControl()
     {
         return $this->hasOne(ActivationControl::class); 
