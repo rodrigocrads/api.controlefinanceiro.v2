@@ -2,8 +2,8 @@
 
 namespace FinancialControl\Actions\Category;
 
-use FinancialControl\Action\AbstractAction;
-use FinancialControl\Modelss\Category;
+use FinancialControl\Models\Category;
+use FinancialControl\Actions\AbstractAction;
 
 class Save extends AbstractAction
 {
