@@ -2,12 +2,16 @@
 
 namespace FinancialControl\Http\Controllers;
 
-use Exception;
-use FinancialControl\Actions\FixedRevenue\ListAll;
+use FinancialControl\Actions\FixedRevenue\Delete;
+use FinancialControl\Actions\FixedRevenue\GetById;
+use Throwable;
+use FinancialControl\Http\Requests\IdRequest;
 use FinancialControl\Actions\FixedRevenue\Save;
+use FinancialControl\Actions\FixedRevenue\Update;
+use FinancialControl\Actions\FixedRevenue\ListAll;
 use FinancialControl\Exceptions\NotFoundException;
 use FinancialControl\Http\Requests\FixedRevenue\SaveRequest;
-use FinancialControl\Http\Requests\IdRequest;
+use FinancialControl\Http\Requests\FixedRevenue\UpdateRequest;
 
 class FixedRevenueController extends Controller
 {
@@ -25,7 +29,7 @@ class FixedRevenueController extends Controller
 
             return response()->json($action->run(), 201);
 
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return response()->json([], $e->getCode());
         }
     }
@@ -39,7 +43,7 @@ class FixedRevenueController extends Controller
 
             return response()->json($fixedRevenues ?? []);
 
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return response()->json([], $e->getCode());
         }
     }
@@ -48,14 +52,50 @@ class FixedRevenueController extends Controller
     {
         try {
             $action = resolve(GetById::class, ['data' => [ 'id' => $request->route('id') ]]);
-            $category = $action->run();
+            $fixedRevenue = $action->run();
 
-            if (empty($category)) throw new NotFoundException();
+            if (empty($fixedRevenue)) throw new NotFoundException();
 
-            return response()->json($category);
+            return response()->json($fixedRevenue);
 
-        } catch (Exception $e) {
-            return response()->json('', $e->getCode());
+        } catch (Throwable $e) {
+            return response()->json("", $e->getCode());
+        }
+    }
+
+    public function update(UpdateRequest $request)
+    {
+        try {
+            $action = resolve(Update::class, [
+                'data' => [
+                    'id' => $request->route('id'),
+                    'fixed_revenue' => [
+                        'title' => $request->get('title'),
+                        'description' => $request->get('description'),
+                        'value' => $request->get('value'),
+                        'activation_control' => $request->get('activation_control'),
+                    ]
+                ]
+            ]);
+            $fixedRevenue = $action->run();
+
+            return response()->json($fixedRevenue);
+
+        } catch (Throwable $e) {
+            return response()->json("", $e->getCode());
+        }
+    }
+
+    public function delete(IdRequest $request)
+    {
+        try {
+            $action = resolve(Delete::class, [ 'data' => ['id' => $request->route('id') ]]);
+            $action->run();
+
+            return response()->json("");
+
+        } catch (Throwable $e) {
+            return response()->json("", $e->getCode());
         }
     }
 }
