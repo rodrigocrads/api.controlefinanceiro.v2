@@ -15,7 +15,6 @@ class GetById extends AbstractAction
 
         if ($fixedRevenue === null) throw new NotFoundException('Fixed revenue not found.');
 
-        return (new FixedRevenueResponse($fixedRevenue))
-            ->toArray();
+        return (new FixedRevenueResponse($fixedRevenue))->toArray();
     }
 }
