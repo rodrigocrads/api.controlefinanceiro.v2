@@ -19,5 +19,11 @@ class ActivationControl extends Model
         'end_date',
         'activation_type',
         'activation_day',
+        'fixed_revenue_id',
     ];
+
+    public function fixedRevenue()
+    {
+        return $this->belongsTo(FixedRevenue::class);
+    }
 }

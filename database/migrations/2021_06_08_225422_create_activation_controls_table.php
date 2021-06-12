@@ -24,6 +24,12 @@ class CreateActivationControlsTable extends Migration
             ])
             ->nullable(false);
 
+            $table->integer('fixed_revenue_id')->unsigned();
+            $table->foreign('fixed_revenue_id')
+                ->references('id')
+                ->on('fixed_revenues')
+                ->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });

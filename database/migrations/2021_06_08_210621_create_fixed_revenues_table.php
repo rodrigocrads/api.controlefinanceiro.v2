@@ -20,12 +20,6 @@ class CreateFixedRevenuesTable extends Migration
             $table->string('description', 255)->nullable();
             $table->double('value')->nullable(false);
 
-            $table->integer('activation_control_id')->unsigned();
-            $table->foreign('activation_control_id')
-                ->references('id')
-                ->on('activation_controls')
-                ->onDelete('cascade');
-
             $table->softDeletes();
             $table->timestamps();
         });

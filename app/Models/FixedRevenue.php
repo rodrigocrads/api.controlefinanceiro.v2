@@ -18,7 +18,6 @@ class FixedRevenue extends Model
         'title',
         'description',
         'value',
-        'activation_control_id',
     ];
 
     public function activationControl()
