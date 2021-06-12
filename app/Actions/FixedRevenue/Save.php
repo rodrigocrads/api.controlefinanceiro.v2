@@ -11,7 +11,7 @@ class Save extends AbstractAction
     public function run()
     {
         $activationControl = new ActivationControl($this->get('activation_control'));
-        $isSaved = $activationControl->saveOrFail();
+        $activationControl->saveOrFail();
 
         $data = $this->data;
         unset($data['activation_control']);

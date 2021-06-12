@@ -2,11 +2,11 @@
 
 namespace FinancialControl\Http\Controllers;
 
-use FinancialControl\Actions\FixedRevenue\Delete;
-use FinancialControl\Actions\FixedRevenue\GetById;
 use Throwable;
 use FinancialControl\Http\Requests\IdRequest;
 use FinancialControl\Actions\FixedRevenue\Save;
+use FinancialControl\Actions\FixedRevenue\Delete;
+use FinancialControl\Actions\FixedRevenue\GetById;
 use FinancialControl\Actions\FixedRevenue\Update;
 use FinancialControl\Actions\FixedRevenue\ListAll;
 use FinancialControl\Exceptions\NotFoundException;
