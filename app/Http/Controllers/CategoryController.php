@@ -3,13 +3,13 @@
 namespace FinancialControl\Http\Controllers;
 
 use Exception;
-use FinancialControl\Action\Category\Save;
-use FinancialControl\Action\Category\Update;
-use FinancialControl\Action\Category\Delete;
-use FinancialControl\Action\Category\ListAll;
-use FinancialControl\Action\Category\GetById;
+use FinancialControl\Actions\Category\Save;
+use FinancialControl\Http\Requests\IdRequest;
+use FinancialControl\Actions\Category\Update;
+use FinancialControl\Actions\Category\Delete;
+use FinancialControl\Actions\Category\ListAll;
+use FinancialControl\Actions\Category\GetById;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Http\Requests\Category\IdRequest;
 use FinancialControl\Http\Requests\Category\SaveRequest;
 use FinancialControl\Http\Requests\Category\UpdateRequest;
 
@@ -18,9 +18,11 @@ class CategoryController extends Controller
     public function save(SaveRequest $request)
     {
         try {
-            $action = new Save([
-                'name' => $request->get('name'),
-                'type' => $request->get('type'),
+            $action = resolve(Save::class, [
+                'data' => [
+                    'name' => $request->get('name'),
+                    'type' => $request->get('type'),
+                ]
             ]);
 
             return response()->json($action->run(), 201);
@@ -33,7 +35,7 @@ class CategoryController extends Controller
     public function getById(IdRequest $request)
     {
         try {
-            $action = new GetById(['id' => $request->route('id')]);
+            $action = resolve(GetById::class, ['data' => [ 'id' => $request->route('id') ]]);
             $category = $action->run();
 
             if (empty($category)) throw new NotFoundException();
@@ -48,7 +50,7 @@ class CategoryController extends Controller
     public function listAll()
     {
         try {
-            $action = new ListAll();
+            $action = resolve(ListAll::class);
             $categories = $action->run();
 
             return response()->json($categories ?? []);
@@ -61,12 +63,12 @@ class CategoryController extends Controller
     public function update(UpdateRequest $request)
     {
         try {
-            $action = new Update([
+            $action = resolve(Update::class, ['data' => [
                 'id' => $request->route('id'),
                 'data' => [
                     'name' => $request->get('name'),
                     'type' => $request->get('type'),
-                ]
+                ]]
             ]);
             $category = $action->run();
 
@@ -80,10 +82,7 @@ class CategoryController extends Controller
     public function delete(IdRequest $request)
     {
         try {
-            $action = new Delete([
-                'id' => $request->route('id'),
-            ]);
-
+            $action = resolve(Delete::class, [ 'data' => ['id' => $request->route('id') ]]);
             $action->run();
 
             return response()->json("");

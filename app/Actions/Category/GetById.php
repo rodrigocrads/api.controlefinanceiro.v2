@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Action\Category;
+namespace FinancialControl\Actions\Category;
 
 use FinancialControl\Models\Category;
-use FinancialControl\Action\AbstractAction;
+use FinancialControl\Actions\AbstractAction;
 
 class GetById extends AbstractAction
 {

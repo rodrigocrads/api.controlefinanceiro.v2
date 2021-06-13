@@ -17,9 +17,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Categories
+// Category
 Route::post('/category', 'CategoryController@save');
 Route::put('/category/{id}', 'CategoryController@update');
 Route::delete('/category/{id}', 'CategoryController@delete');
 Route::get('/category', 'CategoryController@listAll');
 Route::get('/category/{id}', 'CategoryController@getById');
+
+// Fixed Revenue
+Route::post('/fixedRevenue', 'FixedRevenueController@save');
+Route::get('/fixedRevenue', 'FixedRevenueController@listAll');
+Route::get('/fixedRevenue/{id}', 'FixedRevenueController@getById');
+Route::put('/fixedRevenue/{id}', 'FixedRevenueController@update');
+Route::delete('/fixedRevenue/{id}', 'FixedRevenueController@delete');
+
+// Fixed Expense
+Route::post('/fixedExpense', 'FixedExpenseController@save');
+Route::get('/fixedExpense', 'FixedExpenseController@listAll');
+Route::get('/fixedExpense/{id}', 'FixedExpenseController@getById');
+Route::put('/fixedExpense/{id}', 'FixedExpenseController@update');
+Route::delete('/fixedExpense/{id}', 'FixedExpenseController@delete');
