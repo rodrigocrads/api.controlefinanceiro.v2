@@ -5,7 +5,7 @@ namespace FinancialControl\Actions\FixedExpense;
 use Illuminate\Support\Collection;
 use FinancialControl\Models\FixedExpense;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\FixedExpenseResponse;
+use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
 
 class ListAll extends AbstractAction
 {
@@ -24,7 +24,7 @@ class ListAll extends AbstractAction
     {
         $fixedExpensesResponseData = array_map(function (FixedExpense $fixedExpense) {
 
-            return (new FixedExpenseResponse($fixedExpense))->toArray();
+            return (new FixedExpenseOrRevenueResponse($fixedExpense))->toArray();
 
         }, $fixedRevenues->all());
 

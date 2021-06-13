@@ -4,7 +4,7 @@ namespace FinancialControl\Actions\FixedRevenue;
 
 use FinancialControl\Models\FixedRevenue;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\FixedRevenueResponse;
+use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
 use FinancialControl\Models\ActivationControl;
 
 class Save extends AbstractAction
@@ -22,6 +22,6 @@ class Save extends AbstractAction
         $activationControl = new ActivationControl($activationControlSaveData);
         $activationControl->saveOrFail();
 
-        return (new FixedRevenueResponse($fixedRevenue))->toArray();
+        return (new FixedExpenseOrRevenueResponse($fixedRevenue))->toArray();
     }
 }

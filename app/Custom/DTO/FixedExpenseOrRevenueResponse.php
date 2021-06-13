@@ -2,13 +2,13 @@
 
 namespace FinancialControl\Custom\DTO;
 
-use FinancialControl\Models\FixedExpense;
+use Illuminate\Database\Eloquent\Model;
 
-class FixedExpenseResponse
+class FixedExpenseOrRevenueResponse
 {
     private $model;
 
-    public function __construct(FixedExpense $model)
+    public function __construct(Model $model)
     {
         $this->model = $model;
     }

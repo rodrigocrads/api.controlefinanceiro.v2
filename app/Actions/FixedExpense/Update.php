@@ -6,7 +6,7 @@ use FinancialControl\Models\FixedExpense;
 use FinancialControl\Actions\AbstractAction;
 use FinancialControl\Models\ActivationControl;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Custom\DTO\FixedExpenseResponse;
+use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
 
 class Update extends AbstractAction
 {
@@ -26,6 +26,6 @@ class Update extends AbstractAction
 
         $activationControl->update($this->get('fixed_expense.activation_control'));
 
-        return (new FixedExpenseResponse($fixedExpense))->toArray();
+        return (new FixedExpenseOrRevenueResponse($fixedExpense))->toArray();
     }
 }

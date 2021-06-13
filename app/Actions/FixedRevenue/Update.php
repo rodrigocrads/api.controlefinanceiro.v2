@@ -4,7 +4,7 @@ namespace FinancialControl\Actions\FixedRevenue;
 
 use FinancialControl\Models\FixedRevenue;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\FixedRevenueResponse;
+use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
 use FinancialControl\Models\ActivationControl;
 use FinancialControl\Exceptions\NotFoundException;
 
@@ -26,6 +26,6 @@ class Update extends AbstractAction
 
         $activationControl->update($this->get('fixed_revenue.activation_control'));
 
-        return (new FixedRevenueResponse($fixedRevenue))->toArray();
+        return (new FixedExpenseOrRevenueResponse($fixedRevenue))->toArray();
     }
 }
