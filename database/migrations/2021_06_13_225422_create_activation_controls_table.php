@@ -16,18 +16,27 @@ class CreateActivationControlsTable extends Migration
         Schema::create('activation_controls', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->date('start_date')->nullable(false);
+            $table->date('start_date');
             $table->date('end_date')->nullable();
-            $table->integer('activation_day')->nullable(false);
+            $table->integer('activation_day');
             $table->enum('activation_type', [
                 'monthly', 'quarterly', 'semiannual', 'annual'
-            ])
-            ->nullable(false);
+            ]);;
 
-            $table->integer('fixed_revenue_id')->unsigned();
+            $table->integer('fixed_revenue_id')
+                ->nullable()
+                ->unsigned();
             $table->foreign('fixed_revenue_id')
                 ->references('id')
                 ->on('fixed_revenues')
+                ->onDelete('cascade');
+
+            $table->integer('fixed_expense_id')
+                ->nullable()
+                ->unsigned();
+            $table->foreign('fixed_expense_id')
+                ->references('id')
+                ->on('fixed_expenses')
                 ->onDelete('cascade');
 
             $table->softDeletes();

@@ -16,9 +16,9 @@ class CreateFixedRevenuesTable extends Migration
         Schema::create('fixed_revenues', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('title', 100)->nullable(false);
+            $table->string('title', 100);
             $table->string('description', 255)->nullable();
-            $table->double('value')->nullable(false);
+            $table->double('value');
 
             $table->softDeletes();
             $table->timestamps();

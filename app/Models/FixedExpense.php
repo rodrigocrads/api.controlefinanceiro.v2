@@ -5,7 +5,7 @@ namespace FinancialControl\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ActivationControl extends Model
+class FixedExpense extends Model
 {
     use SoftDeletes;
 
@@ -15,11 +15,17 @@ class ActivationControl extends Model
      * @var array
      */
     protected $fillable = [
-        'start_date',
-        'end_date',
-        'activation_type',
-        'activation_day',
-        'fixed_revenue_id',
-        'fixed_expense_id',
+        'title',
+        'description',
+        'value',
     ];
+
+    protected $casts = [
+        ['value', 'double']
+    ];
+
+    public function activationControl()
+    {
+        return $this->hasOne(ActivationControl::class); 
+    }
 }

@@ -1,27 +1,27 @@
 <?php
 
-namespace FinancialControl\Actions\FixedRevenue;
+namespace FinancialControl\Actions\FixedExpense;
 
-use FinancialControl\Models\FixedRevenue;
+use FinancialControl\Models\FixedExpense;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\FixedRevenueResponse;
 use FinancialControl\Models\ActivationControl;
+use FinancialControl\Custom\DTO\FixedExpenseResponse;
 
 class Save extends AbstractAction
 {
     public function run()
     {
-        $fixedRevenue = new FixedRevenue($this->data);
-        $fixedRevenue->saveOrFail();
+        $fixedExpense = new FixedExpense($this->data);
+        $fixedExpense->saveOrFail();
 
         $activationControlSaveData = array_merge(
             $this->get('activation_control'),
-            ['fixed_revenue_id' => $fixedRevenue->id],
+            ['fixed_expense_id' => $fixedExpense->id],
         );
 
         $activationControl = new ActivationControl($activationControlSaveData);
         $activationControl->saveOrFail();
 
-        return (new FixedRevenueResponse($fixedRevenue))->toArray();
+        return (new FixedExpenseResponse($fixedExpense))->toArray();
     }
 }
