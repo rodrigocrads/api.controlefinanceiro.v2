@@ -2,6 +2,7 @@
 
 namespace FinancialControl\Custom\DTO;
 
+use DateTimeImmutable;
 use Illuminate\Database\Eloquent\Model;
 
 class FixedExpenseOrRevenueResponse
@@ -21,11 +22,18 @@ class FixedExpenseOrRevenueResponse
             'description' => $this->model->description,
             'value' => (double) $this->model->value,
             'activation_control' => [
-                "start_date" => $this->model->activationControl->start_date,
-                "end_date" => $this->model->activationControl->end_date,
+                "start_date" => $this->convertISODateToBR($this->model->activationControl->start_date),
+                "end_date" => $this->convertISODateToBR($this->model->activationControl->end_date),
                 "expiration_day" => $this->model->activationControl->activation_day,
                 "periodicity" => $this->model->activationControl->periodicity,
             ],
         ];
+    }
+
+    private function convertISODateToBR(?string $date): ?string
+    {
+        return !empty($date)
+            ? (new DateTimeImmutable($date))->format('d/m/Y')
+            : $date;
     }
 }
