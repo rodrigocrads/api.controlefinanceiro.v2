@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Http\Requests\FixedExpense;
+namespace FinancialControl\Http\Requests\FixedExpenseOrRevenue;
 
 use FinancialControl\Http\Requests\CustomFormRequest;
 

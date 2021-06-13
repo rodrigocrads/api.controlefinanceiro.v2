@@ -10,8 +10,8 @@ use FinancialControl\Actions\FixedExpense\Update;
 use FinancialControl\Actions\FixedExpense\ListAll;
 use FinancialControl\Exceptions\NotFoundException;
 use FinancialControl\Actions\FixedExpense\GetById;
-use FinancialControl\Http\Requests\FixedExpense\SaveRequest;
-use FinancialControl\Http\Requests\FixedExpense\UpdateRequest;
+use FinancialControl\Http\Requests\FixedExpenseOrRevenue\SaveRequest;
+use FinancialControl\Http\Requests\FixedExpenseOrRevenue\UpdateRequest;
 
 class FixedExpenseController extends Controller
 {

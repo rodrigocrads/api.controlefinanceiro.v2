@@ -10,8 +10,8 @@ use FinancialControl\Actions\FixedRevenue\Delete;
 use FinancialControl\Actions\FixedRevenue\Update;
 use FinancialControl\Actions\FixedRevenue\ListAll;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Http\Requests\FixedRevenue\SaveRequest;
-use FinancialControl\Http\Requests\FixedRevenue\UpdateRequest;
+use FinancialControl\Http\Requests\FixedExpenseOrRevenue\SaveRequest;
+use FinancialControl\Http\Requests\FixedExpenseOrRevenue\UpdateRequest;
 
 class FixedRevenueController extends Controller
 {
