@@ -17,8 +17,8 @@ class ActivationControl extends Model
     protected $fillable = [
         'start_date',
         'end_date',
-        'activation_type',
-        'activation_day',
+        'periodicity',
+        'expiration_day',
         'fixed_revenue_id',
         'fixed_expense_id',
     ];

@@ -20,8 +20,8 @@ class UpdateRequest extends CustomFormRequest
             'value' => 'required|numeric|min:0.1',
             'activation_control.start_date' => 'required|date_format:d/m/Y',
             'activation_control.end_date' => 'nullable|date_format:d/m/Y',
-            'activation_control.activation_day' => 'required|integer',
-            'activation_control.activation_type' => 'required|in:monthly, quarterly, semiannual, annual',
+            'activation_control.expiration_day' => 'required|integer',
+            'activation_control.periodicity' => 'required|in:monthly, quarterly, semiannual, annual',
         ];
     }
 }

@@ -18,8 +18,8 @@ class CreateActivationControlsTable extends Migration
 
             $table->date('start_date');
             $table->date('end_date')->nullable();
-            $table->integer('activation_day');
-            $table->enum('activation_type', [
+            $table->integer('expiration_day');
+            $table->enum('periodicity', [
                 'monthly', 'quarterly', 'semiannual', 'annual'
             ]);;
 

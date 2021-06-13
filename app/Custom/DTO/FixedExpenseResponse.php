@@ -23,8 +23,8 @@ class FixedExpenseResponse
             'activation_control' => [
                 "start_date" => $this->model->activationControl->start_date,
                 "end_date" => $this->model->activationControl->end_date,
-                "activation_day" => $this->model->activationControl->activation_day,
-                "activation_type" => $this->model->activationControl->activation_type,
+                "expiration_day" => $this->model->activationControl->activation_day,
+                "periodicity" => $this->model->activationControl->periodicity,
             ],
         ];
     }
