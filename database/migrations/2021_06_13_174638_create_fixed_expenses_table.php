@@ -20,6 +20,11 @@ class CreateFixedExpensesTable extends Migration
             $table->string('description', 255)->nullable();
             $table->double('value')->nullable(false);
 
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories');
+
             $table->softDeletes();
             $table->timestamps();
         });

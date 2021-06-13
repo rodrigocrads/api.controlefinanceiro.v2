@@ -23,7 +23,8 @@ class FixedExpenseController extends Controller
                     'title' => $request->get('title'),
                     'description' => $request->get('description'),
                     'value' => $request->get('value'),
-                    'activation_control' => $request->get('activation_control')
+                    'category_id' => $request->get('category_id'),
+                    'activation_control' => $request->get('activation_control'),
                 ]
             ]);
 
@@ -73,6 +74,7 @@ class FixedExpenseController extends Controller
                         'title' => $request->get('title'),
                         'description' => $request->get('description'),
                         'value' => $request->get('value'),
+                        'category_id' => $request->get('category_id'),
                         'activation_control' => $request->get('activation_control'),
                     ]
                 ]

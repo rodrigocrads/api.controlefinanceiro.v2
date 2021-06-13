@@ -18,6 +18,7 @@ class FixedRevenue extends Model
         'title',
         'description',
         'value',
+        'category_id',
     ];
 
     protected $casts = [
@@ -27,5 +28,10 @@ class FixedRevenue extends Model
     public function activationControl()
     {
         return $this->hasOne(ActivationControl::class); 
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class); 
     }
 }

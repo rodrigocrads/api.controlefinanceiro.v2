@@ -21,6 +21,10 @@ class FixedExpenseOrRevenueResponse
             'title' => $this->model->title,
             'description' => $this->model->description,
             'value' => (double) $this->model->value,
+            'category' => [
+                'id' => $this->model->category->id,
+                'name' => $this->model->category->name,
+            ],
             'activation_control' => [
                 "start_date" => $this->convertISODateToBR($this->model->activationControl->start_date),
                 "end_date" => $this->convertISODateToBR($this->model->activationControl->end_date),
