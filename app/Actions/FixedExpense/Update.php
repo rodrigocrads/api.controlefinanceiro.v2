@@ -18,7 +18,7 @@ class Update extends AbstractAction
         if (empty($fixedExpense)) throw new NotFoundException();
 
         /** @var ActivationControl */
-        $activationControl = ActivationControl::find($fixedExpense->id);
+        $activationControl = ActivationControl::find($fixedExpense->activationControl->id);
 
         if (empty($activationControl)) throw new NotFoundException();
 
