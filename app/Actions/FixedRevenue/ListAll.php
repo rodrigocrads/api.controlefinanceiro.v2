@@ -19,7 +19,7 @@ class ListAll extends AbstractAction
 
         if ($this->hasFilterByActiveEndDate()) {
             $fixedRevenues = $$fixedRevenues->filter(function (FixedRevenue $fixedRevenue) {
-                $fixedRevenue->isActive();
+                return $fixedRevenue->isActive();
             });
         }
 

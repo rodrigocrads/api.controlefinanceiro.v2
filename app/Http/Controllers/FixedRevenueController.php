@@ -12,6 +12,7 @@ use FinancialControl\Actions\FixedRevenue\ListAll;
 use FinancialControl\Exceptions\NotFoundException;
 use FinancialControl\Http\Requests\FixedExpenseOrRevenue\SaveRequest;
 use FinancialControl\Http\Requests\FixedExpenseOrRevenue\UpdateRequest;
+use Illuminate\Http\Request;
 
 class FixedRevenueController extends Controller
 {
@@ -35,10 +36,16 @@ class FixedRevenueController extends Controller
         }
     }
 
-    public function listAll()
+    public function listAll(Request $request)
     {
         try {
-            $action = resolve(ListAll::class);
+            $action = resolve(ListAll::class, [
+                'data' => [
+                    'filter'=> [
+                        'endDate' => $request->query('endDate'),
+                    ]
+                ]
+            ]);
 
             $fixedRevenues = $action->run();
 
