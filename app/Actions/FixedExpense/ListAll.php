@@ -2,6 +2,7 @@
 
 namespace FinancialControl\Actions\FixedExpense;
 
+use Closure;
 use Illuminate\Support\Collection;
 use FinancialControl\Models\FixedExpense;
 use FinancialControl\Actions\AbstractAction;
@@ -11,22 +12,32 @@ class ListAll extends AbstractAction
 {
     public function run()
     {
-        $fixedRevenues = FixedExpense::all();
+        $fixedExpenses = FixedExpense::all();
 
-        if ($fixedRevenues->isEmpty()) {
+        if ($fixedExpenses->isEmpty()) {
             return [];
         }
 
-        return $this->buildResponse($fixedRevenues);
+        if ($this->hasFilterByActiveEndDate()) {
+            $fixedExpenses = $fixedExpenses->filter(function (FixedExpense $fixedExpense) {
+                $fixedExpense->isActive();
+            });
+        }
+
+        return $this->buildResponse($fixedExpenses);
     }
 
-    private function buildResponse(Collection $fixedRevenues): array
+    private function hasFilterByActiveEndDate()
+    {
+        return $this->get('filter.endDate') === 'active';
+    }
+
+    private function buildResponse(Collection $fixedExpenses): array
     {
         $fixedExpensesResponseData = array_map(function (FixedExpense $fixedExpense) {
 
             return (new FixedExpenseOrRevenueResponse($fixedExpense))->toArray();
-
-        }, $fixedRevenues->all());
+        }, $fixedExpenses->all());
 
         return $fixedExpensesResponseData;
     }

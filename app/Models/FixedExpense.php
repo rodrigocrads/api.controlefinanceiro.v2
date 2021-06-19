@@ -34,4 +34,11 @@ class FixedExpense extends Model
     {
         return $this->belongsTo(Category::class); 
     }
+
+    public function isActive(): bool
+    {
+        $endDate = $this->activationControl->end_date;
+
+        return (empty($endDate)) || $endDate >= now();
+    }
 }
