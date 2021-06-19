@@ -37,3 +37,10 @@ Route::get('/fixedExpense', 'FixedExpenseController@listAll');
 Route::get('/fixedExpense/{id}', 'FixedExpenseController@getById');
 Route::put('/fixedExpense/{id}', 'FixedExpenseController@update');
 Route::delete('/fixedExpense/{id}', 'FixedExpenseController@delete');
+
+// Variable Revenue
+Route::post('/variableRevenue', 'VariableRevenueController@save');
+Route::get('/variableRevenue', 'VariableRevenueController@listAll');
+Route::get('/variableRevenue/{id}', 'VariableRevenueController@getById');
+Route::put('/variableRevenue/{id}', 'VariableRevenueController@update');
+Route::delete('/variableRevenue/{id}', 'VariableRevenueController@delete');
