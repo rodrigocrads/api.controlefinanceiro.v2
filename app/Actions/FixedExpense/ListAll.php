@@ -21,7 +21,8 @@ class ListAll extends AbstractAction
         if ($this->hasFilterByActiveEndDate()) {
             $fixedExpenses = $fixedExpenses->filter(function (FixedExpense $fixedExpense) {
                 return $fixedExpense->isActive();
-            });
+            })
+            ->values();
         }
 
         return $this->buildResponse($fixedExpenses);

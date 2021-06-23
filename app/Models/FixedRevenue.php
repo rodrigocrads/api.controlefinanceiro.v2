@@ -41,4 +41,12 @@ class FixedRevenue extends Model
 
         return (empty($endDate)) || $endDate >= now();
     }
+
+    public function hasExpiredDay(): bool
+    {
+        $currentDay = now()->day;
+        $expirationDay = $this->activationControl->expiration_day;
+
+        return $currentDay >= $expirationDay;
+    }
 }

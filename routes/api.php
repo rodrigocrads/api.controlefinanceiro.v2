@@ -51,3 +51,6 @@ Route::get('/variableExpense', 'VariableExpenseController@listAll');
 Route::get('/variableExpense/{id}', 'VariableExpenseController@getById');
 Route::put('/variableExpense/{id}', 'VariableExpenseController@update');
 Route::delete('/variableExpense/{id}', 'VariableExpenseController@delete');
+
+// Report
+Route::get('/report/currentMonthTotals', 'ReportController@getCurrentMonthTotals');

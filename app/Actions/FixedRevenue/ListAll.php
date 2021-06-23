@@ -17,18 +17,18 @@ class ListAll extends AbstractAction
             return [];
         }
 
-        if ($this->hasFilterByActiveEndDate()) {
-            $fixedRevenues = $$fixedRevenues->filter(function (FixedRevenue $fixedRevenue) {
+        if ($this->hasFilterByStatusActive()) {
+            $fixedRevenues = $fixedRevenues->filter(function (FixedRevenue $fixedRevenue) {
                 return $fixedRevenue->isActive();
-            });
+            })->values();
         }
 
         return $this->buildResponse($fixedRevenues);
     }
 
-    private function hasFilterByActiveEndDate()
+    private function hasFilterByStatusActive()
     {
-        return $this->get('filter.endDate') === 'active';
+        return $this->get('filters.status') === 'active';
     }
 
     private function buildResponse(Collection $fixedRevenues): array
