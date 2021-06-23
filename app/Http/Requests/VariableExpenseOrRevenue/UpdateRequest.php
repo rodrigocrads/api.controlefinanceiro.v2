@@ -19,6 +19,7 @@ class UpdateRequest extends CustomFormRequest
             'description' => 'nullable|string|max:255',
             'value' => 'required|numeric|min:0.1',
             'category_id' => 'required|integer',
+            'register_date' => 'required|date_format:d/m/Y',
         ];
     }
 }
