@@ -23,6 +23,7 @@ class VariableRevenueController extends Controller
                     'title' => $request->get('title'),
                     'description' => $request->get('description'),
                     'value' => $request->get('value'),
+                    'register_date' => $request->get('register_date'),
                     'category_id' => $request->get('category_id'),
                 ]
             ]);
@@ -73,6 +74,7 @@ class VariableRevenueController extends Controller
                         'title' => $request->get('title'),
                         'description' => $request->get('description'),
                         'value' => $request->get('value'),
+                        'register_date' => $request->get('register_date'),
                         'category_id' => $request->get('category_id'),
                     ]
                 ]

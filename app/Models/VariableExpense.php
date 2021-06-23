@@ -19,6 +19,7 @@ class VariableExpense extends Model
         'description',
         'value',
         'category_id',
+        'register_date',
     ];
 
     protected $casts = [

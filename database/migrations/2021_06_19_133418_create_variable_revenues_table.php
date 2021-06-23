@@ -19,6 +19,7 @@ class CreateVariableRevenuesTable extends Migration
             $table->string('title', 100);
             $table->string('description', 255)->nullable();
             $table->double('value');
+            $table->date('register_date');
 
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')
