@@ -19,10 +19,7 @@ class CategoryController extends Controller
     {
         try {
             $action = resolve(Save::class, [
-                'data' => [
-                    'name' => $request->get('name'),
-                    'type' => $request->get('type'),
-                ]
+                'data' => $request->all()
             ]);
 
             return response()->json($action->run(), 201);
@@ -63,12 +60,11 @@ class CategoryController extends Controller
     public function update(UpdateRequest $request)
     {
         try {
-            $action = resolve(Update::class, ['data' => [
-                'id' => $request->route('id'),
+            $action = resolve(Update::class, [
                 'data' => [
-                    'name' => $request->get('name'),
-                    'type' => $request->get('type'),
-                ]]
+                    'id' => $request->route('id'),
+                    'data' => $request->all(),
+                ]
             ]);
             $category = $action->run();
 

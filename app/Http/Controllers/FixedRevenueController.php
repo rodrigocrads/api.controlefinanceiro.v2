@@ -20,13 +20,7 @@ class FixedRevenueController extends Controller
     {
         try {
             $action = resolve(Save::class, [
-                'data' => [
-                    'title' => $request->get('title'),
-                    'description' => $request->get('description'),
-                    'value' => $request->get('value'),
-                    'category_id' => $request->get('category_id'),
-                    'activation_control' => $request->get('activation_control'),
-                ]
+                'data' => $request->all()
             ]);
 
             return response()->json($action->run(), 201);
@@ -77,13 +71,7 @@ class FixedRevenueController extends Controller
             $action = resolve(Update::class, [
                 'data' => [
                     'id' => $request->route('id'),
-                    'fixed_revenue' => [
-                        'title' => $request->get('title'),
-                        'description' => $request->get('description'),
-                        'value' => $request->get('value'),
-                        'category_id' => $request->get('category_id'),
-                        'activation_control' => $request->get('activation_control'),
-                    ]
+                    'fixed_revenue' => $request->all()
                 ]
             ]);
             $fixedRevenue = $action->run();

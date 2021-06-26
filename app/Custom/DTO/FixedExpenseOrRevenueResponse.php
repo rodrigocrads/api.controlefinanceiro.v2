@@ -2,7 +2,6 @@
 
 namespace FinancialControl\Custom\DTO;
 
-use DateTimeImmutable;
 use FinancialControl\Helpers\Utils;
 use Illuminate\Database\Eloquent\Model;
 

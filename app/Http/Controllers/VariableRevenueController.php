@@ -19,13 +19,7 @@ class VariableRevenueController extends Controller
     {
         try {
             $action = resolve(Save::class, [
-                'data' => [
-                    'title' => $request->get('title'),
-                    'description' => $request->get('description'),
-                    'value' => $request->get('value'),
-                    'register_date' => $request->get('register_date'),
-                    'category_id' => $request->get('category_id'),
-                ]
+                'data' => $request->all()
             ]);
 
             return response()->json($action->run(), 201);
@@ -70,13 +64,7 @@ class VariableRevenueController extends Controller
             $action = resolve(Update::class, [
                 'data' => [
                     'id' => $request->route('id'),
-                    'update_data' => [
-                        'title' => $request->get('title'),
-                        'description' => $request->get('description'),
-                        'value' => $request->get('value'),
-                        'register_date' => $request->get('register_date'),
-                        'category_id' => $request->get('category_id'),
-                    ]
+                    'update_data' => $request->all()
                 ]
             ]);
 
