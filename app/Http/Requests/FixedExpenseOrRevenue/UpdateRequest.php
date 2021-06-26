@@ -19,8 +19,8 @@ class UpdateRequest extends CustomFormRequest
             'description' => 'nullable|string|max:255',
             'value' => 'required|numeric|min:0.1',
             'category_id' => 'required|integer',
-            'activation_control.start_date' => 'required|date_format:d/m/Y',
-            'activation_control.end_date' => 'nullable|date_format:d/m/Y',
+            'activation_control.start_date' => 'required|date_format:Y-m-d',
+            'activation_control.end_date' => 'nullable|date_format:Y-m-d',
             'activation_control.expiration_day' => 'required|integer',
             'activation_control.periodicity' => 'required|in:monthly,quarterly,semiannual,annual',
         ];
