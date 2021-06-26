@@ -23,7 +23,7 @@ class VariableExpense extends Model
     ];
 
     protected $casts = [
-        ['value', 'double']
+        ['value', 'double'],
     ];
 
     public function category()
