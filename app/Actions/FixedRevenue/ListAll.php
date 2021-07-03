@@ -28,7 +28,7 @@ class ListAll extends AbstractAction
 
     private function hasFilterByStatusActive()
     {
-        return $this->get('filters.status') === 'active';
+        return $this->get('params.status') === 'active';
     }
 
     private function buildResponse(Collection $fixedRevenues): array
