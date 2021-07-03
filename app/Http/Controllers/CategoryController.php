@@ -3,6 +3,7 @@
 namespace FinancialControl\Http\Controllers;
 
 use Exception;
+use Illuminate\Http\Request;
 use FinancialControl\Actions\Category\Save;
 use FinancialControl\Http\Requests\IdRequest;
 use FinancialControl\Actions\Category\Update;
@@ -44,10 +45,15 @@ class CategoryController extends Controller
         }
     }
 
-    public function listAll()
+    public function listAll(Request $request)
     {
         try {
-            $action = resolve(ListAll::class);
+            $action = resolve(ListAll::class, [
+                'data' => [
+                    'params' => $request->query(),
+                ],
+            ]);
+
             $categories = $action->run();
 
             return response()->json($categories ?? []);
@@ -66,6 +72,7 @@ class CategoryController extends Controller
                     'data' => $request->all(),
                 ]
             ]);
+
             $category = $action->run();
 
             return response()->json($category);

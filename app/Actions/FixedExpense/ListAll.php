@@ -30,7 +30,7 @@ class ListAll extends AbstractAction
 
     private function hasFilterByActiveEndDate()
     {
-        return $this->get('filter.endDate') === 'active';
+        return $this->get('params.endDate') === 'active';
     }
 
     private function buildResponse(Collection $fixedExpenses): array

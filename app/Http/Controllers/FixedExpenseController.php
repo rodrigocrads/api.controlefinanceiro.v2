@@ -35,9 +35,7 @@ class FixedExpenseController extends Controller
         try {
             $action = resolve(ListAll::class, [
                 'data' => [
-                    'filter'=> [
-                        'endDate' => $request->query('endDate'),
-                    ]
+                    'params' => $request->query(),
                 ]
             ]);
 
