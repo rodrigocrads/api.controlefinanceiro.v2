@@ -19,7 +19,7 @@ class FixedExpenseOrRevenueResponse
             'id' => $this->model->id,
             'title' => $this->model->title,
             'description' => $this->model->description,
-            'value' => (double) $this->model->value,
+            'value' => number_format($this->model->value, 2, '.', ''),
             'category' => [
                 'id' => $this->model->category->id,
                 'name' => $this->model->category->name,

@@ -19,7 +19,7 @@ class VariableExpenseOrRevenue
             'id' => $this->model->id,
             'title' => $this->model->title,
             'description' => $this->model->description,
-            'value' => (double) $this->model->value,
+            'value' => number_format($this->model->value, 2, '.', ''),
             'register_date' => $this->model->register_date,
             'category' => [
                 'id' => $this->model->category->id,
