@@ -11,7 +11,6 @@ use FinancialControl\Actions\Category\Delete;
 use FinancialControl\Actions\Category\ListAll;
 use FinancialControl\Actions\Category\GetById;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Http\Requests\Category\DeleteRequest;
 use FinancialControl\Http\Requests\Category\SaveRequest;
 use FinancialControl\Http\Requests\Category\UpdateRequest;
 
@@ -83,7 +82,7 @@ class CategoryController extends Controller
         }
     }
 
-    public function delete(DeleteRequest $request)
+    public function delete(IdRequest $request)
     {
         try {
             $action = resolve(Delete::class, [ 'data' => ['id' => $request->route('id') ]]);
