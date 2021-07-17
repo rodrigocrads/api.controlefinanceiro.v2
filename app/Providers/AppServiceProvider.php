@@ -2,7 +2,9 @@
 
 namespace FinancialControl\Providers;
 
+use FinancialControl\Models\Category;
 use Illuminate\Support\ServiceProvider;
+use FinancialControl\Repositories\CategoryRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(CategoryRepository::class, function() {
+            return new CategoryRepository(new Category());
+        });
     }
 
     /**
