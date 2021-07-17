@@ -5,7 +5,7 @@ namespace FinancialControl\Actions\VariableExpense;
 use FinancialControl\Models\VariableExpense;
 use FinancialControl\Actions\AbstractAction;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Custom\DTO\VariableExpenseOrRevenue;
+use FinancialControl\Custom\DTO\Response\VariableExpenseOrRevenueResponse;
 
 class Update extends AbstractAction
 {
@@ -19,6 +19,6 @@ class Update extends AbstractAction
         $variableExpense->update($this->get('update_data'));
 
 
-        return (new VariableExpenseOrRevenue($variableExpense))->toArray();
+        return (new VariableExpenseOrRevenueResponse($variableExpense))->toArray();
     }
 }

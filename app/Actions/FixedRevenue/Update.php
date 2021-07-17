@@ -4,7 +4,7 @@ namespace FinancialControl\Actions\FixedRevenue;
 
 use FinancialControl\Models\FixedRevenue;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
+use FinancialControl\Custom\DTO\Response\FixedExpenseOrRevenueResponse;
 use FinancialControl\Models\ActivationControl;
 use FinancialControl\Exceptions\NotFoundException;
 

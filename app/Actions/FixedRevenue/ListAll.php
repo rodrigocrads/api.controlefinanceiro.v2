@@ -5,7 +5,7 @@ namespace FinancialControl\Actions\FixedRevenue;
 use Illuminate\Support\Collection;
 use FinancialControl\Models\FixedRevenue;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
+use FinancialControl\Custom\DTO\Response\FixedExpenseOrRevenueResponse;
 
 class ListAll extends AbstractAction
 {

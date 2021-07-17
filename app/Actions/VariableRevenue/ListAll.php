@@ -5,7 +5,7 @@ namespace FinancialControl\Actions\VariableRevenue;
 use Illuminate\Support\Collection;
 use FinancialControl\Models\VariableRevenue;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\VariableExpenseOrRevenue;
+use FinancialControl\Custom\DTO\Response\VariableExpenseOrRevenueResponse;
 
 class ListAll extends AbstractAction
 {
@@ -22,7 +22,7 @@ class ListAll extends AbstractAction
     {
         $variableRevenuesResponseData = array_map(function (VariableRevenue $VariableRevenue) {
 
-            return (new VariableExpenseOrRevenue($VariableRevenue))->toArray();
+            return (new VariableExpenseOrRevenueResponse($VariableRevenue))->toArray();
         }, $variableRevenues->all());
 
         return $variableRevenuesResponseData;

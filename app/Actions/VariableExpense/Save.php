@@ -4,7 +4,7 @@ namespace FinancialControl\Actions\VariableExpense;
 
 use FinancialControl\Models\VariableExpense;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\VariableExpenseOrRevenue;
+use FinancialControl\Custom\DTO\Response\VariableExpenseOrRevenueResponse;
 
 class Save extends AbstractAction
 {
@@ -13,6 +13,6 @@ class Save extends AbstractAction
         $variableExpense = new VariableExpense($this->data);
         $variableExpense->saveOrFail();
 
-        return (new VariableExpenseOrRevenue($variableExpense))->toArray();
+        return (new VariableExpenseOrRevenueResponse($variableExpense))->toArray();
     }
 }

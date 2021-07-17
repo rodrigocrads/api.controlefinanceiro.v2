@@ -4,7 +4,7 @@ namespace FinancialControl\Actions\VariableRevenue;
 
 use FinancialControl\Models\VariableRevenue;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\VariableExpenseOrRevenue;
+use FinancialControl\Custom\DTO\Response\VariableExpenseOrRevenueResponse;
 
 class Save extends AbstractAction
 {
@@ -13,6 +13,6 @@ class Save extends AbstractAction
         $variableRevenue = new VariableRevenue($this->data);
         $variableRevenue->saveOrFail();
 
-        return (new VariableExpenseOrRevenue($variableRevenue))->toArray();
+        return (new VariableExpenseOrRevenueResponse($variableRevenue))->toArray();
     }
 }

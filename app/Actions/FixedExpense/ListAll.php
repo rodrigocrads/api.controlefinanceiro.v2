@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Collection;
 use FinancialControl\Models\FixedExpense;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
+use FinancialControl\Custom\DTO\Response\FixedExpenseOrRevenueResponse;
 
 class ListAll extends AbstractAction
 {

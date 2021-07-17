@@ -5,7 +5,7 @@ namespace FinancialControl\Actions\FixedExpense;
 use FinancialControl\Models\FixedExpense;
 use FinancialControl\Actions\AbstractAction;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
+use FinancialControl\Custom\DTO\Response\FixedExpenseOrRevenueResponse;
 
 class GetById extends AbstractAction
 {
