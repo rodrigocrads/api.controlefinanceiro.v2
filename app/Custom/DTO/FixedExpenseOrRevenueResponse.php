@@ -4,7 +4,7 @@ namespace FinancialControl\Custom\DTO;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FixedExpenseOrRevenueResponse
+class FixedExpenseOrRevenueResponse implements IDTO
 {
     private $model;
 
