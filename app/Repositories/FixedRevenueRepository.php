@@ -12,12 +12,12 @@ class FixedRevenueRepository extends Repository
         parent::__construct($model);
     }
 
-    public function getTotalValue(string $startDate, string $endDate): float
+    public function getTotalValue(string $startDate, string $endDate, int $expirationDay): float
     {
         return FixedRevenue::all()
-            ->filter(function (FixedRevenue $fixedRevenue) use ($startDate, $endDate) {
+            ->filter(function (FixedRevenue $fixedRevenue) use ($startDate, $endDate, $expirationDay) {
 
-                return $fixedRevenue->isActive($startDate, $endDate) && $fixedRevenue->hasExpiredDay();
+                return $fixedRevenue->isActive($startDate, $endDate) && $fixedRevenue->hasAlreadyExpired($expirationDay);
             })
             ->sum('value');
     }

@@ -33,10 +33,11 @@ class ReportService
     {
         $periodStartDate = now()->format('Y-m') . "-1";
         $periodEndDate = now();
+        $expirationDay = now()->day;
 
         return (new TotalsDTO(
-            $this->fixedExpenseRepository->getTotalValue($periodStartDate, $periodEndDate),
-            $this->fixedRevenueRepository->getTotalValue($periodStartDate, $periodEndDate),
+            $this->fixedExpenseRepository->getTotalValue($periodStartDate, $periodEndDate, $expirationDay),
+            $this->fixedRevenueRepository->getTotalValue($periodStartDate, $periodEndDate, $expirationDay),
             $this->variableExpenseRepository->getTotalValue($periodStartDate, $periodEndDate),
             $this->variableRevenueRepository->getTotalValue($periodStartDate, $periodEndDate),
         ))
@@ -59,18 +60,20 @@ class ReportService
 
             $lastDayOfMonth = $date->format('t');
             $periodEndDate = "{$currentYear}-{$i}-{$lastDayOfMonth}";
+            $expirationDay = $lastDayOfMonth;
 
             $isCurrentMonth = $i === $currentMonth;
             if ($isCurrentMonth) {
                 $periodEndDate = now()->format("Y-m-d");
+                $expirationDay = now()->day;
             }
 
             $monthsTotals[] =
                 (new MonthTotalsDTO(
                     strtolower($date->monthName),
                     (new TotalsDTO(
-                        $this->fixedExpenseRepository->getTotalValue($periodStartDate, $periodEndDate),
-                        $this->fixedRevenueRepository->getTotalValue($periodStartDate, $periodEndDate),
+                        $this->fixedExpenseRepository->getTotalValue($periodStartDate, $periodEndDate, $expirationDay),
+                        $this->fixedRevenueRepository->getTotalValue($periodStartDate, $periodEndDate, $expirationDay),
                         $this->variableExpenseRepository->getTotalValue($periodStartDate, $periodEndDate),
                         $this->variableRevenueRepository->getTotalValue($periodStartDate, $periodEndDate),
                     ))
