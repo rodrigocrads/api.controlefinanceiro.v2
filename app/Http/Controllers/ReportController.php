@@ -17,7 +17,6 @@ class ReportController extends Controller
             return response()->json($result ?? []);
 
         } catch (Throwable $e) {
-            dd($e->getMessage());
             return response()->json([], $e->getCode());
         }
     }
@@ -31,7 +30,6 @@ class ReportController extends Controller
             return response()->json($result ?? []);
 
         } catch (Throwable $e) {
-            dd($e->getMessage());
             return response()->json([], $e->getCode());
         }
     }
