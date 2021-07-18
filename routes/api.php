@@ -54,3 +54,4 @@ Route::delete('/variableExpense/{id}', 'VariableExpenseController@delete');
 
 // Report
 Route::get('/report/currentMonthTotals', 'ReportController@getCurrentMonthTotals');
+Route::get('/report/currentYearTotals', 'ReportController@getCurrentYearTotals');

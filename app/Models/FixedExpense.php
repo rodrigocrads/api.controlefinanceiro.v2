@@ -35,14 +35,15 @@ class FixedExpense extends Model
         return $this->belongsTo(Category::class); 
     }
 
-    public function isActive(string $startPeriod, ?string $endPeriod = null): bool
+    public function isActive(string $periodStartDate, ?string $periodEndDate = null): bool
     {
         $endDate = $this->activationControl->end_date;
         $startDate = $this->activationControl->start_date;
 
-        $endPeriod = $endPeriod ?? now();
+        $periodEndDate = $periodEndDate ?? now();
 
-        return $startDate >= $startPeriod && ((empty($endDate)) || $endDate >= $endPeriod);
+        return strtotime($startDate) <= strtotime($periodEndDate)
+            && ((empty($endDate)) || ( strtotime($endDate) >= strtotime($periodStartDate) ));
     }
 
     public function hasExpiredDay(): bool
