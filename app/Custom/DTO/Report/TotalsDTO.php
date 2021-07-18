@@ -6,30 +6,30 @@ use FinancialControl\Custom\DTO\IDTO;
 
 class TotalsDTO implements IDTO
 {
-    private $fixedExpenseTotal;
-    private $fixedRevenueTotal;
-    private $variableExpensesTotal;
-    private $variableRevenueTotal;
+    private $totalFixedExpense;
+    private $totalFixedRevenue;
+    private $totalVariableExpense;
+    private $totalVariableRevenue;
 
     public function __construct(
-        float $fixedExpenseTotal,
-        float $fixedRevenueTotal,
-        float $variableExpensesTotal,
-        float $variableRevenueTotal
+        float $totalFixedExpense,
+        float $totalFixedRevenue,
+        float $totalVariableExpense,
+        float $totalVariableRevenue
     ) {
-        $this->fixedExpenseTotal = $fixedExpenseTotal;
-        $this->fixedRevenueTotal = $fixedRevenueTotal;
-        $this->variableExpensesTotal = $variableExpensesTotal;
-        $this->$variableRevenueTotal = $variableRevenueTotal;
+        $this->totalFixedExpense = $totalFixedExpense;
+        $this->totalFixedRevenue = $totalFixedRevenue;
+        $this->totalVariableExpense = $totalVariableExpense;
+        $this->$totalVariableRevenue = $totalVariableRevenue;
     }
 
     public function toArray(): array
     {
         return [
-            'fixedExpenseTotal'     => $this->fixedExpenseTotal ?? 0,
-            'fixedRevenueTotal'     => $this->fixedRevenueTotal ?? 0,
-            'variableExpenseTotal'  => $this->variableExpensesTotal ?? 0,
-            'variableRevenueTotal'  => $this->variableRevenueTotal ?? 0,
+            'totalFixedExpense'     => $this->totalFixedExpense ?? 0,
+            'totalFixedRevenue'     => $this->totalFixedRevenue ?? 0,
+            'totalVariableExpense'  => $this->totalVariableExpense ?? 0,
+            'totalVariableRevenue'  => $this->totalVariableRevenue ?? 0,
         ];
     }
 }
