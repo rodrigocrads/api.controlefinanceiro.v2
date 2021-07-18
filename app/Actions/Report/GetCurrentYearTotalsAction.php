@@ -5,7 +5,7 @@ namespace FinancialControl\Actions\Report;
 use FinancialControl\Actions\AbstractAction;
 use FinancialControl\Services\ReportService;
 
-class GetCurrentMonthTotals extends AbstractAction
+class GetCurrentYearTotalsAction extends AbstractAction
 {
     private $reportService;
 
@@ -20,6 +20,6 @@ class GetCurrentMonthTotals extends AbstractAction
 
     public function run()
     {
-        return $this->reportService->getCurrentMonthTotals();
+        return $this->reportService->getCurrentYearTotals();
     }
 }

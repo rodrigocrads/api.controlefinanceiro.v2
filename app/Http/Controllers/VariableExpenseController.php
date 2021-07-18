@@ -10,8 +10,8 @@ use FinancialControl\Actions\VariableExpense\GetById;
 use FinancialControl\Actions\VariableExpense\Delete;
 use FinancialControl\Actions\VariableExpense\Update;
 use FinancialControl\Actions\VariableExpense\ListAll;
-use FinancialControl\Http\Requests\VariableExpenseOrRevenue\SaveRequest;
-use FinancialControl\Http\Requests\VariableExpenseOrRevenue\UpdateRequest;
+use FinancialControl\Http\Requests\VariableExpenseOrRevenueResponse\SaveRequest;
+use FinancialControl\Http\Requests\VariableExpenseOrRevenueResponse\UpdateRequest;
 
 class VariableExpenseController extends Controller
 {

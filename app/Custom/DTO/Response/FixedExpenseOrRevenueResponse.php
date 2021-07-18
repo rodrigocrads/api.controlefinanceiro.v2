@@ -1,7 +1,8 @@
 <?php
 
-namespace FinancialControl\Custom\DTO;
+namespace FinancialControl\Custom\DTO\Response;
 
+use FinancialControl\Custom\DTO\IDTO;
 use Illuminate\Database\Eloquent\Model;
 
 class FixedExpenseOrRevenueResponse implements IDTO

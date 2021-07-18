@@ -2,15 +2,24 @@
 
 namespace FinancialControl\Actions\Category;
 
-use FinancialControl\Models\Category;
 use FinancialControl\Actions\AbstractAction;
+use FinancialControl\Repositories\CategoryRepository;
 
 class Delete extends AbstractAction
 {
+    /** @var CategoryRepository */
+    private $categoryRepository;
+
+    public function __construct(
+        array $data = [],
+        CategoryRepository $categoryRepository
+    ) {
+        parent::__construct($data);
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function run()
     {
-        /** @var Category */
-        $category = Category::find($this->data['id']);
-        $category->delete();
+        $this->categoryRepository->delete($this->data['id']);
     }
 }

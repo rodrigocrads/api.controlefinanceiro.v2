@@ -6,7 +6,7 @@ use FinancialControl\Models\FixedExpense;
 use FinancialControl\Actions\AbstractAction;
 use FinancialControl\Models\ActivationControl;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Custom\DTO\FixedExpenseOrRevenueResponse;
+use FinancialControl\Custom\DTO\Response\FixedExpenseOrRevenueResponse;
 
 class Update extends AbstractAction
 {

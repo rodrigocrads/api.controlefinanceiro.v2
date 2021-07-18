@@ -35,11 +35,15 @@ class FixedRevenue extends Model
         return $this->belongsTo(Category::class); 
     }
 
-    public function isActive(): bool
+    public function isActive(string $periodStartDate, ?string $periodEndDate = null): bool
     {
         $endDate = $this->activationControl->end_date;
+        $startDate = $this->activationControl->start_date;
 
-        return (empty($endDate)) || $endDate >= now();
+        $periodEndDate = $periodEndDate ?? now();
+
+        return strtotime($startDate) <= strtotime($periodEndDate)
+            && ((empty($endDate)) || ( strtotime($endDate) >= strtotime($periodStartDate) ));
     }
 
     public function hasExpiredDay(): bool

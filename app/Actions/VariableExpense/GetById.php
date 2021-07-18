@@ -4,7 +4,7 @@ namespace FinancialControl\Actions\VariableExpense;
 
 use FinancialControl\Models\VariableExpense;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\VariableExpenseOrRevenue;
+use FinancialControl\Custom\DTO\Response\VariableExpenseOrRevenueResponse;
 
 class GetById extends AbstractAction
 {
@@ -15,6 +15,6 @@ class GetById extends AbstractAction
 
         if ($variableExpenseFound === null) return [];
 
-        return (new VariableExpenseOrRevenue($variableExpenseFound))->toArray();
+        return (new VariableExpenseOrRevenueResponse($variableExpenseFound))->toArray();
     }
 }
