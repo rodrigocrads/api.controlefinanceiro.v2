@@ -4,8 +4,11 @@ namespace FinancialControl\Actions\Report;
 
 use Carbon\Carbon;
 use FinancialControl\Actions\AbstractAction;
+use FinancialControl\Custom\DTO\Report\CategoryTotalDTO;
 use FinancialControl\Repositories\FixedExpenseRepository;
 use FinancialControl\Repositories\VariableExpenseRepository;
+use Illuminate\Support\Collection;
+use Throwable;
 
 class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 {
@@ -25,45 +28,13 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 
     public function run()
     {
-
-        return $this->logic();
-        // @TODO: Criar lógica para construção da saída abaixo
-        return [
-            [
-                'nonth' => 'january',
-                'categories' => [
-                    [
-                        'name' => 'Nome categoria',
-                        'total' => 1250.55
-                    ]
-                ]
-            ],
-            [
-                'nonth' => 'february',
-                'categories' => [
-                    [
-                        'name' => 'Nome categoria',
-                        'total' => 1250.55
-                    ],
-                    [
-                        'name' => 'Nome categoria',
-                        'total' => 1250.55
-                    ]
-                ]
-            ]
-        ];
-    }
-
-    private function logic()
-    {
-        // @todo1: Refatorar lógica para utilizar algum DTO para construir a estrutura de dados
-        // @todo2: Pensar numa forma para reaproveitar essa lógica de iteração por um período do ano
+        // @todo 1: Refatorar lógica para utilizar algum DTO para construir a estrutura de dados
+        // @todo 2: Pensar numa forma para reaproveitar essa lógica de iteração por um período do ano
         $startMonth = 1;
         $currentMonth = now()->month;
         $currentYear = now()->year;
 
         $monthsTotals = [];
-
         for ($i = $startMonth; $i <= $currentMonth; $i++) {
             $periodStartDate = "{$currentYear}-{$i}-1";
 
@@ -80,17 +51,52 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
                 $expirationDay = now()->day;
             }
 
+            /** @var Collection */
+            $variableExpensesTotalsByCategories = $this->variableExpenseRepository->getTotalValueByCategories($periodStartDate, $periodEndDate);
+
+            /** @var Collection */
+            $fixedExpensesTotalsByCategories = $this->fixedExpenseRepository->getTotalValueByCategories($periodStartDate, $periodEndDate, $expirationDay);
+
+            $expensesTotalsByCategories = collect();
+            $expensesTotalsByCategories = $this->addOrSumValueInTheTargetCollection(
+                $variableExpensesTotalsByCategories,
+                $expensesTotalsByCategories
+            );
+
+            $expensesTotalsByCategories = $this->addOrSumValueInTheTargetCollection(
+                $fixedExpensesTotalsByCategories,
+                $expensesTotalsByCategories
+            );
+
             $monthsTotals[] = [
-                $date->monthName => 
-                    (object) $this->fixedExpenseRepository->getTotalValueByCategory(
-                        $periodStartDate,
-                        $periodEndDate,
-                        $expirationDay
-                    )
+                $date->monthName => $expensesTotalsByCategories->map(function ($value, $key) {
+
+                    return (new CategoryTotalDTO($key, $value))->toArray();
+                })->values()
             ];
         }
 
         return $monthsTotals;
+    }
+
+    private function addOrSumValueInTheTargetCollection(
+        Collection $source,
+        Collection $target
+    ): Collection
+    {
+        $source->each(function ($value, $key) use ($target) {
+
+            $foundValue = $target->get($key);
+
+            if ($foundValue === null) {
+                $target->put($key, $value);
+                return;
+            }
+
+            $target->put($key, $foundValue + $value);
+        });
+
+        return $target;
     }
 
     private function getDateFromEngFormat(string $dateEnglishFormat): Carbon

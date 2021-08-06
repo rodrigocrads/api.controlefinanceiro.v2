@@ -2,6 +2,7 @@
 
 namespace FinancialControl\Repositories;
 
+use Illuminate\Support\Collection;
 use FinancialControl\Models\VariableExpense;
 use FinancialControl\Repositories\Base\Repository;
 
@@ -20,5 +21,19 @@ class VariableExpenseRepository extends Repository
             )
             ->get()
             ->sum('value');
+    }
+
+    public function getTotalValueByCategories(string $startDatePeriod, string $endDatePeriod): Collection
+    {
+        return VariableExpense::whereBetween(
+                'register_date',
+                [ $startDatePeriod, $endDatePeriod ]
+            )
+            ->get()
+            ->groupBy('category.name')
+            ->map(function (Collection $expenses) {
+
+                return $expenses->sum('value');
+            });
     }
 }
