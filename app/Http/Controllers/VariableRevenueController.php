@@ -10,8 +10,8 @@ use FinancialControl\Actions\VariableRevenue\GetById;
 use FinancialControl\Actions\VariableRevenue\Delete;
 use FinancialControl\Actions\VariableRevenue\Update;
 use FinancialControl\Actions\VariableRevenue\ListAll;
-use FinancialControl\Http\Requests\VariableExpenseOrRevenueResponse\SaveRequest;
-use FinancialControl\Http\Requests\VariableExpenseOrRevenueResponse\UpdateRequest;
+use FinancialControl\Http\Requests\VariableExpenseOrRevenue\SaveRequest;
+use FinancialControl\Http\Requests\VariableExpenseOrRevenue\UpdateRequest;
 
 class VariableRevenueController extends Controller
 {

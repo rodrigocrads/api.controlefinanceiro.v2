@@ -5,6 +5,7 @@ namespace FinancialControl\Http\Controllers;
 use Throwable;
 use FinancialControl\Actions\Report\GetCurrentMonthTotals;
 use FinancialControl\Actions\Report\GetCurrentYearTotalsAction;
+use FinancialControl\Actions\Report\GetCurrentYearExpensesTotalsByCategoriesAction;
 
 class ReportController extends Controller
 {
@@ -25,6 +26,19 @@ class ReportController extends Controller
     {
         try {
             $action = resolve(GetCurrentYearTotalsAction::class);
+            $result = $action->run();
+
+            return response()->json($result ?? []);
+
+        } catch (Throwable $e) {
+            return response()->json([], $e->getCode());
+        }
+    }
+
+    public function getCurrentYearExpensesTotalsByCategories()
+    {
+        try {
+            $action = resolve(GetCurrentYearExpensesTotalsByCategoriesAction::class);
             $result = $action->run();
 
             return response()->json($result ?? []);
