@@ -7,10 +7,10 @@ use FinancialControl\Custom\DTO\IDTO;
 class CategoryExpenseTotalDTO implements IDTO
 {
     /** @var string */
-    private $categoryName;
+    public $categoryName;
 
     /** @var float */
-    private $total;
+    public $total;
 
     public function __construct(string $categoryName, float $total)
     {

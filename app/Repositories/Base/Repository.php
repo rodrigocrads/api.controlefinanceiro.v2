@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class Repository implements IRepository
 {
+    /** @var Model */
     protected $model;
 
     public function __construct($model)

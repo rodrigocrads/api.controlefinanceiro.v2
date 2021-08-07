@@ -91,10 +91,7 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
             $expensesTotalByCategory
         );
 
-        return $expensesTotalByCategory->map(function ($value, $key) {
-
-                return (new CategoryExpenseTotalDTO($key, $value));
-            });
+        return $expensesTotalByCategory->values();
     }
 
     private function addOrSumValueInTheTargetCollection(
@@ -102,16 +99,18 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
         Collection $target
     ): Collection
     {
-        $source->each(function ($value, $key) use ($target) {
+        $source->each(function (CategoryExpenseTotalDTO $categoryExpenseTotalDTO, $key) use ($target) {
 
-            $foundValue = $target->get($key);
+            $foundCategoryExpenseTotalDTO = $target->get($key);
 
-            if ($foundValue === null) {
-                $target->put($key, $value);
+            if ($foundCategoryExpenseTotalDTO === null) {
+                $target->put($key, $categoryExpenseTotalDTO);
                 return;
             }
 
-            $target->put($key, $foundValue + $value);
+            $foundCategoryExpenseTotalDTO->total += $categoryExpenseTotalDTO->total;
+
+            $target->put($key, $foundCategoryExpenseTotalDTO);
         });
 
         return $target;
