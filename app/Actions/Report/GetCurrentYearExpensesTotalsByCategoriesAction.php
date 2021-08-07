@@ -3,12 +3,12 @@
 namespace FinancialControl\Actions\Report;
 
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\Report\CategoryTotalDTO;
 use FinancialControl\Repositories\FixedExpenseRepository;
 use FinancialControl\Repositories\VariableExpenseRepository;
-use Illuminate\Support\Collection;
-use Throwable;
+use FinancialControl\Custom\DTO\Report\CategoryExpenseTotalDTO;
+use FinancialControl\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
 
 class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 {
@@ -28,8 +28,7 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 
     public function run()
     {
-        // @todo 1: Refatorar lógica para utilizar algum DTO para construir a estrutura de dados
-        // @todo 2: Pensar numa forma para reaproveitar essa lógica de iteração por um período do ano
+        // @todo: Pensar numa forma para reaproveitar essa lógica de iteração por um período do ano
         $startMonth = 1;
         $currentMonth = now()->month;
         $currentYear = now()->year;
@@ -51,32 +50,51 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
                 $expirationDay = now()->day;
             }
 
-            /** @var Collection */
-            $variableExpensesTotalsByCategories = $this->variableExpenseRepository->getTotalValueByCategories($periodStartDate, $periodEndDate);
-
-            /** @var Collection */
-            $fixedExpensesTotalsByCategories = $this->fixedExpenseRepository->getTotalValueByCategories($periodStartDate, $periodEndDate, $expirationDay);
-
-            $expensesTotalsByCategories = collect();
-            $expensesTotalsByCategories = $this->addOrSumValueInTheTargetCollection(
-                $variableExpensesTotalsByCategories,
-                $expensesTotalsByCategories
+            $expensesTotalByCategory = $this->getCollectionOfExpensesTotalByCategory(
+                $periodStartDate,
+                $periodEndDate,
+                $expirationDay
             );
 
-            $expensesTotalsByCategories = $this->addOrSumValueInTheTargetCollection(
-                $fixedExpensesTotalsByCategories,
-                $expensesTotalsByCategories
-            );
-
-            $monthsTotals[] = [
-                $date->monthName => $expensesTotalsByCategories->map(function ($value, $key) {
-
-                    return (new CategoryTotalDTO($key, $value))->toArray();
-                })->values()
-            ];
+            $monthsTotals[] = (new MonthExpensesTotalByCategoriesDTO(
+                $date->monthName,
+                $expensesTotalByCategory
+            ))->toArray();
         }
 
         return $monthsTotals;
+    }
+
+    private function getCollectionOfExpensesTotalByCategory($periodStartDate, $periodEndDate, $expirationDay): Collection
+    {
+        /** @var Collection */
+        $variableExpensesTotalsByCategories = $this->variableExpenseRepository->getTotalValueByCategories(
+            $periodStartDate,
+            $periodEndDate
+        );
+
+        /** @var Collection */
+        $fixedExpensesTotalsByCategories = $this->fixedExpenseRepository->getTotalValueByCategories(
+            $periodStartDate,
+            $periodEndDate,
+            $expirationDay
+        );
+
+        $expensesTotalByCategory = collect();
+        $expensesTotalByCategory = $this->addOrSumValueInTheTargetCollection(
+            $variableExpensesTotalsByCategories,
+            $expensesTotalByCategory
+        );
+
+        $expensesTotalByCategory = $this->addOrSumValueInTheTargetCollection(
+            $fixedExpensesTotalsByCategories,
+            $expensesTotalByCategory
+        );
+
+        return $expensesTotalByCategory->map(function ($value, $key) {
+
+                return (new CategoryExpenseTotalDTO($key, $value));
+            });
     }
 
     private function addOrSumValueInTheTargetCollection(
