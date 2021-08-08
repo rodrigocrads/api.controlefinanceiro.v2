@@ -29,6 +29,7 @@ class ReportService
         $this->fixedExpenseRepository = $fixedExpenseRepository;
     }
 
+    // @todo: mover logica de metodo para a Action (GetCurrentMonthTotals)
     public function getCurrentMonthTotals()
     {
         $periodStartDate = now()->format('Y-m') . "-1";
@@ -44,6 +45,7 @@ class ReportService
         ->toArray();
     }
 
+    // @todo: mover logica de metodo para a Action (GetCurrentYearTotalsAction)
     public function getCurrentYearTotals()
     {
         $startMonth = 1;
