@@ -2,10 +2,10 @@
 
 namespace FinancialControl\Repositories;
 
-use FinancialControl\Custom\DTO\Report\CategoryExpenseTotalDTO;
 use Illuminate\Support\Collection;
 use FinancialControl\Models\FixedExpense;
 use FinancialControl\Repositories\Base\Repository;
+use FinancialControl\Custom\DTO\Report\CategoryExpenseTotalDTO;
 
 class FixedExpenseRepository extends Repository
 {
@@ -17,10 +17,10 @@ class FixedExpenseRepository extends Repository
     public function allActivatedAndHasAlreadyExpired(string $startDate, string $endDate, int $expirationDay): Collection
     {
         return $this->all()
-            ->filter(function (FixedExpense $fixedRevenue) use ($startDate, $endDate, $expirationDay) {
+            ->filter(function (FixedExpense $fixedExpense) use ($startDate, $endDate, $expirationDay) {
 
-                return $fixedRevenue->isActive($startDate, $endDate)
-                    && $fixedRevenue->hasAlreadyExpired($expirationDay);
+                return $fixedExpense->isActive($startDate, $endDate)
+                    && $fixedExpense->hasAlreadyExpired($expirationDay);
             });
     }
 

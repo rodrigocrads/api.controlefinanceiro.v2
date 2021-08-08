@@ -25,11 +25,11 @@ abstract class Repository implements IRepository
 
     public function update(array $array, $id)
     {
-        $m = $this->find($id);
+        $model = $this->find($id);
 
-        if ($m) {
-            $m->fill($array);
-            if ($m->save()) return $m;
+        if ($model) {
+            $model->fill($array);
+            if ($model->save()) return $model;
         }
 
         return null;
@@ -42,9 +42,9 @@ abstract class Repository implements IRepository
 
     public function delete($id)
     {
-        $m = $this->find($id);
+        $model = $this->find($id);
     
-        if ($m) return $m->delete();
+        if ($model) return $model->delete();
 
         return false;
     }

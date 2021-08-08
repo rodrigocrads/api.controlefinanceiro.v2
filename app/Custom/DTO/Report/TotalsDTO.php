@@ -20,7 +20,7 @@ class TotalsDTO implements IDTO
         $this->totalFixedExpense = $totalFixedExpense;
         $this->totalFixedRevenue = $totalFixedRevenue;
         $this->totalVariableExpense = $totalVariableExpense;
-        $this->$totalVariableRevenue = $totalVariableRevenue;
+        $this->totalVariableRevenue = $totalVariableRevenue;
     }
 
     public function toArray(): array
