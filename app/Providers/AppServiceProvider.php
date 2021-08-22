@@ -51,6 +51,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // fix: conflitos na funcionalidade Laravel Passport Problem in lcobucci/jwt package
+        if (config('app.debug')) {
+            error_reporting(E_ALL & ~E_USER_DEPRECATED);
+        } else {
+            error_reporting(0);
+        }
     }
 }
