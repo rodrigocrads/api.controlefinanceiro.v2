@@ -19,6 +19,11 @@ class CreateCategoriesTable extends Migration
             $table->string('name', 100);
             $table->enum('type', ['expense', 'revenue']);
 
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+
             $table->timestamps();
             $table->softDeletes();
         });

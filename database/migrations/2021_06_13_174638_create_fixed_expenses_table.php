@@ -25,6 +25,11 @@ class CreateFixedExpensesTable extends Migration
                 ->references('id')
                 ->on('categories');
 
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
+
             $table->softDeletes();
             $table->timestamps();
         });
