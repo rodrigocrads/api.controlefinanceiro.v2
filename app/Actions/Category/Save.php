@@ -20,6 +20,6 @@ class Save extends AbstractAction
 
     public function run()
     {
-        return $this->categoryRepository->create($this->data);
+        return $this->categoryRepository->create($this->getAll());
     }
 }

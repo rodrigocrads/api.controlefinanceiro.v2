@@ -12,6 +12,7 @@ use FinancialControl\Actions\VariableRevenue\Update;
 use FinancialControl\Actions\VariableRevenue\ListAll;
 use FinancialControl\Http\Requests\VariableExpenseOrRevenue\SaveRequest;
 use FinancialControl\Http\Requests\VariableExpenseOrRevenue\UpdateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class VariableRevenueController extends Controller
 {
@@ -19,7 +20,10 @@ class VariableRevenueController extends Controller
     {
         try {
             $action = resolve(Save::class, [
-                'data' => $request->all()
+                'data' => array_merge(
+                    $request->all(),
+                    [ 'user_id' => Auth::user()->id ]
+                )
             ]);
 
             return response()->json($action->run(), 201);
@@ -64,7 +68,10 @@ class VariableRevenueController extends Controller
             $action = resolve(Update::class, [
                 'data' => [
                     'id' => $request->route('id'),
-                    'update_data' => $request->all()
+                    'update_data' => array_merge(
+                        $request->all(),
+                        [ 'user_id' => Auth::user()->id ]
+                    )
                 ]
             ]);
 

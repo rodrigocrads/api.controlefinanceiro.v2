@@ -31,6 +31,17 @@ abstract class AbstractAction
     }
 
     /**
+     * Get all input data
+     * 
+     * @author Rodrigo Cunha
+     * @return array
+     */
+    protected function getAll(): array
+    {
+        return $this->data;
+    }
+
+    /**
      * Responsible by run the actions
      * 
      * @author Rodrigo Cunha
