@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function removeSessions()
+    {
+        \Illuminate\Support\Facades\DB::table('sessions')
+            ->where('user_id', '=',  $this->id)
+            ->delete();
+    }
 }
