@@ -13,6 +13,7 @@ use FinancialControl\Actions\FixedExpense\GetById;
 use FinancialControl\Http\Requests\FixedExpenseOrRevenue\SaveRequest;
 use FinancialControl\Http\Requests\FixedExpenseOrRevenue\UpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FixedExpenseController extends Controller
 {
@@ -20,7 +21,10 @@ class FixedExpenseController extends Controller
     {
         try {
             $action = resolve(Save::class, [
-                'data' => $request->all()
+                'data' => array_merge(
+                    $request->all(),
+                    [ 'user_id' => Auth::user()->id ]
+                )
             ]);
 
             return response()->json($action->run(), 201);
@@ -69,7 +73,10 @@ class FixedExpenseController extends Controller
             $action = resolve(Update::class, [
                 'data' => [
                     'id' => $request->route('id'),
-                    'fixed_expense' => $request->all()
+                    'fixed_expense' => array_merge(
+                        $request->all(),
+                        [ 'user_id' => Auth::user()->id ]
+                    )
                 ]
             ]);
             $fixedExpense = $action->run();

@@ -14,6 +14,7 @@ use FinancialControl\Exceptions\NotFoundException;
 use FinancialControl\Http\Requests\Category\DeleteRequest;
 use FinancialControl\Http\Requests\Category\SaveRequest;
 use FinancialControl\Http\Requests\Category\UpdateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -21,7 +22,10 @@ class CategoryController extends Controller
     {
         try {
             $action = resolve(Save::class, [
-                'data' => $request->all()
+                'data' => array_merge(
+                    $request->all(),
+                    [ 'user_id' => Auth::user()->id ]
+                ),
             ]);
 
             return response()->json($action->run(), 201);
@@ -70,7 +74,10 @@ class CategoryController extends Controller
             $action = resolve(Update::class, [
                 'data' => [
                     'id' => $request->route('id'),
-                    'data' => $request->all(),
+                    'data' => array_merge(
+                        $request->all(),
+                        [ 'user_id' => Auth::user()->id ]
+                    ),
                 ]
             ]);
 

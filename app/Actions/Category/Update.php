@@ -21,8 +21,8 @@ class Update extends AbstractAction
     public function run()
     {
         return $this->categoryRepository->update(
-            $this->data['data'],
-            $this->data['id']
+            $this->get('data'),
+            $this->get('id')
         );
     }
 }

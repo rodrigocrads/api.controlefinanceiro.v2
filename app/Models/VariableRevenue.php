@@ -4,10 +4,12 @@ namespace FinancialControl\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use FinancialControl\Custom\Traits\GlobalScopeByAuthUserId;
 
 class VariableRevenue extends Model
 {
     use SoftDeletes;
+    use GlobalScopeByAuthUserId;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +22,7 @@ class VariableRevenue extends Model
         'value',
         'category_id',
         'register_date',
+        'user_id',
     ];
 
     protected $casts = [

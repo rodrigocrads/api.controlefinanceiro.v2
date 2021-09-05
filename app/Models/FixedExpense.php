@@ -2,12 +2,14 @@
 
 namespace FinancialControl\Models;
 
+use FinancialControl\Custom\Traits\GlobalScopeByAuthUserId;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FixedExpense extends Model
 {
     use SoftDeletes;
+    use GlobalScopeByAuthUserId;
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +21,7 @@ class FixedExpense extends Model
         'description',
         'value',
         'category_id',
+        'user_id',
     ];
 
     protected $casts = [

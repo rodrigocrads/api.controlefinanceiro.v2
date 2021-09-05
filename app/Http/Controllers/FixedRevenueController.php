@@ -13,6 +13,7 @@ use FinancialControl\Exceptions\NotFoundException;
 use FinancialControl\Http\Requests\FixedExpenseOrRevenue\SaveRequest;
 use FinancialControl\Http\Requests\FixedExpenseOrRevenue\UpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FixedRevenueController extends Controller
 {
@@ -20,7 +21,10 @@ class FixedRevenueController extends Controller
     {
         try {
             $action = resolve(Save::class, [
-                'data' => $request->all()
+                'data' => array_merge(
+                    $request->all(),
+                    [ 'user_id' => Auth::user()->id ]
+                )
             ]);
 
             return response()->json($action->run(), 201);
@@ -69,7 +73,10 @@ class FixedRevenueController extends Controller
             $action = resolve(Update::class, [
                 'data' => [
                     'id' => $request->route('id'),
-                    'fixed_revenue' => $request->all()
+                    'fixed_revenue' => array_merge(
+                        $request->all(),
+                        [ 'user_id' => Auth::user()->id ]
+                    )
                 ]
             ]);
             $fixedRevenue = $action->run();
