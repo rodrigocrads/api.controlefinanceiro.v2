@@ -16,6 +16,7 @@ class UserApiController extends Controller
 
             $user->removeSessions();
             $user->token()->revoke();
+            $user->removeRememberToken();
 
             return response()->json('', 200);
         } else {

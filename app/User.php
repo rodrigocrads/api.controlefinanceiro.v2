@@ -37,6 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function removeRememberToken()
+    {
+        $this->remember_token = null;
+
+        $this->save();
+    }
+
     public function removeSessions()
     {
         \Illuminate\Support\Facades\DB::table('sessions')
