@@ -3,7 +3,7 @@
 namespace FinancialControl\Providers;
 
 use Laravel\Passport\Passport;
-use App\Models\Passport\Client;
+use FinancialControl\Models\Passport\Client;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

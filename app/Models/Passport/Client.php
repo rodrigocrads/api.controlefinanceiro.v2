@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Passport;
+namespace FinancialControl\Models\Passport;
 
 use Laravel\Passport\Client as BaseClient;
 
@@ -13,6 +13,6 @@ class Client extends BaseClient
      */
     public function skipsAuthorization()
     {
-        return $this->firstParty();
+        return true;
     }
 }
