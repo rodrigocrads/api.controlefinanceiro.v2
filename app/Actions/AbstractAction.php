@@ -25,7 +25,7 @@ abstract class AbstractAction
      * @param mixed $default
      * @return mixed
      */
-    protected function get(string $key, mixed $default = null)
+    protected function get(string $key, $default = null)
     {
         return data_get($this->data, $key, $default);
     }

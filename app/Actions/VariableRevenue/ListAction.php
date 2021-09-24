@@ -20,7 +20,7 @@ class ListAction extends AbstractAction
 
     public function run()
     {
-        $variableRevenues = $this->repository->all($this->get('params'));
+        $variableRevenues = $this->repository->all($this->get('params', []));
 
         if ($variableRevenues->isEmpty()) return [];
 

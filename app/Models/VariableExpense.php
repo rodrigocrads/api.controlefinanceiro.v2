@@ -2,11 +2,13 @@
 
 namespace FinancialControl\Models;
 
+use FinancialControl\Custom\DTO\IDTO;
+use FinancialControl\Custom\DTO\Response\VariableExpenseOrRevenueResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use FinancialControl\Custom\Traits\GlobalScopeByAuthUserId;
 
-class VariableExpense extends Model
+class VariableExpense extends Model implements IFilterMapper
 {
     use SoftDeletes;
     use GlobalScopeByAuthUserId;
@@ -32,5 +34,32 @@ class VariableExpense extends Model
     public function category()
     {
         return $this->belongsTo(Category::class); 
+    }
+
+    public function getDTO(): IDTO
+    {
+        return new VariableExpenseOrRevenueResponse($this);
+    }
+
+    public function getFiltersMapper(): array
+    {
+        return [
+            'title' => [
+                'field' => 'title',
+                'operator' => 'like',
+            ],
+            'category_id' => [
+                'field' => 'category_id',
+                'operator' => '=',
+            ],
+            'start_date' => [
+                'field' => 'register_date',
+                'operator' => '>=',
+            ],
+            'end_date' => [
+                'field' => 'register_date',
+                'operator' => '<',
+            ]
+        ];
     }
 }
