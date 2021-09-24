@@ -9,9 +9,10 @@ use FinancialControl\Actions\VariableExpense\Save;
 use FinancialControl\Actions\VariableExpense\GetById;
 use FinancialControl\Actions\VariableExpense\Delete;
 use FinancialControl\Actions\VariableExpense\Update;
-use FinancialControl\Actions\VariableExpense\ListAll;
+use FinancialControl\Actions\VariableExpense\ListAction;
 use FinancialControl\Http\Requests\VariableExpenseOrRevenue\SaveRequest;
 use FinancialControl\Http\Requests\VariableExpenseOrRevenue\UpdateRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class VariableExpenseController extends Controller
@@ -33,10 +34,12 @@ class VariableExpenseController extends Controller
         }
     }
 
-    public function listAll()
+    public function listAll(Request $request)
     {
         try {
-            $action = resolve(ListAll::class);
+            $action = resolve(ListAction::class, [
+                'data' => $request->all()
+            ]);
 
             $fixedRevenues = $action->run();
 
