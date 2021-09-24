@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use FinancialControl\Custom\Traits\GlobalScopeByAuthUserId;
 
-class VariableRevenue extends Model
+class VariableRevenue extends Model implements IFilterMapper
 {
     use SoftDeletes;
     use GlobalScopeByAuthUserId;
@@ -39,5 +39,19 @@ class VariableRevenue extends Model
     public function getDTO(): IDTO
     {
         return new VariableExpenseOrRevenueResponse($this);
+    }
+
+    public function getFiltersMapper(): array
+    {
+        return [
+            'title' => [
+                'field' => 'title',
+                'operator' => 'like',
+            ],
+            'category_id' => [
+                'field' => 'category_id',
+                'operator' => '=',
+            ]
+        ];
     }
 }

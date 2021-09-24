@@ -37,7 +37,7 @@ class VariableRevenueController extends Controller
     public function listAll(Request $request)
     {
         try {
-            $action = resolve(ListAllAction::class, [ 'data' => $request->all()]);
+            $action = resolve(ListAllAction::class, [ 'data' => $request->all() ]);
 
             $fixedRevenues = $action->run();
 

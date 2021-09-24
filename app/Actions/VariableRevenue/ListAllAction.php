@@ -11,14 +11,16 @@ class ListAllAction extends AbstractAction
 {
     private $repository;
 
-    public function __construct(VariableRevenueRepository $repository)
+    public function __construct(array $data = [], VariableRevenueRepository $repository)
     {
+        parent::__construct($data);
+
         $this->repository = $repository;
     }
 
     public function run()
     {
-        $variableRevenues = $this->repository->all();
+        $variableRevenues = $this->repository->all($this->get('params'));
 
         if ($variableRevenues->isEmpty()) return [];
 
@@ -29,8 +31,7 @@ class ListAllAction extends AbstractAction
     {
         $variableRevenuesResponseData = array_map(function (VariableRevenue $variableRevenue) {
 
-            return $variableRevenue->getDTO()
-                ->toArray();
+            return $variableRevenue->getDTO()->toArray();
         }, $variableRevenues->all());
 
         return $variableRevenuesResponseData;
