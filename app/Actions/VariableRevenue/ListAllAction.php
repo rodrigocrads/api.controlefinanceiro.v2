@@ -5,13 +5,20 @@ namespace FinancialControl\Actions\VariableRevenue;
 use Illuminate\Support\Collection;
 use FinancialControl\Models\VariableRevenue;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\Response\VariableExpenseOrRevenueResponse;
+use FinancialControl\Repositories\VariableRevenueRepository;
 
-class ListAll extends AbstractAction
+class ListAllAction extends AbstractAction
 {
+    private $repository;
+
+    public function __construct(VariableRevenueRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function run()
     {
-        $variableRevenues = VariableRevenue::all();
+        $variableRevenues = $this->repository->all();
 
         if ($variableRevenues->isEmpty()) return [];
 
@@ -20,9 +27,10 @@ class ListAll extends AbstractAction
 
     private function buildResponse(Collection $variableRevenues): array
     {
-        $variableRevenuesResponseData = array_map(function (VariableRevenue $VariableRevenue) {
+        $variableRevenuesResponseData = array_map(function (VariableRevenue $variableRevenue) {
 
-            return (new VariableExpenseOrRevenueResponse($VariableRevenue))->toArray();
+            return $variableRevenue->getDTO()
+                ->toArray();
         }, $variableRevenues->all());
 
         return $variableRevenuesResponseData;

@@ -2,6 +2,8 @@
 
 namespace FinancialControl\Models;
 
+use FinancialControl\Custom\DTO\IDTO;
+use FinancialControl\Custom\DTO\Response\VariableExpenseOrRevenueResponse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use FinancialControl\Custom\Traits\GlobalScopeByAuthUserId;
@@ -32,5 +34,10 @@ class VariableRevenue extends Model
     public function category()
     {
         return $this->belongsTo(Category::class); 
+    }
+
+    public function getDTO(): IDTO
+    {
+        return new VariableExpenseOrRevenueResponse($this);
     }
 }
