@@ -7,7 +7,7 @@ use FinancialControl\Models\VariableRevenue;
 use FinancialControl\Actions\AbstractAction;
 use FinancialControl\Repositories\VariableRevenueRepository;
 
-class ListAllAction extends AbstractAction
+class ListAction extends AbstractAction
 {
     private $repository;
 

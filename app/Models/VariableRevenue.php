@@ -51,6 +51,14 @@ class VariableRevenue extends Model implements IFilterMapper
             'category_id' => [
                 'field' => 'category_id',
                 'operator' => '=',
+            ],
+            'start_date' => [
+                'field' => 'register_date',
+                'operator' => '>=',
+            ],
+            'end_date' => [
+                'field' => 'register_date',
+                'operator' => '<',
             ]
         ];
     }

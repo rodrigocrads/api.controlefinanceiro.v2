@@ -9,7 +9,7 @@ use FinancialControl\Actions\VariableRevenue\Save;
 use FinancialControl\Actions\VariableRevenue\GetById;
 use FinancialControl\Actions\VariableRevenue\Delete;
 use FinancialControl\Actions\VariableRevenue\Update;
-use FinancialControl\Actions\VariableRevenue\ListAllAction;
+use FinancialControl\Actions\VariableRevenue\ListAction;
 use FinancialControl\Http\Requests\VariableExpenseOrRevenue\SaveRequest;
 use FinancialControl\Http\Requests\VariableExpenseOrRevenue\UpdateRequest;
 use Illuminate\Http\Request;
@@ -37,7 +37,7 @@ class VariableRevenueController extends Controller
     public function listAll(Request $request)
     {
         try {
-            $action = resolve(ListAllAction::class, [ 'data' => $request->all() ]);
+            $action = resolve(ListAction::class, [ 'data' => $request->all() ]);
 
             $fixedRevenues = $action->run();
 
