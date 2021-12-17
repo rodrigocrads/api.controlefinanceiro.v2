@@ -3,14 +3,10 @@
 namespace FinancialControl\Providers;
 
 use FinancialControl\Models\Category;
-use FinancialControl\Models\FixedExpense;
-use FinancialControl\Models\FixedRevenue;
 use Illuminate\Support\ServiceProvider;
 use FinancialControl\Models\VariableRevenue;
 use FinancialControl\Models\VariableExpense;
 use FinancialControl\Repositories\CategoryRepository;
-use FinancialControl\Repositories\FixedExpenseRepository;
-use FinancialControl\Repositories\FixedRevenueRepository;
 use FinancialControl\Repositories\VariableExpenseRepository;
 use FinancialControl\Repositories\VariableRevenueRepository;
 
@@ -33,14 +29,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(VariableRevenueRepository::class, function() {
             return new VariableRevenueRepository(new VariableRevenue());
-        });
-
-        $this->app->bind(FixedExpenseRepository::class, function() {
-            return new FixedExpenseRepository(new FixedExpense());
-        });
-
-        $this->app->bind(FixedRevenueRepository::class, function() {
-            return new FixedRevenueRepository(new FixedRevenue());
         });
     }
 
