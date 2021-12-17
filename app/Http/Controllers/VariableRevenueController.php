@@ -39,9 +39,9 @@ class VariableRevenueController extends Controller
         try {
             $action = resolve(ListAction::class, [ 'data' => $request->all() ]);
 
-            $fixedRevenues = $action->run();
+            $revenues = $action->run();
 
-            return response()->json($fixedRevenues ?? []);
+            return response()->json($revenues ?? []);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());
@@ -52,11 +52,11 @@ class VariableRevenueController extends Controller
     {
         try {
             $action = resolve(GetById::class, ['data' => [ 'id' => $request->route('id') ]]);
-            $fixedRevenue = $action->run();
+            $revenue = $action->run();
 
-            if (empty($fixedRevenue)) throw new NotFoundException();
+            if (empty($revenue)) throw new NotFoundException();
 
-            return response()->json($fixedRevenue);
+            return response()->json($revenue);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());
@@ -76,9 +76,9 @@ class VariableRevenueController extends Controller
                 ]
             ]);
 
-            $fixedRevenue = $action->run();
+            $revenue = $action->run();
 
-            return response()->json($fixedRevenue);
+            return response()->json($revenue);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());

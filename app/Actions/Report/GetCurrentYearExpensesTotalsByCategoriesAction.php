@@ -5,7 +5,6 @@ namespace FinancialControl\Actions\Report;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\FixedExpenseRepository;
 use FinancialControl\Repositories\VariableExpenseRepository;
 use FinancialControl\Custom\DTO\Report\CategoryExpenseTotalDTO;
 use FinancialControl\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
@@ -13,17 +12,14 @@ use FinancialControl\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
 class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 {
     private $variableExpenseRepository;
-    private $fixedExpenseRepository;
 
     public function __construct(
         $data = [],
-        VariableExpenseRepository $variableExpenseRepository,
-        FixedExpenseRepository $fixedExpenseRepository
+        VariableExpenseRepository $variableExpenseRepository
     ) {
         parent::__construct($data);
 
         $this->variableExpenseRepository = $variableExpenseRepository;
-        $this->fixedExpenseRepository = $fixedExpenseRepository;
     }
 
     public function run()
@@ -73,21 +69,9 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
             $periodEndDate
         );
 
-        /** @var Collection */
-        $fixedExpensesTotalsByCategories = $this->fixedExpenseRepository->getTotalValueByCategories(
-            $periodStartDate,
-            $periodEndDate,
-            $expirationDay
-        );
-
         $expensesTotalByCategory = collect();
         $expensesTotalByCategory = $this->addOrSumValueInTheTargetCollection(
             $variableExpensesTotalsByCategories,
-            $expensesTotalByCategory
-        );
-
-        $expensesTotalByCategory = $this->addOrSumValueInTheTargetCollection(
-            $fixedExpensesTotalsByCategories,
             $expensesTotalByCategory
         );
 

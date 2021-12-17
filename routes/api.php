@@ -26,20 +26,6 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('/category', 'CategoryController@listAll');
     Route::get('/category/{id}', 'CategoryController@getById');
 
-    // Fixed Revenue
-    Route::post('/fixedRevenue', 'FixedRevenueController@save');
-    Route::get('/fixedRevenue', 'FixedRevenueController@listAll');
-    Route::get('/fixedRevenue/{id}', 'FixedRevenueController@getById');
-    Route::put('/fixedRevenue/{id}', 'FixedRevenueController@update');
-    Route::delete('/fixedRevenue/{id}', 'FixedRevenueController@delete');
-
-    // Fixed Expense
-    Route::post('/fixedExpense', 'FixedExpenseController@save');
-    Route::get('/fixedExpense', 'FixedExpenseController@listAll');
-    Route::get('/fixedExpense/{id}', 'FixedExpenseController@getById');
-    Route::put('/fixedExpense/{id}', 'FixedExpenseController@update');
-    Route::delete('/fixedExpense/{id}', 'FixedExpenseController@delete');
-
     // Variable Revenue
     Route::post('/variableRevenue', 'VariableRevenueController@save');
     Route::get('/variableRevenue', 'VariableRevenueController@listAll');

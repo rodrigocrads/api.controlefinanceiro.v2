@@ -22,16 +22,6 @@ class Category extends Model
         'user_id',
     ];
 
-    public function fixedRevenue()
-    {
-        return $this->hasMany(FixedRevenue::class);
-    }
-
-    public function fixedExpense()
-    {
-        return $this->hasMany(FixedExpense::class);
-    }
-
     public function variableRevenue()
     {
         return $this->hasMany(VariableRevenue::class);
@@ -40,16 +30,6 @@ class Category extends Model
     public function variableExpense()
     {
         return $this->hasMany(VariableExpense::class);
-    }
-
-    public function hasSomeFixedExpense(): bool
-    {
-        return isset($this->fixedExpense) && count($this->fixedExpense) > 0;
-    }
-
-    public function hasSomeFixedRevenue(): bool
-    {
-        return isset($this->fixedRevenue) && count($this->fixedRevenue) > 0;
     }
 
     public function hasSomeVariableExpense(): bool

@@ -25,9 +25,7 @@ class CategoryInUse implements Rule
             $category = Category::find($value);
     
             if (!empty($category)) {
-                return !$category->hasSomeFixedExpense()
-                    && !$category->hasSomeFixedRevenue()
-                    && !$category->hasSomeVariableExpense()
+                return !$category->hasSomeVariableExpense()
                     && !$category->hasSomeVariableRevenue();
             }
     
