@@ -40,6 +40,13 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::put('/variableExpense/{id}', 'VariableExpenseController@update');
     Route::delete('/variableExpense/{id}', 'VariableExpenseController@delete');
 
+    // Financial Transaction
+    Route::post('/financialTransaction', 'FinancialTransactionController@save');
+    Route::get('/financialTransaction', 'FinancialTransactionController@listAll');
+    Route::get('/financialTransaction/{id}', 'FinancialTransactionController@getById');
+    Route::put('/financialTransaction/{id}', 'FinancialTransactionController@update');
+    Route::delete('/financialTransaction/{id}', 'FinancialTransactionController@delete');
+
     // Report
     Route::get('/report/currentMonthTotals', 'ReportController@getCurrentMonthTotals');
     Route::get('/report/currentYearTotals', 'ReportController@getCurrentYearTotals');
