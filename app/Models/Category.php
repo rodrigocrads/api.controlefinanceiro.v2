@@ -32,6 +32,11 @@ class Category extends Model
         return $this->hasMany(VariableExpense::class);
     }
 
+    public function financialTransaction()
+    {
+        return $this->hasMany(FinancialTransaction::class);
+    }
+
     public function hasSomeVariableExpense(): bool
     {
         return isset($this->variableExpense) && count($this->variableExpense) > 0;
@@ -40,5 +45,10 @@ class Category extends Model
     public function hasSomeVariableRevenue(): bool
     {
         return isset($this->variableRevenue) && count($this->variableRevenue) > 0;
+    }
+
+    public function hasSomeFinancialTransaction(): bool
+    {
+        return isset($this->financialTransaction) && count($this->financialTransaction) > 0;
     }
 }
