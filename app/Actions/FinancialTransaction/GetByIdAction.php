@@ -2,9 +2,8 @@
 
 namespace FinancialControl\Actions\FinancialTransaction;
 
-use FinancialControl\Models\FinancialTransaction;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\Response\FinancialTransactionResponse;
+use FinancialControl\Models\FinancialTransaction;
 
 class GetByIdAction extends AbstractAction
 {
@@ -13,8 +12,10 @@ class GetByIdAction extends AbstractAction
         /** @var FinancialTransaction */
         $financialTransaction = FinancialTransaction::find($this->data['id']);
 
-        if ($financialTransaction === null) return [];
+        if ($financialTransaction === null) {
+            return [];
+        }
 
-        return (new FinancialTransactionResponse($financialTransaction))->toArray();
+        return $financialTransaction->getDTO()->toArray();
     }
 }

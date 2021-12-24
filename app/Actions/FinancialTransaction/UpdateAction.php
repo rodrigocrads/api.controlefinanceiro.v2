@@ -2,10 +2,9 @@
 
 namespace FinancialControl\Actions\FinancialTransaction;
 
-use FinancialControl\Models\FinancialTransaction;
 use FinancialControl\Actions\AbstractAction;
+use FinancialControl\Models\FinancialTransaction;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Custom\DTO\Response\FinancialTransactionResponse;
 
 class UpdateAction extends AbstractAction
 {
@@ -14,10 +13,12 @@ class UpdateAction extends AbstractAction
         /** @var FinancialTransaction */
         $financialTransaction = FinancialTransaction::find($this->get('id'));
 
-        if (empty($financialTransaction)) throw new NotFoundException();
+        if (empty($financialTransaction)) {
+            throw new NotFoundException();
+        }
 
         $financialTransaction->update($this->get('update_data'));
 
-        return (new FinancialTransactionResponse($financialTransaction))->toArray();
+        return $financialTransaction->getDTO()->toArray();
     }
 }

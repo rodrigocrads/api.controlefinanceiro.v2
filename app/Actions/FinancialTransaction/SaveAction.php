@@ -2,9 +2,8 @@
 
 namespace FinancialControl\Actions\FinancialTransaction;
 
-use FinancialControl\Models\FinancialTransaction;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Custom\DTO\Response\FinancialTransactionResponse;
+use FinancialControl\Models\FinancialTransaction;
 
 class SaveAction extends AbstractAction
 {
@@ -13,6 +12,6 @@ class SaveAction extends AbstractAction
         $financialTransaction = new FinancialTransaction($this->data);
         $financialTransaction->saveOrFail();
 
-        return (new FinancialTransactionResponse($financialTransaction))->toArray();
+        return $financialTransaction->getDTO()->toArray();
     }
 }

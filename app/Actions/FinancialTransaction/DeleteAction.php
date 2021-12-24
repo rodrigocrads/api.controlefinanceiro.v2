@@ -13,7 +13,9 @@ class DeleteAction extends AbstractAction
         /** @var FinancialTransaction */
         $financialTransactionFound = FinancialTransaction::find($this->data['id']);
 
-        if (empty($financialTransactionFound)) throw new NotFoundException(); 
+        if (empty($financialTransactionFound)) {
+            throw new NotFoundException();
+        } 
 
         $financialTransactionFound->delete();
     }
