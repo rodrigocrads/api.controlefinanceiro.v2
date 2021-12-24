@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use FinancialControl\Http\Requests\IdRequest;
 use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Actions\FinancialTransaction\Save;
-use FinancialControl\Actions\FinancialTransaction\Delete;
-use FinancialControl\Actions\FinancialTransaction\Update;
-use FinancialControl\Actions\FinancialTransaction\GetById;
 use FinancialControl\Actions\FinancialTransaction\ListAction;
+use FinancialControl\Actions\FinancialTransaction\SaveAction;
+use FinancialControl\Actions\FinancialTransaction\DeleteAction;
+use FinancialControl\Actions\FinancialTransaction\UpdateAction;
+use FinancialControl\Actions\FinancialTransaction\GetByIdAction;
 use FinancialControl\Http\Requests\FinancialTransaction\SaveRequest;
 use FinancialControl\Http\Requests\FinancialTransaction\UpdateRequest;
 
@@ -20,7 +20,7 @@ class FinancialTransactionController extends Controller
     public function save(SaveRequest $request)
     {
         try {
-            $action = resolve(Save::class, [
+            $action = resolve(SaveAction::class, [
                 'data' => array_merge(
                     $request->all(),
                     [ 'user_id' => Auth::user()->id ]
@@ -41,9 +41,9 @@ class FinancialTransactionController extends Controller
                 'data' => $request->all()
             ]);
 
-            $financialTransactions = $action->run();
+            $result = $action->run();
 
-            return response()->json($financialTransactions ?? []);
+            return response()->json($result ?? []);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());
@@ -53,12 +53,14 @@ class FinancialTransactionController extends Controller
     public function getById(IdRequest $request)
     {
         try {
-            $action = resolve(GetById::class, ['data' => [ 'id' => $request->route('id') ]]);
-            $financialTransaction = $action->run();
+            $action = resolve(GetByIdAction::class, ['data' => [ 'id' => $request->route('id') ]]);
+            $result = $action->run();
 
-            if (empty($financialTransaction)) throw new NotFoundException();
+            if (empty($result)) {
+                throw new NotFoundException();
+            }
 
-            return response()->json($financialTransaction);
+            return response()->json($result);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());
@@ -68,7 +70,7 @@ class FinancialTransactionController extends Controller
     public function update(UpdateRequest $request)
     {
         try {
-            $action = resolve(Update::class, [
+            $action = resolve(UpdateAction::class, [
                 'data' => [
                     'id' => $request->route('id'),
                     'update_data' => array_merge(
@@ -78,9 +80,9 @@ class FinancialTransactionController extends Controller
                 ]
             ]);
 
-            $financialTransaction = $action->run();
+            $result = $action->run();
 
-            return response()->json($financialTransaction);
+            return response()->json($result);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());
@@ -90,7 +92,10 @@ class FinancialTransactionController extends Controller
     public function delete(IdRequest $request)
     {
         try {
-            $action = resolve(Delete::class, [ 'data' => ['id' => $request->route('id') ]]);
+            $action = resolve(DeleteAction::class, [
+                    'data' => ['id' => $request->route('id')]
+                ]
+            );
             $action->run();
 
             return response()->json([]);

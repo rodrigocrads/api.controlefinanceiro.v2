@@ -6,7 +6,7 @@ use FinancialControl\Models\FinancialTransaction;
 use FinancialControl\Actions\AbstractAction;
 use FinancialControl\Custom\DTO\Response\FinancialTransactionResponse;
 
-class GetById extends AbstractAction
+class GetByIdAction extends AbstractAction
 {
     public function run()
     {

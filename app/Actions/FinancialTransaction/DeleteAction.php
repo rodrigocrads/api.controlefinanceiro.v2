@@ -6,7 +6,7 @@ use FinancialControl\Actions\AbstractAction;
 use FinancialControl\Models\FinancialTransaction;
 use FinancialControl\Exceptions\NotFoundException;
 
-class Delete extends AbstractAction
+class DeleteAction extends AbstractAction
 {
     public function run()
     {
