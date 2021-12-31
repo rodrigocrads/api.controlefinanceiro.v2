@@ -6,22 +6,22 @@ use FinancialControl\Custom\DTO\IDTO;
 
 class TotalsDTO implements IDTO
 {
-    private $totalVariableExpense;
-    private $totalVariableRevenue;
+    private $totalExpense;
+    private $totalRevenue;
 
     public function __construct(
-        float $totalVariableExpense,
-        float $totalVariableRevenue
+        float $totalExpense,
+        float $totalRevenue
     ) {
-        $this->totalVariableExpense = $totalVariableExpense;
-        $this->totalVariableRevenue = $totalVariableRevenue;
+        $this->totalExpense = $totalExpense;
+        $this->totalRevenue = $totalRevenue;
     }
 
     public function toArray(): array
     {
         return [
-            'totalVariableExpense'  => $this->totalVariableExpense ?? 0,
-            'totalVariableRevenue'  => $this->totalVariableRevenue ?? 0,
+            'expense'  => $this->totalExpense ?? 0,
+            'revenue'  => $this->totalRevenue ?? 0,
         ];
     }
 }

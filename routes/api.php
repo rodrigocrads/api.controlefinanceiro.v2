@@ -26,20 +26,6 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('/category', 'CategoryController@listAll');
     Route::get('/category/{id}', 'CategoryController@getById');
 
-    // Variable Revenue
-    Route::post('/variableRevenue', 'VariableRevenueController@save');
-    Route::get('/variableRevenue', 'VariableRevenueController@listAll');
-    Route::get('/variableRevenue/{id}', 'VariableRevenueController@getById');
-    Route::put('/variableRevenue/{id}', 'VariableRevenueController@update');
-    Route::delete('/variableRevenue/{id}', 'VariableRevenueController@delete');
-
-    // Variable Expense
-    Route::post('/variableExpense', 'VariableExpenseController@save');
-    Route::get('/variableExpense', 'VariableExpenseController@listAll');
-    Route::get('/variableExpense/{id}', 'VariableExpenseController@getById');
-    Route::put('/variableExpense/{id}', 'VariableExpenseController@update');
-    Route::delete('/variableExpense/{id}', 'VariableExpenseController@delete');
-
     // Financial Transaction
     Route::post('/financialTransaction', 'FinancialTransactionController@save');
     Route::get('/financialTransaction', 'FinancialTransactionController@listAll');

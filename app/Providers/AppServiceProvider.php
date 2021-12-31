@@ -3,12 +3,10 @@
 namespace FinancialControl\Providers;
 
 use FinancialControl\Models\Category;
+use FinancialControl\Models\FinancialTransaction;
 use Illuminate\Support\ServiceProvider;
-use FinancialControl\Models\VariableRevenue;
-use FinancialControl\Models\VariableExpense;
 use FinancialControl\Repositories\CategoryRepository;
-use FinancialControl\Repositories\VariableExpenseRepository;
-use FinancialControl\Repositories\VariableRevenueRepository;
+use FinancialControl\Repositories\FinancialTransactionRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,12 +21,8 @@ class AppServiceProvider extends ServiceProvider
             return new CategoryRepository(new Category());
         });
 
-        $this->app->bind(VariableExpenseRepository::class, function() {
-            return new VariableExpenseRepository(new VariableExpense());
-        });
-
-        $this->app->bind(VariableRevenueRepository::class, function() {
-            return new VariableRevenueRepository(new VariableRevenue());
+        $this->app->bind(FinancialTransactionRepository::class, function() {
+            return new FinancialTransactionRepository(new FinancialTransaction());
         });
     }
 

@@ -4,7 +4,6 @@ namespace FinancialControl\Repositories\Base;
 
 use FinancialControl\Models\IFilterMapper;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 
 abstract class Repository implements IRepository
 {

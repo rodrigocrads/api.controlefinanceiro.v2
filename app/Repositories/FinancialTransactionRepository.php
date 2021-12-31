@@ -5,7 +5,7 @@ namespace FinancialControl\Repositories;
 use Illuminate\Support\Collection;
 use FinancialControl\Models\FinancialTransaction;
 use FinancialControl\Repositories\Base\Repository;
-use FinancialControl\Custom\DTO\Report\CategoryExpenseTotalDTO;
+use FinancialControl\Custom\DTO\Report\CategoryTotalDTO;
 
 class FinancialTransactionRepository extends Repository
 {
@@ -14,22 +14,36 @@ class FinancialTransactionRepository extends Repository
         parent::__construct($model);
     }
 
-    public function getTotalValue(string $startDatePeriod, string $endDatePeriod): float
+    public function getTotalExpenses(string $startDatePeriod, string $endDatePeriod): float
     {
-        return FinancialTransaction::whereBetween(
-                'register_date',
-                [ $startDatePeriod, $endDatePeriod ]
-            )
-            ->get()
+        return $this->listByPeriod($startDatePeriod, $endDatePeriod)
+            ->filter(function (FinancialTransaction $item) { return $item->type === 'expense'; })
             ->sum('value');
     }
 
-    public function getTotalValueByCategories(string $startDatePeriod, string $endDatePeriod): Collection
+    public function getTotalRevenues(string $startDatePeriod, string $endDatePeriod): float
+    {
+        return $this->listByPeriod($startDatePeriod, $endDatePeriod)
+            ->filter(function (FinancialTransaction $item) { return $item->type === 'revenue'; })
+            ->sum('value');
+    }
+
+    public function listByPeriod(string $startDatePeriod, string $endDatePeriod): Collection
     {
         return FinancialTransaction::whereBetween(
                 'register_date',
                 [ $startDatePeriod, $endDatePeriod ]
             )
+            ->get();
+    }
+
+    public function getTotalExpensesByCategories(string $startDatePeriod, string $endDatePeriod): Collection
+    {
+        return FinancialTransaction::whereBetween(
+                'register_date',
+                [ $startDatePeriod, $endDatePeriod ]
+            )
+            ->where('type', 'expense')
             ->get()
             ->groupBy('category.name')
             ->map(function (Collection $expenses) {
@@ -37,7 +51,8 @@ class FinancialTransactionRepository extends Repository
                 return $expenses->sum('value');
             })
             ->map(function ($total, $categoryName) {
-                return new CategoryExpenseTotalDTO($categoryName, $total);
+
+                return new CategoryTotalDTO($categoryName, $total);
             });
     }
 }

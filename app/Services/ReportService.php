@@ -5,20 +5,16 @@ namespace FinancialControl\Services;
 use Illuminate\Support\Carbon;
 use FinancialControl\Custom\DTO\Report\TotalsDTO;
 use FinancialControl\Custom\DTO\Report\MonthTotalsDTO;
-use FinancialControl\Repositories\VariableExpenseRepository;
-use FinancialControl\Repositories\VariableRevenueRepository;
+use FinancialControl\Repositories\FinancialTransactionRepository;
 
 class ReportService
 {
-    private $variableExpenseRepository;
-    private $variableRevenueRepository;
+    private $financialTransactionRepository;
 
     public function __construct(
-        VariableExpenseRepository $variableExpenseRepository,
-        VariableRevenueRepository $variableRevenueRepository
+        FinancialTransactionRepository $financialTransactionRepository
     ) {
-        $this->variableExpenseRepository = $variableExpenseRepository;
-        $this->variableRevenueRepository = $variableRevenueRepository;
+        $this->financialTransactionRepository = $financialTransactionRepository;
     }
 
     // @todo: mover logica de metodo para a Action (GetCurrentMonthTotals)
@@ -28,8 +24,8 @@ class ReportService
         $periodEndDate = now();
 
         return (new TotalsDTO(
-            $this->variableExpenseRepository->getTotalValue($periodStartDate, $periodEndDate),
-            $this->variableRevenueRepository->getTotalValue($periodStartDate, $periodEndDate),
+            $this->financialTransactionRepository->getTotalExpenses($periodStartDate, $periodEndDate),
+            $this->financialTransactionRepository->getTotalRevenues($periodStartDate, $periodEndDate),
         ))
         ->toArray();
     }
@@ -61,8 +57,8 @@ class ReportService
                 (new MonthTotalsDTO(
                     strtolower($date->monthName),
                     (new TotalsDTO(
-                        $this->variableExpenseRepository->getTotalValue($periodStartDate, $periodEndDate),
-                        $this->variableRevenueRepository->getTotalValue($periodStartDate, $periodEndDate),
+                        $this->financialTransactionRepository->getTotalExpenses($periodStartDate, $periodEndDate),
+                        $this->financialTransactionRepository->getTotalRevenues($periodStartDate, $periodEndDate),
                     ))
                 ))->toArray();
         }

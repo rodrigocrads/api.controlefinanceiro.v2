@@ -5,21 +5,21 @@ namespace FinancialControl\Actions\Report;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\VariableExpenseRepository;
-use FinancialControl\Custom\DTO\Report\CategoryExpenseTotalDTO;
+use FinancialControl\Repositories\FinancialTransactionRepository;
+use FinancialControl\Custom\DTO\Report\CategoryTotalDTO;
 use FinancialControl\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
 
 class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 {
-    private $variableExpenseRepository;
+    private $financialTransaction;
 
     public function __construct(
         $data = [],
-        VariableExpenseRepository $variableExpenseRepository
+        FinancialTransactionRepository $financialTransaction
     ) {
         parent::__construct($data);
 
-        $this->variableExpenseRepository = $variableExpenseRepository;
+        $this->financialTransaction = $financialTransaction;
     }
 
     public function run()
@@ -38,18 +38,15 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 
             $lastDayOfMonth = $date->format('t');
             $periodEndDate = "{$currentYear}-{$i}-{$lastDayOfMonth}";
-            $expirationDay = $lastDayOfMonth;
 
             $isCurrentMonth = $i === $currentMonth;
             if ($isCurrentMonth) {
                 $periodEndDate = now()->format("Y-m-d");
-                $expirationDay = now()->day;
             }
 
             $expensesTotalByCategory = $this->getCollectionOfExpensesTotalByCategory(
                 $periodStartDate,
-                $periodEndDate,
-                $expirationDay
+                $periodEndDate
             );
 
             $monthsTotals[] = (new MonthExpensesTotalByCategoriesDTO(
@@ -61,17 +58,17 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
         return $monthsTotals;
     }
 
-    private function getCollectionOfExpensesTotalByCategory($periodStartDate, $periodEndDate, $expirationDay): Collection
+    private function getCollectionOfExpensesTotalByCategory($periodStartDate, $periodEndDate): Collection
     {
         /** @var Collection */
-        $variableExpensesTotalsByCategories = $this->variableExpenseRepository->getTotalValueByCategories(
+        $expensesTotalsByCategories = $this->financialTransaction->getTotalExpensesByCategories(
             $periodStartDate,
             $periodEndDate
         );
 
         $expensesTotalByCategory = collect();
         $expensesTotalByCategory = $this->addOrSumValueInTheTargetCollection(
-            $variableExpensesTotalsByCategories,
+            $expensesTotalsByCategories,
             $expensesTotalByCategory
         );
 
@@ -83,18 +80,18 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
         Collection $target
     ): Collection
     {
-        $source->each(function (CategoryExpenseTotalDTO $categoryExpenseTotalDTO, $key) use ($target) {
+        $source->each(function (CategoryTotalDTO $categoryExpenseTotalDTO, $key) use ($target) {
 
-            $foundCategoryExpenseTotalDTO = $target->get($key);
+            $foundCategoryTotalDTO = $target->get($key);
 
-            if ($foundCategoryExpenseTotalDTO === null) {
+            if ($foundCategoryTotalDTO === null) {
                 $target->put($key, $categoryExpenseTotalDTO);
                 return;
             }
 
-            $foundCategoryExpenseTotalDTO->total += $categoryExpenseTotalDTO->total;
+            $foundCategoryTotalDTO->total += $categoryExpenseTotalDTO->total;
 
-            $target->put($key, $foundCategoryExpenseTotalDTO);
+            $target->put($key, $foundCategoryTotalDTO);
         });
 
         return $target;

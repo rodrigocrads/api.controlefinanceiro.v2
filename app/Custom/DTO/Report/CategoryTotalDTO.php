@@ -4,7 +4,7 @@ namespace FinancialControl\Custom\DTO\Report;
 
 use FinancialControl\Custom\DTO\IDTO;
 
-class CategoryExpenseTotalDTO implements IDTO
+class CategoryTotalDTO implements IDTO
 {
     /** @var string */
     public $categoryName;
