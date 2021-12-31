@@ -49,6 +49,10 @@ class FinancialTransaction extends Model implements IFilterMapper
                 'field' => 'title',
                 'operator' => 'like',
             ],
+            'type' => [
+                'field' => 'type',
+                'operator' => '=',
+            ],
             'category_id' => [
                 'field' => 'category_id',
                 'operator' => '=',
