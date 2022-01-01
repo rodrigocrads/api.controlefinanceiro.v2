@@ -22,23 +22,14 @@ class Category extends Model
         'user_id',
     ];
 
-    public function variableRevenue()
+
+    public function financialTransaction()
     {
-        return $this->hasMany(VariableRevenue::class);
+        return $this->hasMany(FinancialTransaction::class);
     }
 
-    public function variableExpense()
+    public function hasSomeFinancialTransaction(): bool
     {
-        return $this->hasMany(VariableExpense::class);
-    }
-
-    public function hasSomeVariableExpense(): bool
-    {
-        return isset($this->variableExpense) && count($this->variableExpense) > 0;
-    }
-
-    public function hasSomeVariableRevenue(): bool
-    {
-        return isset($this->variableRevenue) && count($this->variableRevenue) > 0;
+        return isset($this->financialTransaction) && count($this->financialTransaction) > 0;
     }
 }

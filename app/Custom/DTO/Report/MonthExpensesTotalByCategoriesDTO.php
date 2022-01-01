@@ -22,7 +22,7 @@ class MonthExpensesTotalByCategoriesDTO implements IDTO
     public function toArray(): array
     {
         return [
-            'name'  => strtolower($this->monthName),
+            'month'  => strtolower($this->monthName),
             'categories' => $this->getExpensesTotalByCategory(),
         ];
     }
@@ -30,7 +30,7 @@ class MonthExpensesTotalByCategoriesDTO implements IDTO
     private function getExpensesTotalByCategory(): Collection
     {
         return $this->expensesTotalByCategory
-                ->map(function (CategoryExpenseTotalDTO $categoryExpenseTotalDTO) {
+                ->map(function (CategoryTotalDTO $categoryExpenseTotalDTO) {
 
                     return $categoryExpenseTotalDTO->toArray();
                 })

@@ -3,24 +3,24 @@
 namespace FinancialControl\Http\Controllers;
 
 use Throwable;
-use FinancialControl\Http\Requests\IdRequest;
-use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Actions\VariableExpense\Save;
-use FinancialControl\Actions\VariableExpense\GetById;
-use FinancialControl\Actions\VariableExpense\Delete;
-use FinancialControl\Actions\VariableExpense\Update;
-use FinancialControl\Actions\VariableExpense\ListAction;
-use FinancialControl\Http\Requests\VariableExpenseOrRevenue\SaveRequest;
-use FinancialControl\Http\Requests\VariableExpenseOrRevenue\UpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use FinancialControl\Http\Requests\IdRequest;
+use FinancialControl\Exceptions\NotFoundException;
+use FinancialControl\Actions\FinancialTransaction\ListAction;
+use FinancialControl\Actions\FinancialTransaction\SaveAction;
+use FinancialControl\Actions\FinancialTransaction\DeleteAction;
+use FinancialControl\Actions\FinancialTransaction\UpdateAction;
+use FinancialControl\Actions\FinancialTransaction\GetByIdAction;
+use FinancialControl\Http\Requests\FinancialTransaction\SaveRequest;
+use FinancialControl\Http\Requests\FinancialTransaction\UpdateRequest;
 
-class VariableExpenseController extends Controller
+class FinancialTransactionController extends Controller
 {
     public function save(SaveRequest $request)
     {
         try {
-            $action = resolve(Save::class, [
+            $action = resolve(SaveAction::class, [
                 'data' => array_merge(
                     $request->all(),
                     [ 'user_id' => Auth::user()->id ]
@@ -41,9 +41,9 @@ class VariableExpenseController extends Controller
                 'data' => $request->all()
             ]);
 
-            $revenues = $action->run();
+            $result = $action->run();
 
-            return response()->json($revenues ?? []);
+            return response()->json($result ?? []);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());
@@ -53,12 +53,14 @@ class VariableExpenseController extends Controller
     public function getById(IdRequest $request)
     {
         try {
-            $action = resolve(GetById::class, ['data' => [ 'id' => $request->route('id') ]]);
-            $revenue = $action->run();
+            $action = resolve(GetByIdAction::class, ['data' => [ 'id' => $request->route('id') ]]);
+            $result = $action->run();
 
-            if (empty($revenue)) throw new NotFoundException();
+            if (empty($result)) {
+                throw new NotFoundException();
+            }
 
-            return response()->json($revenue);
+            return response()->json($result);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());
@@ -68,7 +70,7 @@ class VariableExpenseController extends Controller
     public function update(UpdateRequest $request)
     {
         try {
-            $action = resolve(Update::class, [
+            $action = resolve(UpdateAction::class, [
                 'data' => [
                     'id' => $request->route('id'),
                     'update_data' => array_merge(
@@ -78,9 +80,9 @@ class VariableExpenseController extends Controller
                 ]
             ]);
 
-            $revenue = $action->run();
+            $result = $action->run();
 
-            return response()->json($revenue);
+            return response()->json($result);
 
         } catch (Throwable $e) {
             return response()->json([], $e->getCode());
@@ -90,7 +92,10 @@ class VariableExpenseController extends Controller
     public function delete(IdRequest $request)
     {
         try {
-            $action = resolve(Delete::class, [ 'data' => ['id' => $request->route('id') ]]);
+            $action = resolve(DeleteAction::class, [
+                    'data' => ['id' => $request->route('id')]
+                ]
+            );
             $action->run();
 
             return response()->json([]);

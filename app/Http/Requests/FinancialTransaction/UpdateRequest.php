@@ -1,7 +1,8 @@
 <?php
 
-namespace FinancialControl\Http\Requests\VariableExpenseOrRevenue;
+namespace FinancialControl\Http\Requests\FinancialTransaction;
 
+use Illuminate\Validation\Rule;
 use FinancialControl\Http\Requests\CustomFormRequest;
 
 class UpdateRequest extends CustomFormRequest
@@ -17,6 +18,10 @@ class UpdateRequest extends CustomFormRequest
             'id'   => 'required|int',
             'title' => 'required|string|max:100',
             'description' => 'nullable|string|max:255',
+            'type' => [
+                'required',
+                Rule::in(['expense', 'revenue'])
+            ],
             'value' => 'required|numeric|min:0.1',
             'category_id' => 'required|integer',
             'register_date' => 'required|date_format:Y-m-d',
