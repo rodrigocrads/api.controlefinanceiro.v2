@@ -63,7 +63,7 @@ class FinancialTransaction extends Model implements IFilterMapper
             ],
             'end_date' => [
                 'field' => 'register_date',
-                'operator' => '<',
+                'operator' => '<=',
             ]
         ];
     }
