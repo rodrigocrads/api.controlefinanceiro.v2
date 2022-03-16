@@ -7,6 +7,8 @@ use FinancialControl\Models\FinancialTransaction;
 use Illuminate\Support\ServiceProvider;
 use FinancialControl\Repositories\CategoryRepository;
 use FinancialControl\Repositories\FinancialTransactionRepository;
+use FinancialControl\Repositories\UserRepository;
+use FinancialControl\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(CategoryRepository::class, function() {
             return new CategoryRepository(new Category());
+        });
+
+        $this->app->bind(UserRepository::class, function() {
+            return new UserRepository(new User());
         });
 
         $this->app->bind(FinancialTransactionRepository::class, function() {

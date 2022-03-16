@@ -2,6 +2,8 @@
 
 namespace FinancialControl;
 
+use FinancialControl\Custom\DTO\IDTO;
+use FinancialControl\Custom\DTO\Response\UserResponse;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
@@ -49,5 +51,10 @@ class User extends Authenticatable
         \Illuminate\Support\Facades\DB::table('sessions')
             ->where('user_id', '=',  $this->id)
             ->delete();
+    }
+
+    public function getDTO(): IDTO
+    {
+        return new UserResponse($this);
     }
 }
