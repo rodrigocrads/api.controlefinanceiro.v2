@@ -9,6 +9,7 @@ use FinancialControl\Repositories\CategoryRepository;
 use FinancialControl\Repositories\FinancialTransactionRepository;
 use FinancialControl\Repositories\UserRepository;
 use FinancialControl\User;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Validator::extend('is_valid_current_password', '\FinancialControl\Custom\Validation\IsValidCurrentPassword@validate');
+        Validator::extend('new_password_is_not_equal_to_current_password', '\FinancialControl\Custom\Validation\NewPasswordIsNotEqualToCurrentPassword@validate');
+
         // fix: conflitos na funcionalidade Laravel Passport Problem in lcobucci/jwt package
         if (config('app.debug')) {
             error_reporting(E_ALL & ~E_USER_DEPRECATED);

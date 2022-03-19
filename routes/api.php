@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['middleware' => ['auth:api']], function() {
-    Route::put('/user/{id}', 'Auth\UserApiController@update');
+    Route::patch('/user/{id}', 'Auth\UserApiController@update');
     Route::get('/user', 'Auth\UserApiController@me');
     Route::post('/logout', 'Auth\UserApiController@logout');
+    Route::patch('/changePassword', 'Auth\UserApiController@changePassword');
 
     // Category
     Route::post('/category', 'CategoryController@save');

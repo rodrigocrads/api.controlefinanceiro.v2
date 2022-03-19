@@ -3,10 +3,12 @@
 namespace FinancialControl\Http\Controllers\Auth;
 
 use Exception;
+use FinancialControl\Actions\User\ChangePasswordAction;
 use FinancialControl\Actions\User\UpdateAction;
 use FinancialControl\User;
 use Illuminate\Support\Facades\Auth;
 use FinancialControl\Http\Controllers\Controller;
+use FinancialControl\Http\Requests\User\ChangePasswordRequest;
 use FinancialControl\Http\Requests\User\UpdateRequest;
 use Illuminate\Http\Request;
 
@@ -35,14 +37,31 @@ class UserApiController extends Controller
             $action = resolve(UpdateAction::class, [
                 'data' => [
                     'id' => $request->route('id'),
-                    'data' => array_merge(
-                        $request->validated(),
-                        [ 'user_id' => Auth::user()->id ]
-                    ),
+                    'data' => $request->validated()
                 ]
             ]);
 
             return response()->json($action->run());
+
+        } catch (Exception $e) {
+
+            return response()->json("", $e->getCode());
+        }
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        try {
+            $action = resolve(ChangePasswordAction::class, [
+                'data' => [
+                    'id' => $request->user()->id,
+                    'data' => $request->validated()
+                ]
+            ]);
+
+            $action->run();
+
+            return response()->json('');
 
         } catch (Exception $e) {
 
