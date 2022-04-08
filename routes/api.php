@@ -17,7 +17,9 @@ Route::group(['middleware' => ['auth:api']], function() {
         return $request->user();
     });
 
+    Route::patch('/user', 'Auth\UserApiController@update');
     Route::post('/logout', 'Auth\UserApiController@logout');
+    Route::patch('/changePassword', 'Auth\UserApiController@changePassword');
 
     // Category
     Route::post('/category', 'CategoryController@save');
