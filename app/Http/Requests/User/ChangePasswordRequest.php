@@ -28,7 +28,13 @@ class ChangePasswordRequest extends CustomFormRequest
     {
         return [
             "old_password.is_valid_current_password" => "Senha atual incorreta.",
-            "new_password.new_password_is_not_equal_to_current_password" => "A nova senha deve ser diferente da senha atual."
+            "old_password.min" => "Senha atual deve ter um valor mínimo de :min caracteres.",
+            "old_password.max" => "Senha atual deve ter um valor máximo de :max caracteres.",
+            "old_password.required" => "O campo senha atual é obrigatório.",
+            "new_password.new_password_is_not_equal_to_current_password" => "Nova senha deve ter um valor diferente da senha atual.",
+            "new_password.min" => "Nova senha deve ter um valor mínimo de :min caracteres.",
+            "new_password.max" => "Nova senha deve ter um valor máximo de :max caracteres.",
+            "new_password.required" => "O campo nova senha é obrigatório.",
         ];
     }
 }

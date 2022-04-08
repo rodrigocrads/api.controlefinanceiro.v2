@@ -36,7 +36,7 @@ class UserApiController extends Controller
         try {
             $action = resolve(UpdateAction::class, [
                 'data' => [
-                    'id' => $request->route('id'),
+                    'id' => Auth::user()->id,
                     'data' => $request->validated()
                 ]
             ]);
@@ -62,23 +62,6 @@ class UserApiController extends Controller
             $action->run();
 
             return response()->json('');
-
-        } catch (Exception $e) {
-
-            return response()->json("", $e->getCode());
-        }
-    }
-
-    public function me(Request $request)
-    {
-        try {
-            /** @var User */
-            $user = $request->user();
-
-            return response()->json(
-                $user->getDTO()
-                    ->toArray()
-            );
 
         } catch (Exception $e) {
 

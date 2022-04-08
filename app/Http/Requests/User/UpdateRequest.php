@@ -14,8 +14,21 @@ class UpdateRequest extends CustomFormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'id'   => 'required|int'
+            'name' => 'required|string|max:100'
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            "name.required" => "O campo nome é obrigatório.",
+            "name.string" => "O nome deve ser do tipo texto alfanumérico.",
+            "name.max" => "O nome não pode ter mais de :max caracteres.",
         ];
     }
 }

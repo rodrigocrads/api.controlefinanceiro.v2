@@ -13,8 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['middleware' => ['auth:api']], function() {
-    Route::patch('/user/{id}', 'Auth\UserApiController@update');
-    Route::get('/user', 'Auth\UserApiController@me');
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::patch('/user', 'Auth\UserApiController@update');
     Route::post('/logout', 'Auth\UserApiController@logout');
     Route::patch('/changePassword', 'Auth\UserApiController@changePassword');
 
