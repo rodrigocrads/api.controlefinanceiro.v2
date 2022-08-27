@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
 

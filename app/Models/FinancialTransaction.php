@@ -1,12 +1,12 @@
 <?php
 
-namespace FinancialControl\Models;
+namespace App\Models;
 
-use FinancialControl\Custom\DTO\IDTO;
+use App\Custom\DTO\IDTO;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use FinancialControl\Custom\Traits\GlobalScopeByAuthUserId;
-use FinancialControl\Custom\DTO\Response\FinancialTransactionResponse;
+use App\Custom\Traits\GlobalScopeByAuthUserId;
+use App\Custom\DTO\Response\FinancialTransactionResponse;
 
 class FinancialTransaction extends Model implements IFilterMapper
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Actions\FinancialTransaction;
+namespace App\Actions\FinancialTransaction;
 
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Models\FinancialTransaction;
+use App\Actions\AbstractAction;
+use App\Models\FinancialTransaction;
 
 class SaveAction extends AbstractAction
 {

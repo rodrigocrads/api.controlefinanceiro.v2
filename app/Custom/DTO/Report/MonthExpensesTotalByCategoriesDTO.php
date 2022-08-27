@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Custom\DTO\Report;
+namespace App\Custom\DTO\Report;
 
 use Illuminate\Support\Collection;
-use FinancialControl\Custom\DTO\IDTO;
+use App\Custom\DTO\IDTO;
 
 class MonthExpensesTotalByCategoriesDTO implements IDTO
 {

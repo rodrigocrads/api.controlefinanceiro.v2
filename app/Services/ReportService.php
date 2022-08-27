@@ -1,11 +1,11 @@
 <?php
 
-namespace FinancialControl\Services;
+namespace App\Services;
 
 use Illuminate\Support\Carbon;
-use FinancialControl\Custom\DTO\Report\TotalsDTO;
-use FinancialControl\Custom\DTO\Report\MonthTotalsDTO;
-use FinancialControl\Repositories\FinancialTransactionRepository;
+use App\Custom\DTO\Report\TotalsDTO;
+use App\Custom\DTO\Report\MonthTotalsDTO;
+use App\Repositories\FinancialTransactionRepository;
 
 class ReportService
 {

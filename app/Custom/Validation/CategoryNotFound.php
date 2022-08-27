@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Custom\Validation;
+namespace App\Custom\Validation;
 
 use Exception;
-use FinancialControl\Models\Category;
+use App\Models\Category;
 use Illuminate\Contracts\Validation\Rule;
 
 class CategoryNotFound implements Rule

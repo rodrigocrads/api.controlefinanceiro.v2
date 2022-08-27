@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Repositories;
+namespace App\Repositories;
 
-use FinancialControl\Models\Category;
-use FinancialControl\Repositories\Base\Repository;
+use App\Models\Category;
+use App\Repositories\Base\Repository;
 
 class CategoryRepository extends Repository
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Actions\User;
+namespace App\Actions\User;
 
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\UserRepository;
+use App\Actions\AbstractAction;
+use App\Repositories\UserRepository;
 
 class ChangePasswordAction extends AbstractAction
 {

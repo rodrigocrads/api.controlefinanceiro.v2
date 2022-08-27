@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Custom\Validation;
+namespace App\Custom\Validation;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

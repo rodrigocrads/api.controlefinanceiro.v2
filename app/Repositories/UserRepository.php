@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Repositories;
+namespace App\Repositories;
 
-use FinancialControl\User;
-use FinancialControl\Repositories\Base\Repository;
+use App\User;
+use App\Repositories\Base\Repository;
 
 class UserRepository extends Repository
 {

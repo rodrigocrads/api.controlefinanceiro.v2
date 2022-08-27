@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Repositories\Base;
+namespace App\Repositories\Base;
 
 interface IRepository
 {

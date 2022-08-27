@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Actions\Report;
+namespace App\Actions\Report;
 
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Services\ReportService;
+use App\Actions\AbstractAction;
+use App\Services\ReportService;
 
 class GetCurrentYearTotalsAction extends AbstractAction
 {

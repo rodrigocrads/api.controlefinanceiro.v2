@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Actions\Category;
+namespace App\Actions\Category;
 
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\CategoryRepository;
+use App\Actions\AbstractAction;
+use App\Repositories\CategoryRepository;
 
 class Update extends AbstractAction
 {

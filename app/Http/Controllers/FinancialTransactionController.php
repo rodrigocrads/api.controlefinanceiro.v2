@@ -1,19 +1,19 @@
 <?php
 
-namespace FinancialControl\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use FinancialControl\Http\Requests\IdRequest;
-use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Actions\FinancialTransaction\ListAction;
-use FinancialControl\Actions\FinancialTransaction\SaveAction;
-use FinancialControl\Actions\FinancialTransaction\DeleteAction;
-use FinancialControl\Actions\FinancialTransaction\UpdateAction;
-use FinancialControl\Actions\FinancialTransaction\GetByIdAction;
-use FinancialControl\Http\Requests\FinancialTransaction\SaveRequest;
-use FinancialControl\Http\Requests\FinancialTransaction\UpdateRequest;
+use App\Http\Requests\IdRequest;
+use App\Exceptions\NotFoundException;
+use App\Actions\FinancialTransaction\ListAction;
+use App\Actions\FinancialTransaction\SaveAction;
+use App\Actions\FinancialTransaction\DeleteAction;
+use App\Actions\FinancialTransaction\UpdateAction;
+use App\Actions\FinancialTransaction\GetByIdAction;
+use App\Http\Requests\FinancialTransaction\SaveRequest;
+use App\Http\Requests\FinancialTransaction\UpdateRequest;
 
 class FinancialTransactionController extends Controller
 {

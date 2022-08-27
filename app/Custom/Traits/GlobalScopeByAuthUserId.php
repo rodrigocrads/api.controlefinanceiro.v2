@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Custom\Traits;
+namespace App\Custom\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;

@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Http\Requests\FinancialTransaction;
+namespace App\Http\Requests\FinancialTransaction;
 
 use Illuminate\Validation\Rule;
-use FinancialControl\Http\Requests\CustomFormRequest;
+use App\Http\Requests\CustomFormRequest;
 
 class UpdateRequest extends CustomFormRequest
 {

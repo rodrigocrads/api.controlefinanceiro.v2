@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl;
+namespace App;
 
-use FinancialControl\Custom\DTO\IDTO;
-use FinancialControl\Custom\DTO\Response\UserResponse;
+use App\Custom\DTO\IDTO;
+use App\Custom\DTO\Response\UserResponse;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;

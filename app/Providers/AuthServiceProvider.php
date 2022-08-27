@@ -1,9 +1,9 @@
 <?php
 
-namespace FinancialControl\Providers;
+namespace App\Providers;
 
 use Laravel\Passport\Passport;
-use FinancialControl\Models\Passport\Client;
+use App\Models\Passport\Client;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'FinancialControl\Model' => 'FinancialControl\Policies\ModelPolicy',
+        // 'App\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**

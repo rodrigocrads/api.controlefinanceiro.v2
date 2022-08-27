@@ -1,8 +1,8 @@
 <?php
 
-namespace FinancialControl\Custom\DTO\Response;
+namespace App\Custom\DTO\Response;
 
-use FinancialControl\Custom\DTO\IDTO;
+use App\Custom\DTO\IDTO;
 use Illuminate\Database\Eloquent\Model;
 
 class FinancialTransactionResponse implements IDTO

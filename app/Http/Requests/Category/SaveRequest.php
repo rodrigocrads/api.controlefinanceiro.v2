@@ -1,8 +1,8 @@
 <?php
 
-namespace FinancialControl\Http\Requests\Category;
+namespace App\Http\Requests\Category;
 
-use FinancialControl\Http\Requests\CustomFormRequest;
+use App\Http\Requests\CustomFormRequest;
 
 class SaveRequest extends CustomFormRequest
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace FinancialControl\Providers;
+namespace App\Providers;
 
-use FinancialControl\Models\Category;
-use FinancialControl\Models\FinancialTransaction;
+use App\Models\Category;
+use App\Models\FinancialTransaction;
 use Illuminate\Support\ServiceProvider;
-use FinancialControl\Repositories\CategoryRepository;
-use FinancialControl\Repositories\FinancialTransactionRepository;
-use FinancialControl\Repositories\UserRepository;
-use FinancialControl\User;
+use App\Repositories\CategoryRepository;
+use App\Repositories\FinancialTransactionRepository;
+use App\Repositories\UserRepository;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
@@ -40,8 +40,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Validator::extend('is_valid_current_password', '\FinancialControl\Custom\Validation\IsValidCurrentPassword@validate');
-        Validator::extend('new_password_is_not_equal_to_current_password', '\FinancialControl\Custom\Validation\NewPasswordIsNotEqualToCurrentPassword@validate');
+        Validator::extend('is_valid_current_password', '\App\Custom\Validation\IsValidCurrentPassword@validate');
+        Validator::extend('new_password_is_not_equal_to_current_password', '\App\Custom\Validation\NewPasswordIsNotEqualToCurrentPassword@validate');
 
         // fix: conflitos na funcionalidade Laravel Passport Problem in lcobucci/jwt package
         if (config('app.debug')) {

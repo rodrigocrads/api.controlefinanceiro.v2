@@ -1,8 +1,8 @@
 <?php
 
-namespace FinancialControl\Repositories\Base;
+namespace App\Repositories\Base;
 
-use FinancialControl\Models\IFilterMapper;
+use App\Models\IFilterMapper;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class Repository implements IRepository

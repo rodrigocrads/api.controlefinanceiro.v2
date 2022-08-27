@@ -1,19 +1,19 @@
 <?php
 
-namespace FinancialControl\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Exception;
 use Illuminate\Http\Request;
-use FinancialControl\Actions\Category\Save;
-use FinancialControl\Http\Requests\IdRequest;
-use FinancialControl\Actions\Category\Update;
-use FinancialControl\Actions\Category\Delete;
-use FinancialControl\Actions\Category\ListAll;
-use FinancialControl\Actions\Category\GetById;
-use FinancialControl\Exceptions\NotFoundException;
-use FinancialControl\Http\Requests\Category\DeleteRequest;
-use FinancialControl\Http\Requests\Category\SaveRequest;
-use FinancialControl\Http\Requests\Category\UpdateRequest;
+use App\Actions\Category\Save;
+use App\Http\Requests\IdRequest;
+use App\Actions\Category\Update;
+use App\Actions\Category\Delete;
+use App\Actions\Category\ListAll;
+use App\Actions\Category\GetById;
+use App\Exceptions\NotFoundException;
+use App\Http\Requests\Category\DeleteRequest;
+use App\Http\Requests\Category\SaveRequest;
+use App\Http\Requests\Category\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller

@@ -1,11 +1,11 @@
 <?php
 
-namespace FinancialControl\Repositories;
+namespace App\Repositories;
 
 use Illuminate\Support\Collection;
-use FinancialControl\Models\FinancialTransaction;
-use FinancialControl\Repositories\Base\Repository;
-use FinancialControl\Custom\DTO\Report\CategoryTotalDTO;
+use App\Models\FinancialTransaction;
+use App\Repositories\Base\Repository;
+use App\Custom\DTO\Report\CategoryTotalDTO;
 
 class FinancialTransactionRepository extends Repository
 {

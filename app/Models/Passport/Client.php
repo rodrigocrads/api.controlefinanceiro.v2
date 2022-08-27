@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Models\Passport;
+namespace App\Models\Passport;
 
 use Laravel\Passport\Client as BaseClient;
 

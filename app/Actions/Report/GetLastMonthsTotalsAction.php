@@ -9,7 +9,7 @@ use App\Repositories\FinancialTransactionRepository;
 use App\Custom\DTO\Report\CategoryTotalDTO;
 use App\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
 
-class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
+class GetLastMonthsTotalsAction extends AbstractAction
 {
     private $financialTransaction;
 

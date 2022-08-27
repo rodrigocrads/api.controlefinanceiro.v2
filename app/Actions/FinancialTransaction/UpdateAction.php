@@ -1,10 +1,10 @@
 <?php
 
-namespace FinancialControl\Actions\FinancialTransaction;
+namespace App\Actions\FinancialTransaction;
 
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Models\FinancialTransaction;
-use FinancialControl\Exceptions\NotFoundException;
+use App\Actions\AbstractAction;
+use App\Models\FinancialTransaction;
+use App\Exceptions\NotFoundException;
 
 class UpdateAction extends AbstractAction
 {

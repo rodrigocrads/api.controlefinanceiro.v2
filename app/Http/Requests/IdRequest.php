@@ -1,8 +1,8 @@
 <?php
 
-namespace FinancialControl\Http\Requests;
+namespace App\Http\Requests;
 
-use FinancialControl\Http\Requests\CustomFormRequest;
+use App\Http\Requests\CustomFormRequest;
 
 class IdRequest extends CustomFormRequest
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Custom\DTO;
+namespace App\Custom\DTO;
 
 interface IDTO
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace FinancialControl\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use FinancialControl\Custom\Traits\GlobalScopeByAuthUserId;
+use App\Custom\Traits\GlobalScopeByAuthUserId;
 
 class Category extends Model
 {

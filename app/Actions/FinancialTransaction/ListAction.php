@@ -1,11 +1,11 @@
 <?php
 
-namespace FinancialControl\Actions\FinancialTransaction;
+namespace App\Actions\FinancialTransaction;
 
 use Illuminate\Support\Collection;
-use FinancialControl\Models\FinancialTransaction;
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\FinancialTransactionRepository;
+use App\Models\FinancialTransaction;
+use App\Actions\AbstractAction;
+use App\Repositories\FinancialTransactionRepository;
 
 class ListAction extends AbstractAction
 {
