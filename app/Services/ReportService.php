@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Carbon;
 use App\Custom\DTO\Report\TotalsDTO;
 use App\Custom\DTO\Report\MonthTotalsDTO;
-use App\Repositories\FinancialTransactionRepository;
+use App\Repositories\Impl\FinancialTransactionRepository;
 
 class ReportService
 {

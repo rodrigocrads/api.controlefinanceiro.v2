@@ -3,9 +3,9 @@
 namespace App\Actions\Category;
 
 use App\Actions\AbstractAction;
-use App\Repositories\CategoryRepository;
+use App\Repositories\Impl\CategoryRepository;
 
-class Delete extends AbstractAction
+class UpdateAction extends AbstractAction
 {
     /** @var CategoryRepository */
     private $categoryRepository;
@@ -20,6 +20,9 @@ class Delete extends AbstractAction
 
     public function run()
     {
-        $this->categoryRepository->delete($this->data['id']);
+        return $this->categoryRepository->update(
+            $this->get('data'),
+            $this->get('id')
+        );
     }
 }

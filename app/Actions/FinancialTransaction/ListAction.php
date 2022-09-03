@@ -5,7 +5,7 @@ namespace App\Actions\FinancialTransaction;
 use Illuminate\Support\Collection;
 use App\Models\FinancialTransaction;
 use App\Actions\AbstractAction;
-use App\Repositories\FinancialTransactionRepository;
+use App\Repositories\Impl\FinancialTransactionRepository;
 
 class ListAction extends AbstractAction
 {
@@ -20,20 +20,18 @@ class ListAction extends AbstractAction
 
     public function run()
     {
-        $financialTransactions = $this->repository->all($this->get('params', []));
+        $financialTransactions = $this->repository->list($this->get('params', []));
 
         if ($financialTransactions->isEmpty()) return [];
 
         return $this->buildResponse($financialTransactions);
     }
 
-    private function buildResponse(Collection $financialTransactions): array
+    private function buildResponse(Collection $financialTransactionsCollect): array
     {
-        $financialTransactionsResponseData = array_map(function (FinancialTransaction $financialTransaction) {
+        return array_map(function (FinancialTransaction $financialTransaction) {
 
             return $financialTransaction->getDTO()->toArray();
-        }, $financialTransactions->all());
-
-        return $financialTransactionsResponseData;
+        }, $financialTransactionsCollect->all());
     }
 }

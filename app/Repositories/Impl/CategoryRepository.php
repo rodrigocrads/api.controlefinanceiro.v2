@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Impl;
 
 use App\Models\Category;
-use App\Repositories\Base\Repository;
+use App\Repositories\BaseRepository;
 
-class CategoryRepository extends Repository
+class CategoryRepository extends BaseRepository
 {
     public function __construct(Category $model)
     {

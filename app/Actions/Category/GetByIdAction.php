@@ -3,9 +3,9 @@
 namespace App\Actions\Category;
 
 use App\Actions\AbstractAction;
-use App\Repositories\CategoryRepository;
+use App\Repositories\Impl\CategoryRepository;
 
-class Update extends AbstractAction
+class GetByIdAction extends AbstractAction
 {
     /** @var CategoryRepository */
     private $categoryRepository;
@@ -20,9 +20,6 @@ class Update extends AbstractAction
 
     public function run()
     {
-        return $this->categoryRepository->update(
-            $this->get('data'),
-            $this->get('id')
-        );
+        return $this->categoryRepository->find($this->data['id']);
     }
 }

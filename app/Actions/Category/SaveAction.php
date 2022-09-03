@@ -3,9 +3,9 @@
 namespace App\Actions\Category;
 
 use App\Actions\AbstractAction;
-use App\Repositories\CategoryRepository;
+use App\Repositories\Impl\CategoryRepository;
 
-class Save extends AbstractAction
+class SaveAction extends AbstractAction
 {
     /** @var CategoryRepository */
     private $categoryRepository;

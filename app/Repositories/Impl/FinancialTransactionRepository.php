@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Impl;
 
 use Illuminate\Support\Collection;
 use App\Models\FinancialTransaction;
-use App\Repositories\Base\Repository;
 use App\Custom\DTO\Report\CategoryTotalDTO;
+use App\Repositories\BaseRepository;
 
-class FinancialTransactionRepository extends Repository
+class FinancialTransactionRepository extends BaseRepository
 {
     public function __construct(FinancialTransaction $model)
     {

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Impl;
 
+use App\Repositories\BaseRepository;
 use App\User;
-use App\Repositories\Base\Repository;
 
-class UserRepository extends Repository
+class UserRepository extends BaseRepository
 {
     public function __construct(User $model)
     {

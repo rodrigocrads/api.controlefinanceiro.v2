@@ -3,7 +3,7 @@
 namespace App\Actions\User;
 
 use App\Actions\AbstractAction;
-use App\Repositories\UserRepository;
+use App\Repositories\Impl\UserRepository;
 use App\User;
 
 class UpdateAction extends AbstractAction

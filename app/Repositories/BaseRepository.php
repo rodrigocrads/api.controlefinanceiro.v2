@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories\Base;
+namespace App\Repositories;
 
 use App\Models\IFilterMapper;
 use Illuminate\Database\Eloquent\Model;
 
-abstract class Repository implements IRepository
+abstract class BaseRepository implements IRepository
 {
     /** @var Model */
     protected $model;
@@ -50,7 +50,7 @@ abstract class Repository implements IRepository
         return false;
     }
 
-    public function all(array $filters = [])
+    public function list(array $filters = [])
     {
         if (empty($filters) || !$this->model instanceof IFilterMapper)
             return $this->model->all();
