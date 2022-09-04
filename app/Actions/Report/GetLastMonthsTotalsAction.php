@@ -5,21 +5,24 @@ namespace App\Actions\Report;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use App\Actions\AbstractAction;
-use App\Repositories\Eloquent\FinancialTransactionRepository;
 use App\Custom\DTO\Report\CategoryTotalDTO;
 use App\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
 class GetLastMonthsTotalsAction extends AbstractAction
 {
-    private $financialTransaction;
+    /**
+     * @var IFinancialTransactionRepository
+     */
+    private $repository;
 
     public function __construct(
         $data = [],
-        FinancialTransactionRepository $financialTransaction
+        IFinancialTransactionRepository $financialTransaction
     ) {
         parent::__construct($data);
 
-        $this->financialTransaction = $financialTransaction;
+        $this->repository = $financialTransaction;
     }
 
     public function run()
@@ -61,7 +64,7 @@ class GetLastMonthsTotalsAction extends AbstractAction
     private function getCollectionOfExpensesTotalByCategory($periodStartDate, $periodEndDate): Collection
     {
         /** @var Collection */
-        $expensesTotalsByCategories = $this->financialTransaction->getTotalExpensesByCategories(
+        $expensesTotalsByCategories = $this->repository->getTotalExpensesByCategories(
             $periodStartDate,
             $periodEndDate
         );
