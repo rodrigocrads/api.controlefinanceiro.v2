@@ -3,23 +3,23 @@
 namespace App\Actions\Category;
 
 use App\Actions\AbstractAction;
-use App\Repositories\Eloquent\CategoryRepository;
+use App\Repositories\Interfaces\ICategoryRepository;
 
 class DeleteAction extends AbstractAction
 {
-    /** @var CategoryRepository */
-    private $categoryRepository;
+    /** @var ICategoryRepository */
+    private $repository;
 
     public function __construct(
         array $data = [],
-        CategoryRepository $categoryRepository
+        ICategoryRepository $repository
     ) {
         parent::__construct($data);
-        $this->categoryRepository = $categoryRepository;
+        $this->repository = $repository;
     }
 
     public function run()
     {
-        $this->categoryRepository->delete($this->data['id']);
+        $this->repository->delete($this->data['id']);
     }
 }

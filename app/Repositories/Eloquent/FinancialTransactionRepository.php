@@ -5,8 +5,9 @@ namespace App\Repositories\Eloquent;
 use Illuminate\Support\Collection;
 use App\Models\FinancialTransaction;
 use App\Custom\DTO\Report\CategoryTotalDTO;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
-class FinancialTransactionRepository extends BaseRepository
+class FinancialTransactionRepository extends BaseRepository implements IFinancialTransactionRepository
 {
     public function __construct(FinancialTransaction $model)
     {

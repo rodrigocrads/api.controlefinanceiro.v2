@@ -3,20 +3,24 @@
 namespace App\Actions\FinancialTransaction;
 
 use App\Actions\AbstractAction;
-use App\Models\FinancialTransaction;
-use App\Exceptions\NotFoundException;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
 class DeleteAction extends AbstractAction
 {
+    /**
+     * @var IFinancialTransactionRepository
+     */
+    private $repository;
+
+    public function __construct(array $data = [], IFinancialTransactionRepository $repository)
+    {
+        parent::__construct($data);
+
+        $this->repository = $repository;
+    }
+
     public function run()
     {
-        /** @var FinancialTransaction */
-        $financialTransactionFound = FinancialTransaction::find($this->data['id']);
-
-        if (empty($financialTransactionFound)) {
-            throw new NotFoundException();
-        } 
-
-        $financialTransactionFound->delete();
+        $this->repository->delete($this->data['id']);
     }
 }

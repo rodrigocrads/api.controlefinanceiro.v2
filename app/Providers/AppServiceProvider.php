@@ -8,6 +8,9 @@ use Illuminate\Support\ServiceProvider;
 use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\FinancialTransactionRepository;
 use App\Repositories\Eloquent\UserRepository;
+use App\Repositories\Interfaces\ICategoryRepository;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
+use App\Repositories\Interfaces\IUserRepository;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,15 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(CategoryRepository::class, function() {
+        $this->app->bind(ICategoryRepository::class, function() {
             return new CategoryRepository(new Category());
         });
 
-        $this->app->bind(UserRepository::class, function() {
+        $this->app->bind(IUserRepository::class, function() {
             return new UserRepository(new User());
         });
 
-        $this->app->bind(FinancialTransactionRepository::class, function() {
+        $this->app->bind(IFinancialTransactionRepository::class, function() {
             return new FinancialTransactionRepository(new FinancialTransaction());
         });
     }

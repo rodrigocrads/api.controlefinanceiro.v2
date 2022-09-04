@@ -2,8 +2,9 @@
 
 namespace App\Custom\Validation;
 
-use Exception;
 use App\Models\Category;
+use Exception;
+use App\Repositories\Interfaces\ICategoryRepository;
 use Illuminate\Contracts\Validation\Rule;
 
 class CategoryInUse implements Rule
@@ -18,19 +19,23 @@ class CategoryInUse implements Rule
     public function passes($attribute, $value)
     {
         try {
+            $repository = resolve(ICategoryRepository::class);
+            
             if (empty($value)) {
                 return false;
             }
-    
-            $category = Category::find($value);
-    
+            
+            /** @var Category */
+            $category = $repository->find($value);
+
             if (!empty($category)) {
-                return !$category->hasSomeVariableExpense()
-                    && !$category->hasSomeVariableRevenue();
+                return !$category->hasSomeFinancialTransaction();
             }
     
             return true;
+
         } catch (Exception $e) {
+
             return false;
         }
     }
@@ -42,6 +47,6 @@ class CategoryInUse implements Rule
      */
     public function message()
     {
-        return 'Category in use!';
+        return 'Esta categoria está sendo utilizada!';
     }
 }

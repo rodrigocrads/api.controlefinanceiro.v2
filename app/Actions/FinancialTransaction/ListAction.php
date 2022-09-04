@@ -5,13 +5,13 @@ namespace App\Actions\FinancialTransaction;
 use Illuminate\Support\Collection;
 use App\Models\FinancialTransaction;
 use App\Actions\AbstractAction;
-use App\Repositories\Eloquent\FinancialTransactionRepository;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
 class ListAction extends AbstractAction
 {
     private $repository;
 
-    public function __construct(array $data = [], FinancialTransactionRepository $repository)
+    public function __construct(array $data = [], IFinancialTransactionRepository $repository)
     {
         parent::__construct($data);
 
