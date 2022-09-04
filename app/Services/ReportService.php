@@ -5,16 +5,16 @@ namespace App\Services;
 use Illuminate\Support\Carbon;
 use App\Custom\DTO\Report\TotalsDTO;
 use App\Custom\DTO\Report\MonthTotalsDTO;
-use App\Repositories\Eloquent\FinancialTransactionRepository;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
 class ReportService
 {
-    private $financialTransactionRepository;
+    private $repository;
 
     public function __construct(
-        FinancialTransactionRepository $financialTransactionRepository
+        IFinancialTransactionRepository $repository
     ) {
-        $this->financialTransactionRepository = $financialTransactionRepository;
+        $this->repository = $repository;
     }
 
     // @todo: mover logica de metodo para a Action (GetCurrentMonthTotals)
@@ -24,8 +24,8 @@ class ReportService
         $periodEndDate = now();
 
         return (new TotalsDTO(
-            $this->financialTransactionRepository->getTotalExpenses($periodStartDate, $periodEndDate),
-            $this->financialTransactionRepository->getTotalRevenues($periodStartDate, $periodEndDate),
+            $this->repository->getTotalExpenses($periodStartDate, $periodEndDate),
+            $this->repository->getTotalRevenues($periodStartDate, $periodEndDate),
         ))
         ->toArray();
     }
@@ -57,8 +57,8 @@ class ReportService
                 (new MonthTotalsDTO(
                     strtolower($date->monthName),
                     (new TotalsDTO(
-                        $this->financialTransactionRepository->getTotalExpenses($periodStartDate, $periodEndDate),
-                        $this->financialTransactionRepository->getTotalRevenues($periodStartDate, $periodEndDate),
+                        $this->repository->getTotalExpenses($periodStartDate, $periodEndDate),
+                        $this->repository->getTotalRevenues($periodStartDate, $periodEndDate),
                     ))
                 ))->toArray();
         }
