@@ -3,9 +3,9 @@
 namespace App\Custom\DTO\Report;
 
 use Illuminate\Support\Collection;
-use App\Custom\DTO\IDTO;
+use App\Custom\Interfaces\Arrayable;
 
-class MonthExpensesTotalByCategoriesDTO implements IDTO
+class MonthExpensesTotalByCategoriesDTO implements Arrayable
 {
     /** @var string */
     private $monthName;

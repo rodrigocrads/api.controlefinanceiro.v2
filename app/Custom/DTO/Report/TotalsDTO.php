@@ -2,9 +2,9 @@
 
 namespace App\Custom\DTO\Report;
 
-use App\Custom\DTO\IDTO;
+use App\Custom\Interfaces\Arrayable;
 
-class TotalsDTO implements IDTO
+class TotalsDTO implements Arrayable
 {
     private $totalExpense;
     private $totalRevenue;

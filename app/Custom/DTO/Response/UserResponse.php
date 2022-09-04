@@ -2,14 +2,14 @@
 
 namespace App\Custom\DTO\Response;
 
-use App\Custom\DTO\IDTO;
-use Illuminate\Database\Eloquent\Model;
+use App\Custom\Interfaces\Arrayable;
+use App\User;
 
-class UserResponse implements IDTO
+class UserResponse implements Arrayable
 {
     private $model;
 
-    public function __construct(Model $model)
+    public function __construct(User $model)
     {
         $this->model = $model;
     }

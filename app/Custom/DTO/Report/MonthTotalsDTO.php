@@ -2,9 +2,9 @@
 
 namespace App\Custom\DTO\Report;
 
-use App\Custom\DTO\IDTO;
+use App\Custom\Interfaces\Arrayable;
 
-class MonthTotalsDTO implements IDTO
+class MonthTotalsDTO implements Arrayable
 {
     /** @var string */
     private $monthName;
