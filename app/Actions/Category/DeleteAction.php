@@ -3,7 +3,7 @@
 namespace App\Actions\Category;
 
 use App\Actions\AbstractAction;
-use App\Repositories\Impl\CategoryRepository;
+use App\Repositories\Eloquent\CategoryRepository;
 
 class DeleteAction extends AbstractAction
 {

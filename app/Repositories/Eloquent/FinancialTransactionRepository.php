@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Repositories\Impl;
+namespace App\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
 use App\Models\FinancialTransaction;
 use App\Custom\DTO\Report\CategoryTotalDTO;
-use App\Repositories\BaseRepository;
 
 class FinancialTransactionRepository extends BaseRepository
 {
@@ -14,34 +13,40 @@ class FinancialTransactionRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getTotalExpenses(string $startDatePeriod, string $endDatePeriod): float
+    public function getTotalExpenses(string $startDate, string $endDate): float
     {
-        return $this->listByPeriod($startDatePeriod, $endDatePeriod)
-            ->filter(function (FinancialTransaction $item) { return $item->type === 'expense'; })
+        return $this->listByPeriod($startDate, $endDate)
+            ->filter(function (FinancialTransaction $item) {
+
+                return $item->type === 'expense';
+             })
             ->sum('value');
     }
 
-    public function getTotalRevenues(string $startDatePeriod, string $endDatePeriod): float
+    public function getTotalRevenues(string $startDate, string $endDate): float
     {
-        return $this->listByPeriod($startDatePeriod, $endDatePeriod)
-            ->filter(function (FinancialTransaction $item) { return $item->type === 'revenue'; })
+        return $this->listByPeriod($startDate, $endDate)
+            ->filter(function (FinancialTransaction $item) {
+
+                return $item->type === 'revenue';
+            })
             ->sum('value');
     }
 
-    public function listByPeriod(string $startDatePeriod, string $endDatePeriod): Collection
+    public function listByPeriod(string $startDate, string $endDate): Collection
     {
         return FinancialTransaction::whereBetween(
                 'register_date',
-                [ $startDatePeriod, $endDatePeriod ]
+                [ $startDate, $endDate ]
             )
             ->get();
     }
 
-    public function getTotalExpensesByCategories(string $startDatePeriod, string $endDatePeriod): Collection
+    public function getTotalExpensesByCategories(string $startDate, string $endDate): Collection
     {
         return FinancialTransaction::whereBetween(
                 'register_date',
-                [ $startDatePeriod, $endDatePeriod ]
+                [ $startDate, $endDate ]
             )
             ->where('type', 'expense')
             ->get()

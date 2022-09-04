@@ -5,7 +5,7 @@ namespace App\Actions\FinancialTransaction;
 use Illuminate\Support\Collection;
 use App\Models\FinancialTransaction;
 use App\Actions\AbstractAction;
-use App\Repositories\Impl\FinancialTransactionRepository;
+use App\Repositories\Eloquent\FinancialTransactionRepository;
 
 class ListAction extends AbstractAction
 {

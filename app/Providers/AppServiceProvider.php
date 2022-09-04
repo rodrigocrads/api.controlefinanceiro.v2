@@ -5,9 +5,9 @@ namespace App\Providers;
 use App\Models\Category;
 use App\Models\FinancialTransaction;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\Impl\CategoryRepository;
-use App\Repositories\Impl\FinancialTransactionRepository;
-use App\Repositories\Impl\UserRepository;
+use App\Repositories\Eloquent\CategoryRepository;
+use App\Repositories\Eloquent\FinancialTransactionRepository;
+use App\Repositories\Eloquent\UserRepository;
 use App\User;
 use Illuminate\Support\Facades\Validator;
 

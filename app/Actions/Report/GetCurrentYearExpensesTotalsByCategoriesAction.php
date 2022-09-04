@@ -5,7 +5,7 @@ namespace App\Actions\Report;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use App\Actions\AbstractAction;
-use App\Repositories\Impl\FinancialTransactionRepository;
+use App\Repositories\Eloquent\FinancialTransactionRepository;
 use App\Custom\DTO\Report\CategoryTotalDTO;
 use App\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
 

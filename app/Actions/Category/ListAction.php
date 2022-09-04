@@ -4,7 +4,7 @@ namespace App\Actions\Category;
 
 use App\Models\Category;
 use App\Actions\AbstractAction;
-use App\Repositories\Impl\CategoryRepository;
+use App\Repositories\Eloquent\CategoryRepository;
 
 class ListAction extends AbstractAction
 {

@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Eloquent;
 
 use App\Models\IFilterMapper;
 use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Interfaces\IBaseRepository;
 
-abstract class BaseRepository implements IRepository
+abstract class BaseRepository implements IBaseRepository
 {
     /** @var Model */
     protected $model;
 
     public function __construct($model)
     {
-        if (($model instanceof Model) === false) {
+        if ($model instanceof Model === false) {
             throw new \Exception("Model is invalid");
         }
 

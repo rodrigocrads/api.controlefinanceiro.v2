@@ -3,7 +3,7 @@
 namespace App\Actions\User;
 
 use App\Actions\AbstractAction;
-use App\Repositories\Impl\UserRepository;
+use App\Repositories\Eloquent\UserRepository;
 
 class ChangePasswordAction extends AbstractAction
 {
