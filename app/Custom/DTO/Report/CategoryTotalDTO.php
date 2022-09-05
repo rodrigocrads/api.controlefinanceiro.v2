@@ -1,10 +1,10 @@
 <?php
 
-namespace FinancialControl\Custom\DTO\Report;
+namespace App\Custom\DTO\Report;
 
-use FinancialControl\Custom\DTO\IDTO;
+use App\Custom\Interfaces\Arrayable;
 
-class CategoryTotalDTO implements IDTO
+class CategoryTotalDTO implements Arrayable
 {
     /** @var string */
     public $categoryName;

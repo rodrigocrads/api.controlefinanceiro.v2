@@ -1,18 +1,19 @@
 <?php
 
-namespace FinancialControl\Repositories\Base;
+namespace App\Repositories\Eloquent;
 
-use FinancialControl\Models\IFilterMapper;
+use App\Models\IFilterMapper;
 use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Interfaces\IBaseRepository;
 
-abstract class Repository implements IRepository
+abstract class BaseRepository implements IBaseRepository
 {
     /** @var Model */
     protected $model;
 
     public function __construct($model)
     {
-        if (($model instanceof Model) === false) {
+        if ($model instanceof Model === false) {
             throw new \Exception("Model is invalid");
         }
 
@@ -50,7 +51,7 @@ abstract class Repository implements IRepository
         return false;
     }
 
-    public function all(array $filters = [])
+    public function list(array $filters = [])
     {
         if (empty($filters) || !$this->model instanceof IFilterMapper)
             return $this->model->all();

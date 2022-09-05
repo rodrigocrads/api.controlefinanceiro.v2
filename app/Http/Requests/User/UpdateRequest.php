@@ -1,8 +1,8 @@
 <?php
 
-namespace FinancialControl\Http\Requests\User;
+namespace App\Http\Requests\User;
 
-use FinancialControl\Http\Requests\CustomFormRequest;
+use App\Http\Requests\CustomFormRequest;
 
 class UpdateRequest extends CustomFormRequest
 {

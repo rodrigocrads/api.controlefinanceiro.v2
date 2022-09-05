@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Foundation\Console\ModelMakeCommand as Command;
 

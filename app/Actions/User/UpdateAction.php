@@ -1,19 +1,19 @@
 <?php
 
-namespace FinancialControl\Actions\User;
+namespace App\Actions\User;
 
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\UserRepository;
-use FinancialControl\User;
+use App\Actions\AbstractAction;
+use App\Repositories\Interfaces\IUserRepository;
+use App\User;
 
 class UpdateAction extends AbstractAction
 {
-    /** @var UserRepository */
+    /** @var IUserRepository */
     private $userRepository;
 
     public function __construct(
         array $data = [],
-        UserRepository $userRepository
+        IUserRepository $userRepository
     ) {
         parent::__construct($data);
         $this->userRepository = $userRepository;

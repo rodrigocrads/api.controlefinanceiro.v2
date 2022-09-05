@@ -1,22 +1,26 @@
 <?php
 
-namespace FinancialControl\Actions\FinancialTransaction;
+namespace App\Actions\FinancialTransaction;
 
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Models\FinancialTransaction;
-use FinancialControl\Exceptions\NotFoundException;
+use App\Actions\AbstractAction;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
 class DeleteAction extends AbstractAction
 {
+    /**
+     * @var IFinancialTransactionRepository
+     */
+    private $repository;
+
+    public function __construct(array $data = [], IFinancialTransactionRepository $repository)
+    {
+        parent::__construct($data);
+
+        $this->repository = $repository;
+    }
+
     public function run()
     {
-        /** @var FinancialTransaction */
-        $financialTransactionFound = FinancialTransaction::find($this->data['id']);
-
-        if (empty($financialTransactionFound)) {
-            throw new NotFoundException();
-        } 
-
-        $financialTransactionFound->delete();
+        $this->repository->delete($this->data['id']);
     }
 }

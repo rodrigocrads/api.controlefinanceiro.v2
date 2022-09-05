@@ -1,14 +1,16 @@
 <?php
 
-namespace FinancialControl\Models;
+namespace App\Models;
 
-use FinancialControl\Custom\DTO\IDTO;
+use App\Custom\DTO\Interfaces\IDTO;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use FinancialControl\Custom\Traits\GlobalScopeByAuthUserId;
-use FinancialControl\Custom\DTO\Response\FinancialTransactionResponse;
+use App\Custom\Traits\GlobalScopeByAuthUserId;
+use App\Custom\DTO\Response\FinancialTransactionResponse;
+use App\Custom\Interfaces\Arrayable;
+use App\Models\Interfaces\IFilterMapper;
 
-class FinancialTransaction extends Model implements IFilterMapper
+class FinancialTransaction extends Model implements IFilterMapper, IDTO
 {
     use SoftDeletes;
     use GlobalScopeByAuthUserId;
@@ -37,7 +39,7 @@ class FinancialTransaction extends Model implements IFilterMapper
         return $this->belongsTo(Category::class); 
     }
 
-    public function getDTO(): IDTO
+    public function getDTO(): Arrayable
     {
         return new FinancialTransactionResponse($this);
     }

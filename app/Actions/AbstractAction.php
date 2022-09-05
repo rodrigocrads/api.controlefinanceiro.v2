@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Actions;
+namespace App\Actions;
 
 abstract class AbstractAction
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace FinancialControl\Repositories\Base;
+namespace App\Repositories\Interfaces;
 
-interface IRepository
+interface IBaseRepository
 {
     public function create(array $data);
 
@@ -10,7 +10,7 @@ interface IRepository
 
     public function find($id);
 
-    public function all();
+    public function list(array $filters = []);
 
     public function delete($id);
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace FinancialControl\Models;
+namespace App\Models\Interfaces;
 
 interface IFilterMapper
 {

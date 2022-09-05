@@ -1,18 +1,18 @@
 <?php
 
-namespace FinancialControl\Actions\User;
+namespace App\Actions\User;
 
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\UserRepository;
+use App\Actions\AbstractAction;
+use App\Repositories\Interfaces\IUserRepository;
 
 class ChangePasswordAction extends AbstractAction
 {
-    /** @var UserRepository */
+    /** @var IUserRepository */
     private $userRepository;
 
     public function __construct(
         array $data = [],
-        UserRepository $userRepository
+        IUserRepository $userRepository
     ) {
         parent::__construct($data);
         $this->userRepository = $userRepository;

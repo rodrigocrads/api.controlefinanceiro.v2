@@ -1,10 +1,10 @@
 <?php
 
-namespace FinancialControl\Http\Requests\Category;
+namespace App\Http\Requests\Category;
 
-use FinancialControl\Custom\Validation\CategoryInUse;
-use FinancialControl\Custom\Validation\CategoryNotFound;
-use FinancialControl\Http\Requests\CustomFormRequest;
+use App\Custom\Validation\CategoryInUse;
+use App\Custom\Validation\CategoryNotFound;
+use App\Http\Requests\CustomFormRequest;
 
 class DeleteRequest extends CustomFormRequest
 {

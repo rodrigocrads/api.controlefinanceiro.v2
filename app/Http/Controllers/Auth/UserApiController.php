@@ -1,15 +1,15 @@
 <?php
 
-namespace FinancialControl\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use Exception;
-use FinancialControl\Actions\User\ChangePasswordAction;
-use FinancialControl\Actions\User\UpdateAction;
-use FinancialControl\User;
+use App\Actions\User\ChangePasswordAction;
+use App\Actions\User\UpdateAction;
+use App\User;
 use Illuminate\Support\Facades\Auth;
-use FinancialControl\Http\Controllers\Controller;
-use FinancialControl\Http\Requests\User\ChangePasswordRequest;
-use FinancialControl\Http\Requests\User\UpdateRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\User\ChangePasswordRequest;
+use App\Http\Requests\User\UpdateRequest;
 use Illuminate\Http\Request;
 
 class UserApiController extends Controller

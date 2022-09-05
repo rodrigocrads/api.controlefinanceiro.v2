@@ -1,11 +1,11 @@
 <?php
 
-namespace FinancialControl\Custom\DTO\Report;
+namespace App\Custom\DTO\Report;
 
 use Illuminate\Support\Collection;
-use FinancialControl\Custom\DTO\IDTO;
+use App\Custom\Interfaces\Arrayable;
 
-class MonthExpensesTotalByCategoriesDTO implements IDTO
+class MonthExpensesTotalByCategoriesDTO implements Arrayable
 {
     /** @var string */
     private $monthName;

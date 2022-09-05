@@ -1,17 +1,17 @@
 <?php
 
-namespace FinancialControl\Actions\FinancialTransaction;
+namespace App\Actions\FinancialTransaction;
 
 use Illuminate\Support\Collection;
-use FinancialControl\Models\FinancialTransaction;
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\FinancialTransactionRepository;
+use App\Models\FinancialTransaction;
+use App\Actions\AbstractAction;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
 class ListAction extends AbstractAction
 {
     private $repository;
 
-    public function __construct(array $data = [], FinancialTransactionRepository $repository)
+    public function __construct(array $data = [], IFinancialTransactionRepository $repository)
     {
         parent::__construct($data);
 
@@ -20,20 +20,18 @@ class ListAction extends AbstractAction
 
     public function run()
     {
-        $financialTransactions = $this->repository->all($this->get('params', []));
+        $financialTransactions = $this->repository->list($this->get('params', []));
 
         if ($financialTransactions->isEmpty()) return [];
 
         return $this->buildResponse($financialTransactions);
     }
 
-    private function buildResponse(Collection $financialTransactions): array
+    private function buildResponse(Collection $financialTransactionsCollect): array
     {
-        $financialTransactionsResponseData = array_map(function (FinancialTransaction $financialTransaction) {
+        return array_map(function (FinancialTransaction $financialTransaction) {
 
             return $financialTransaction->getDTO()->toArray();
-        }, $financialTransactions->all());
-
-        return $financialTransactionsResponseData;
+        }, $financialTransactionsCollect->all());
     }
 }

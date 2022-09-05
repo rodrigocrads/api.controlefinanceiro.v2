@@ -1,25 +1,28 @@
 <?php
 
-namespace FinancialControl\Actions\Report;
+namespace App\Actions\Report;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use FinancialControl\Actions\AbstractAction;
-use FinancialControl\Repositories\FinancialTransactionRepository;
-use FinancialControl\Custom\DTO\Report\CategoryTotalDTO;
-use FinancialControl\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
+use App\Actions\AbstractAction;
+use App\Custom\DTO\Report\CategoryTotalDTO;
+use App\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
+use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
 class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 {
-    private $financialTransaction;
+    /**
+     * @var IFinancialTransactionRepository
+     */
+    private $repository;
 
     public function __construct(
         $data = [],
-        FinancialTransactionRepository $financialTransaction
+        IFinancialTransactionRepository $financialTransaction
     ) {
         parent::__construct($data);
 
-        $this->financialTransaction = $financialTransaction;
+        $this->repository = $financialTransaction;
     }
 
     public function run()
@@ -61,7 +64,7 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
     private function getCollectionOfExpensesTotalByCategory($periodStartDate, $periodEndDate): Collection
     {
         /** @var Collection */
-        $expensesTotalsByCategories = $this->financialTransaction->getTotalExpensesByCategories(
+        $expensesTotalsByCategories = $this->repository->getTotalExpensesByCategories(
             $periodStartDate,
             $periodEndDate
         );

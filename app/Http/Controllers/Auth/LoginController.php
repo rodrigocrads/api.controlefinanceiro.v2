@@ -1,8 +1,8 @@
 <?php
 
-namespace FinancialControl\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use FinancialControl\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\View;
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace FinancialControl\Custom\DTO\Response;
+namespace App\Custom\DTO\Response;
 
-use FinancialControl\Custom\DTO\IDTO;
-use Illuminate\Database\Eloquent\Model;
+use App\Custom\Interfaces\Arrayable;
+use App\Models\FinancialTransaction;
 
-class FinancialTransactionResponse implements IDTO
+class FinancialTransactionResponse implements Arrayable
 {
     private $model;
 
-    public function __construct(Model $model)
+    public function __construct(FinancialTransaction $model)
     {
         $this->model = $model;
     }

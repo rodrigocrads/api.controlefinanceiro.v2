@@ -39,4 +39,5 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('/report/currentMonthTotals', 'ReportController@getCurrentMonthTotals');
     Route::get('/report/currentYearTotals', 'ReportController@getCurrentYearTotals');
     Route::get('/report/currentYearExpensesTotalsByCategories', 'ReportController@getCurrentYearExpensesTotalsByCategories');
+    Route::get('/report/lastMonthsTotals/{numberOfMonths}', 'ReportController@getLastMonthsTotals');
 });
