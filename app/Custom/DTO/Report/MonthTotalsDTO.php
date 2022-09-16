@@ -12,7 +12,7 @@ class MonthTotalsDTO implements Arrayable
     /** @var TotalsDTO */
     private $totals;
 
-    public function __construct(string $monthName, TotalsDTO $totals)
+    public function __construct(string $monthName,  TotalsDTO $totals)
     {
         $this->monthName = $monthName;
         $this->totals = $totals;
