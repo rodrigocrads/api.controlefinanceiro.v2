@@ -41,17 +41,17 @@ class GetTotalsByMonthAction extends AbstractAction
         {
             $year = $startDate->year;
             $month = $startDate->month;
-            $periodStartDate = "{$year}-{$month}-01";
+            $stringStartDate = "{$year}-{$month}-01";
 
             $lastDayOfMonth = $startDate->format('t');
-            $periodEndDate = "{$year}-{$month}-{$lastDayOfMonth}";
+            $stringEndDate = "{$year}-{$month}-{$lastDayOfMonth}";
 
             $totals[$year][] =
                 (new MonthTotalsDTO(
                     strtolower($startDate->monthName),
                     (new TotalsDTO(
-                        $this->repository->getTotalExpenses($periodStartDate, $periodEndDate),
-                        $this->repository->getTotalRevenues($periodStartDate, $periodEndDate),
+                        $this->repository->getTotalExpenses($stringStartDate, $stringEndDate),
+                        $this->repository->getTotalRevenues($stringStartDate, $stringEndDate),
                     ))
                 ))->toArray();
 
