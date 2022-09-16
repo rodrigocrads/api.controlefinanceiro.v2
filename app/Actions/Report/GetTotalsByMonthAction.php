@@ -29,7 +29,7 @@ class GetTotalsByMonthAction extends AbstractAction
     public function run()
     {
         /** @var Carbon */
-        $startDate = $this->getLastMonth()
+        $startDate = now()
             ->subMonthWithoutOverflow(self::NUMBER_OF_MONTHS)
             ->setDay(1);
 
