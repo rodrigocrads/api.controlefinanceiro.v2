@@ -6,7 +6,7 @@ use Throwable;
 use App\Actions\Report\GetCurrentMonthTotals;
 use App\Actions\Report\GetCurrentYearTotalsAction;
 use App\Actions\Report\GetCurrentYearExpensesTotalsByCategoriesAction;
-use App\Actions\Report\GetLastMonthsTotalsAction;
+use App\Actions\Report\GetTotalsByMonthAction;
 
 class ReportController extends Controller
 {
@@ -49,14 +49,10 @@ class ReportController extends Controller
         }
     }
 
-    public function getLastMonthsTotals($numberOfMonths)
+    public function getTotalsByMonth()
     {
         try {
-            $action = resolve(GetLastMonthsTotalsAction::class, [
-                'data' => [
-                    'numberOfMonths' => $numberOfMonths,
-                ]
-            ]);
+            $action = resolve(GetTotalsByMonthAction::class, []);
             $result = $action->run();
 
             return response()->json($result ?? []);
