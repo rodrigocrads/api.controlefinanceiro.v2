@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\IFilterMapper;
+use App\Models\Interfaces\IFilterMapper;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Interfaces\IBaseRepository;
 
