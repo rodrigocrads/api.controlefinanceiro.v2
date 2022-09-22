@@ -8,7 +8,7 @@ use App\Actions\AbstractAction;
 use App\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
 use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
-class GetExpensesTotalsByCategoryAndByMonthAction extends AbstractAction
+class GetTotalExpenseByCategoryAndByMonthAction extends AbstractAction
 {
     const NUMBER_OF_MONTHS = 12;
 
