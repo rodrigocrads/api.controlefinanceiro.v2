@@ -27,8 +27,8 @@ class GetTotalExpenseByCategoryAction extends AbstractAction
     public function run()
     {
         $expensesTotalByCategory = $this->getCollectionOfExpensesTotalByCategory(
-            now()->format("01-m-Y"),
-            now()->format("d-m-Y")
+            now()->format("Y-m-01"),
+            now()->format("Y-m-d")
         );
 
         return $expensesTotalByCategory
