@@ -43,22 +43,22 @@ class FinancialTransactionRepository extends BaseRepository implements IFinancia
             ->get();
     }
 
-    public function getTotalExpensesByCategories(string $startDate, string $endDate): Collection
+    public function getTotalByCategory(string $type, string $startDate, string $endDate): Collection
     {
         return FinancialTransaction::whereBetween(
                 'register_date',
                 [ $startDate, $endDate ]
             )
-            ->where('type', 'expense')
+            ->where('type', $type)
             ->get()
             ->groupBy('category.name')
-            ->map(function (Collection $expenses) {
+            ->map(function (Collection $financialTransactions, $categoryName) {
+                $total = $financialTransactions->sum('value');
 
-                return $expenses->sum('value');
-            })
-            ->map(function ($total, $categoryName) {
-
-                return new CategoryTotalDTO($categoryName, $total);
+                return new CategoryTotalDTO(
+                    $categoryName,
+                    $total
+                );
             });
     }
 }

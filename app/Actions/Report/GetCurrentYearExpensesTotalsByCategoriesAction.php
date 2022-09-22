@@ -5,7 +5,6 @@ namespace App\Actions\Report;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use App\Actions\AbstractAction;
-use App\Custom\DTO\Report\CategoryTotalDTO;
 use App\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
 use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
@@ -64,40 +63,13 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
     private function getCollectionOfExpensesTotalByCategory($periodStartDate, $periodEndDate): Collection
     {
         /** @var Collection */
-        $expensesTotalsByCategories = $this->repository->getTotalExpensesByCategories(
+        $totalByCategory = $this->repository->getTotalByCategory(
+            'expense',
             $periodStartDate,
             $periodEndDate
         );
 
-        $expensesTotalByCategory = collect();
-        $expensesTotalByCategory = $this->addOrSumValueInTheTargetCollection(
-            $expensesTotalsByCategories,
-            $expensesTotalByCategory
-        );
-
-        return $expensesTotalByCategory->values();
-    }
-
-    private function addOrSumValueInTheTargetCollection(
-        Collection $source,
-        Collection $target
-    ): Collection
-    {
-        $source->each(function (CategoryTotalDTO $categoryExpenseTotalDTO, $key) use ($target) {
-
-            $foundCategoryTotalDTO = $target->get($key);
-
-            if ($foundCategoryTotalDTO === null) {
-                $target->put($key, $categoryExpenseTotalDTO);
-                return;
-            }
-
-            $foundCategoryTotalDTO->total += $categoryExpenseTotalDTO->total;
-
-            $target->put($key, $foundCategoryTotalDTO);
-        });
-
-        return $target;
+        return $totalByCategory->values();
     }
 
     private function getDateFromEngFormat(string $dateEnglishFormat): Carbon

@@ -20,7 +20,7 @@ interface IFinancialTransactionRepository
 
     public function getTotalRevenues(string $startDate, string $endDate): float;
 
-    public function getTotalExpensesByCategories(string $startDate, string $endDate): Collection;
+    public function getTotalByCategory(string $type, string $startDate, string $endDate): Collection;
 
     public function listByPeriod(string $startDate, string $endDate): Collection;
 }
