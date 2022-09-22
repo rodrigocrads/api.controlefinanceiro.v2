@@ -38,7 +38,7 @@ class ReportController extends Controller
         }
     }
 
-    public function getExpensesTotalsByCategoryAndByMonthAction()
+    public function getExpensesTotalsByCategoryAndByMonth()
     {
         try {
             $action = resolve(GetExpensesTotalsByCategoryAndByMonthAction::class);
