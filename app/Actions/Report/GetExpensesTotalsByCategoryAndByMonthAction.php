@@ -8,8 +8,10 @@ use App\Actions\AbstractAction;
 use App\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
 use App\Repositories\Interfaces\IFinancialTransactionRepository;
 
-class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
+class GetExpensesTotalsByCategoryAndByMonthAction extends AbstractAction
 {
+    const NUMBER_OF_MONTHS = 12;
+
     /**
      * @var IFinancialTransactionRepository
      */
@@ -26,35 +28,35 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
 
     public function run()
     {
-        // @todo: Pensar numa forma para reaproveitar essa lógica de iteração por um período do ano
-        $startMonth = 1;
-        $currentMonth = now()->month;
-        $currentYear = now()->year;
+        /** @var Carbon */
+        $startDate = now()
+            ->subMonthWithoutOverflow(self::NUMBER_OF_MONTHS)
+            ->setDay(1);
+
+        /** @var Carbon */
+        $endDate = $this->getLastMonth();
 
         $monthsTotals = [];
-        for ($i = $startMonth; $i <= $currentMonth; $i++) {
-            $periodStartDate = "{$currentYear}-{$i}-1";
+        while ($startDate->lt($endDate))
+        {
+            $year = $startDate->year;
+            $month = $startDate->month;
+            $monthStartDate = "{$year}-{$month}-01";
 
-            /** @var Carbon */
-            $date = $this->getDateFromEngFormat($periodStartDate);
-
-            $lastDayOfMonth = $date->format('t');
-            $periodEndDate = "{$currentYear}-{$i}-{$lastDayOfMonth}";
-
-            $isCurrentMonth = $i === $currentMonth;
-            if ($isCurrentMonth) {
-                $periodEndDate = now()->format("Y-m-d");
-            }
+            $lastDayOfMonth = $startDate->format('t');
+            $monthEndDate = "{$year}-{$month}-{$lastDayOfMonth}";
 
             $expensesTotalByCategory = $this->getCollectionOfExpensesTotalByCategory(
-                $periodStartDate,
-                $periodEndDate
+                $monthStartDate,
+                $monthEndDate
             );
 
             $monthsTotals[] = (new MonthExpensesTotalByCategoriesDTO(
-                $date->monthName,
+                $startDate->monthName,
                 $expensesTotalByCategory
             ))->toArray();
+
+            $startDate->addMonthWithNoOverflow(1);
         }
 
         return $monthsTotals;
@@ -72,8 +74,8 @@ class GetCurrentYearExpensesTotalsByCategoriesAction extends AbstractAction
         return $totalByCategory->values();
     }
 
-    private function getDateFromEngFormat(string $dateEnglishFormat): Carbon
+    private function getLastMonth(): Carbon
     {
-        return now()->createFromFormat('Y-m-d', $dateEnglishFormat);
+        return now()->setDay("t");
     }
 }

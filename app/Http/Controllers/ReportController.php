@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Throwable;
 use App\Actions\Report\GetCurrentMonthTotals;
 use App\Actions\Report\GetCurrentYearTotalsAction;
-use App\Actions\Report\GetCurrentYearExpensesTotalsByCategoriesAction;
+use App\Actions\Report\GetExpensesTotalsByCategoryAndByMonthAction;
 use App\Actions\Report\GetTotalExpenseByCategoryAction;
 use App\Actions\Report\GetTotalRevenueByCategoryAction;
 use App\Actions\Report\GetTotalsByMonthAction;
@@ -38,10 +38,10 @@ class ReportController extends Controller
         }
     }
 
-    public function getCurrentYearExpensesTotalsByCategories()
+    public function getExpensesTotalsByCategoryAndByMonthAction()
     {
         try {
-            $action = resolve(GetCurrentYearExpensesTotalsByCategoriesAction::class);
+            $action = resolve(GetExpensesTotalsByCategoryAndByMonthAction::class);
             $result = $action->run();
 
             return response()->json($result ?? []);

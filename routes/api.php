@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     // Report
     Route::get('/report/currentMonthTotals', 'ReportController@getCurrentMonthTotals');
     Route::get('/report/currentYearTotals', 'ReportController@getCurrentYearTotals');
-    Route::get('/report/currentYearExpensesTotalsByCategories', 'ReportController@getCurrentYearExpensesTotalsByCategories');
+    Route::get('/report/expensesTotalsByCategoryAndByMonth', 'ReportController@getExpensesTotalsByCategoryAndByMonth');
     Route::get('/report/totalsByMonth', 'ReportController@getTotalsByMonth');
     Route::get('/report/totalExpenseByCategory', 'ReportController@getTotalExpenseByCategory');
     Route::get('/report/totalRevenueByCategory', 'ReportController@getTotalRevenueByCategory');
