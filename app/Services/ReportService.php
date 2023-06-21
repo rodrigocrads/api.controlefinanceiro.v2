@@ -5,14 +5,14 @@ namespace App\Services;
 use Illuminate\Support\Carbon;
 use App\Custom\DTO\Report\TotalsDTO;
 use App\Custom\DTO\Report\MonthTotalsDTO;
-use App\Repositories\Interfaces\IFinancialTransactionRepository;
+use App\Repositories\Interfaces\IEntryRepository;
 
 class ReportService
 {
     private $repository;
 
     public function __construct(
-        IFinancialTransactionRepository $repository
+        IEntryRepository $repository
     ) {
         $this->repository = $repository;
     }

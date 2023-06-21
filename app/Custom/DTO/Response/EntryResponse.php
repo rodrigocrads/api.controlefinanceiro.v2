@@ -3,13 +3,13 @@
 namespace App\Custom\DTO\Response;
 
 use App\Custom\Interfaces\Arrayable;
-use App\Models\FinancialTransaction;
+use App\Models\Entry;
 
-class FinancialTransactionResponse implements Arrayable
+class EntryResponse implements Arrayable
 {
     private $model;
 
-    public function __construct(FinancialTransaction $model)
+    public function __construct(Entry $model)
     {
         $this->model = $model;
     }

@@ -7,15 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\IdRequest;
 use App\Exceptions\NotFoundException;
-use App\Actions\FinancialTransaction\ListAction;
-use App\Actions\FinancialTransaction\SaveAction;
-use App\Actions\FinancialTransaction\DeleteAction;
-use App\Actions\FinancialTransaction\UpdateAction;
-use App\Actions\FinancialTransaction\GetByIdAction;
-use App\Http\Requests\FinancialTransaction\SaveRequest;
-use App\Http\Requests\FinancialTransaction\UpdateRequest;
+use App\Actions\Entry\ListAction;
+use App\Actions\Entry\SaveAction;
+use App\Actions\Entry\DeleteAction;
+use App\Actions\Entry\UpdateAction;
+use App\Actions\Entry\GetByIdAction;
+use App\Http\Requests\Entry\SaveRequest;
+use App\Http\Requests\Entry\UpdateRequest;
 
-class FinancialTransactionController extends Controller
+class EntryController extends Controller
 {
     public function save(SaveRequest $request)
     {

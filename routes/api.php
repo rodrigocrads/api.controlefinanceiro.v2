@@ -28,12 +28,12 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::get('/category', 'CategoryController@listAll');
     Route::get('/category/{id}', 'CategoryController@getById');
 
-    // Financial Transaction
-    Route::post('/financialTransaction', 'FinancialTransactionController@save');
-    Route::get('/financialTransaction', 'FinancialTransactionController@listAll');
-    Route::get('/financialTransaction/{id}', 'FinancialTransactionController@getById');
-    Route::put('/financialTransaction/{id}', 'FinancialTransactionController@update');
-    Route::delete('/financialTransaction/{id}', 'FinancialTransactionController@delete');
+    // Entry
+    Route::post('/entry', 'EntryController@save');
+    Route::get('/entry', 'EntryController@listAll');
+    Route::get('/entry/{id}', 'EntryController@getById');
+    Route::put('/entry/{id}', 'EntryController@update');
+    Route::delete('/entry/{id}', 'EntryController@delete');
 
     // Report
     Route::get('/report/currentMonthTotals', 'ReportController@getCurrentMonthTotals');

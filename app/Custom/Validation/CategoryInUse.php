@@ -29,7 +29,7 @@ class CategoryInUse implements Rule
             $category = $repository->find($value);
 
             if (!empty($category)) {
-                return !$category->hasSomeFinancialTransaction();
+                return !$category->hasSomeEntry();
             }
     
             return true;

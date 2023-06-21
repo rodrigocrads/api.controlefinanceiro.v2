@@ -6,11 +6,11 @@ use App\Custom\DTO\Interfaces\IDTO;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Custom\Traits\GlobalScopeByAuthUserId;
-use App\Custom\DTO\Response\FinancialTransactionResponse;
+use App\Custom\DTO\Response\EntryResponse;
 use App\Custom\Interfaces\Arrayable;
 use App\Models\Interfaces\IFilterMapper;
 
-class FinancialTransaction extends Model implements IFilterMapper, IDTO
+class Entry extends Model implements IFilterMapper, IDTO
 {
     use SoftDeletes;
     use GlobalScopeByAuthUserId;
@@ -41,7 +41,7 @@ class FinancialTransaction extends Model implements IFilterMapper, IDTO
 
     public function getDTO(): Arrayable
     {
-        return new FinancialTransactionResponse($this);
+        return new EntryResponse($this);
     }
 
     public function getFiltersMapper(): array

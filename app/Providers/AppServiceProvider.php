@@ -3,13 +3,13 @@
 namespace App\Providers;
 
 use App\Models\Category;
-use App\Models\FinancialTransaction;
+use App\Models\Entry;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Eloquent\CategoryRepository;
-use App\Repositories\Eloquent\FinancialTransactionRepository;
+use App\Repositories\Eloquent\EntryRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Interfaces\ICategoryRepository;
-use App\Repositories\Interfaces\IFinancialTransactionRepository;
+use App\Repositories\Interfaces\IEntryRepository;
 use App\Repositories\Interfaces\IUserRepository;
 use App\User;
 use Illuminate\Support\Facades\Validator;
@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
             return new UserRepository(new User());
         });
 
-        $this->app->bind(IFinancialTransactionRepository::class, function() {
-            return new FinancialTransactionRepository(new FinancialTransaction());
+        $this->app->bind(IEntryRepository::class, function() {
+            return new EntryRepository(new Entry());
         });
     }
 

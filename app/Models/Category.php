@@ -23,13 +23,13 @@ class Category extends Model
     ];
 
 
-    public function financialTransaction()
+    public function entry()
     {
-        return $this->hasMany(FinancialTransaction::class);
+        return $this->hasMany(Entry::class);
     }
 
-    public function hasSomeFinancialTransaction(): bool
+    public function hasSomeEntry(): bool
     {
-        return isset($this->financialTransaction) && count($this->financialTransaction) > 0;
+        return isset($this->entry) && count($this->entry) > 0;
     }
 }

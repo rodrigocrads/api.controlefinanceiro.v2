@@ -5,23 +5,23 @@ namespace App\Actions\Report;
 
 use App\Actions\AbstractAction;
 use App\Custom\DTO\Report\CategoryTotalDTO;
-use App\Repositories\Interfaces\IFinancialTransactionRepository;
+use App\Repositories\Interfaces\IEntryRepository;
 use Illuminate\Support\Collection;
 
 class GetTotalExpenseByCategoryAction extends AbstractAction
 {
     /**
-     * @var IFinancialTransactionRepository
+     * @var IEntryRepository
      */
     private $repository;
 
     public function __construct(
         $data = [],
-        IFinancialTransactionRepository $financialTransaction
+        IEntryRepository $entry
     ) {
         parent::__construct($data);
 
-        $this->repository = $financialTransaction;
+        $this->repository = $entry;
     }
 
     public function run()
