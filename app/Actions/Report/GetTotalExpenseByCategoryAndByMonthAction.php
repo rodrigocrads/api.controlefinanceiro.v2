@@ -6,24 +6,24 @@ use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use App\Actions\AbstractAction;
 use App\Custom\DTO\Report\MonthExpensesTotalByCategoriesDTO;
-use App\Repositories\Interfaces\IFinancialTransactionRepository;
+use App\Repositories\Interfaces\IEntryRepository;
 
 class GetTotalExpenseByCategoryAndByMonthAction extends AbstractAction
 {
     const NUMBER_OF_MONTHS = 12;
 
     /**
-     * @var IFinancialTransactionRepository
+     * @var IEntryRepository
      */
     private $repository;
 
     public function __construct(
         $data = [],
-        IFinancialTransactionRepository $financialTransaction
+        IEntryRepository $entry
     ) {
         parent::__construct($data);
 
-        $this->repository = $financialTransaction;
+        $this->repository = $entry;
     }
 
     public function run()

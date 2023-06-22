@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Actions\FinancialTransaction;
+namespace App\Actions\Entry;
 
 use App\Actions\AbstractAction;
-use App\Repositories\Interfaces\IFinancialTransactionRepository;
+use App\Repositories\Interfaces\IEntryRepository;
 
 class DeleteAction extends AbstractAction
 {
     /**
-     * @var IFinancialTransactionRepository
+     * @var IEntryRepository
      */
     private $repository;
 
-    public function __construct(array $data = [], IFinancialTransactionRepository $repository)
+    public function __construct(array $data = [], IEntryRepository $repository)
     {
         parent::__construct($data);
 

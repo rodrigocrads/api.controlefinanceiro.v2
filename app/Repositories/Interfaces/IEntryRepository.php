@@ -4,7 +4,7 @@ namespace App\Repositories\Interfaces;
 
 use Illuminate\Support\Collection;
 
-interface IFinancialTransactionRepository
+interface IEntryRepository
 {
     public function create(array $data);
 

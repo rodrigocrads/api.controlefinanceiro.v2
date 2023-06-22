@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\FinancialTransaction;
+namespace App\Http\Requests\Entry;
 
-use Illuminate\Validation\Rule;
 use App\Http\Requests\CustomFormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateRequest extends CustomFormRequest
+class SaveRequest extends CustomFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,7 +15,6 @@ class UpdateRequest extends CustomFormRequest
     public function rules()
     {
         return [
-            'id'   => 'required|int',
             'title' => 'required|string|max:100',
             'description' => 'nullable|string|max:255',
             'type' => [

@@ -3,13 +3,13 @@
 namespace App\Repositories\Eloquent;
 
 use Illuminate\Support\Collection;
-use App\Models\FinancialTransaction;
+use App\Models\Entry;
 use App\Custom\DTO\Report\CategoryTotalDTO;
-use App\Repositories\Interfaces\IFinancialTransactionRepository;
+use App\Repositories\Interfaces\IEntryRepository;
 
-class FinancialTransactionRepository extends BaseRepository implements IFinancialTransactionRepository
+class EntryRepository extends BaseRepository implements IEntryRepository
 {
-    public function __construct(FinancialTransaction $model)
+    public function __construct(Entry $model)
     {
         parent::__construct($model);
     }
@@ -17,7 +17,7 @@ class FinancialTransactionRepository extends BaseRepository implements IFinancia
     public function getTotalExpenses(string $startDate, string $endDate): float
     {
         return $this->listByPeriod($startDate, $endDate)
-            ->filter(function (FinancialTransaction $item) {
+            ->filter(function (Entry $item) {
 
                 return $item->type === 'expense';
              })
@@ -27,7 +27,7 @@ class FinancialTransactionRepository extends BaseRepository implements IFinancia
     public function getTotalRevenues(string $startDate, string $endDate): float
     {
         return $this->listByPeriod($startDate, $endDate)
-            ->filter(function (FinancialTransaction $item) {
+            ->filter(function (Entry $item) {
 
                 return $item->type === 'revenue';
             })
@@ -36,7 +36,7 @@ class FinancialTransactionRepository extends BaseRepository implements IFinancia
 
     public function listByPeriod(string $startDate, string $endDate): Collection
     {
-        return FinancialTransaction::whereBetween(
+        return Entry::whereBetween(
                 'register_date',
                 [ $startDate, $endDate ]
             )
@@ -45,15 +45,15 @@ class FinancialTransactionRepository extends BaseRepository implements IFinancia
 
     public function getTotalByCategory(string $type, string $startDate, string $endDate): Collection
     {
-        return FinancialTransaction::whereBetween(
+        return Entry::whereBetween(
                 'register_date',
                 [ $startDate, $endDate ]
             )
             ->where('type', $type)
             ->get()
             ->groupBy('category.name')
-            ->map(function (Collection $financialTransactions, $categoryName) {
-                $total = $financialTransactions->sum('value');
+            ->map(function (Collection $entries, $categoryName) {
+                $total = $entries->sum('value');
 
                 return new CategoryTotalDTO(
                     $categoryName,
